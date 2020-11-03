@@ -8,6 +8,7 @@ if (process.env.NODE_ENV === 'production') {
     host: 'localhost',
     user: 'root',
     password: 'password',
+    // We need to change this
     database: 'fwitter_db',
   }).promise();
 }
