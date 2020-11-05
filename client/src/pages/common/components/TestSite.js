@@ -26,6 +26,9 @@ class Discover extends React.Component {
   async componentDidMount() {
     const coords = await this.loadAPI();
     console.log('I am coords', coords);
+    let positionArray = []
+    coords.map(coordinate => positionArray.push({lat:coordinate.point[1], lng:coordinate.point[0]} ));
+    console.log('Position Array', positionArray);
   }
 
   loadAPI = async() => {
