@@ -1,4 +1,5 @@
 import axios from "axios";
+import _ from 'lodash';
 
 export default {
   search: function() {
@@ -7,8 +8,13 @@ export default {
       "$$app_token" : "VLs2GGSAdZuQR8i7yUYJfWNmM"
     }
   })
-  .then(function (response) {
-    console.log(response);
+  .then(function (res) {
+    console.log(res.data);
+    const coords = _.map(res.data, (data) => {
+      data.point = data.point.coordinates;
+      return _.pick(data, ['point', 'id','address', 'name',])
+    });
+    return coords;
   })
 }
 }

@@ -4,6 +4,7 @@ import React from 'react';
 // import { useSelector } from 'react-redux';
 // import { useTestSite } from '../hooks/UseTestSites';
 import API from '../../../utils/API';
+import MapContainer from './MapContainer'
 
 // const Discover = () => {
 
@@ -22,17 +23,20 @@ import API from '../../../utils/API';
 // };
 class Discover extends React.Component {
 
-  componentDidMount() {
-    this.loadAPI();
+  async componentDidMount() {
+    const coords = await this.loadAPI();
+    console.log('I am coords', coords);
   }
 
-  loadAPI = () => {
-    API.search()
+  loadAPI = async() => {
+    return await API.search()
   };
 
   render() {
     return (
-        <h1>hi</h1>
+        <MapContainer>
+          
+        </MapContainer>
     );
   }
 }
