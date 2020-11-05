@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from './pages/common/components/Navbar';
+import TestSite from '../src/pages/common/components/TestSite'
 
 import {
   WrappedSignUp,
@@ -13,6 +14,7 @@ function App() {
   return (
     <Router>
       <Navbar/>
+      <Route path='/testsite' component={TestSite}/>
       <Route path='/signup' component={WrappedSignUp}/>
       <Route path='/signin' component={WrappedSignIn}/>
       <Route exact path="/">
