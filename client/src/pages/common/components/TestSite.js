@@ -25,7 +25,7 @@ class Discover extends React.Component {
 
   async componentDidMount() {
     const coords = await this.loadAPI();
-    console.log('I am coords', coords);
+    console.log('I AM COORDS', coords);
   }
 
   loadAPI = async() => {
@@ -35,7 +35,6 @@ class Discover extends React.Component {
   render() {
     return (
         <MapContainer>
-          
         </MapContainer>
     );
   }
