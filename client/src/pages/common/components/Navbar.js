@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import { Link, useHistory } from 'react-router-dom';
 
 
-import {useSelector, useDispatch} from 'react-redux';
-import {setViewerToken} from '../../Viewer';
+import { useSelector, useDispatch } from 'react-redux';
+import { setViewerToken } from '../../Viewer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,13 +48,13 @@ export default function ButtonAppBar() {
             component={Link}
             to='/testsite'
             color="inherit">
-            TestSite
+            Test Locations
           </Button>
           {
             token ?
               <Button
                 color='inherit'
-                onClick={ handleSignOut}
+                onClick={handleSignOut}
               >
                 Sign Out
               </Button> :
