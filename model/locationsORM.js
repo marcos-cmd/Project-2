@@ -49,7 +49,6 @@ const insertLocationToDb = async (name, address, latitude, longitude, userId) =>
 
 const deleteLocationByIdFromDb = async (LocationId) => {
     try {
-        // We cant just delete first if we delete first, we can't get the Location anymore
         const deletedLocation = await findLocationByIdFromDb(LocationId);
         await connection.query(deleteLocationByIdQuery, LocationId);
         return deletedLocation;

@@ -49,7 +49,6 @@ const insertTestToDb = async (testDate, testResult, userId) => {
 
 const deleteTestByIdFromDb = async (TestId) => {
   try {
-    // We cant just delete first if we delete first, we can't get the Test anymore
     const deletedTest = await findTestByIdFromDb(TestId);
     await connection.query(deleteTestByIdQuery, TestId);
     return deletedTest;

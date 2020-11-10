@@ -24,8 +24,8 @@ CREATE TABLE locations (
 	id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    latitude DECIMAL NOT NULL,
-    longitude DECIMAL NOT NULL,
+    latitude DECIMAL(8,6) NOT NULL,
+    longitude DECIMAL(9,6) NOT NULL,
     userId INT references users(id),
     PRIMARY KEY (id)
 );

@@ -14,7 +14,7 @@ router.use(authMiddleware);
 
 // /api/testData/usertests
 router.route('/usertests')
-  .get(findTestsByLoggedInUserApi)
+  .get(findTestsByLoggedInUserApi);
 
 // /api/testData
 router.route('/')

@@ -1,7 +1,6 @@
 const {
   fetchUsers,
   fetchUserByIdFromDb,
-  insertUserToDb,
   deleteUserByIdFromDb,
 } = require('../model/userOrm');
 
@@ -21,7 +20,7 @@ module.exports = {
     try {
       res.json(await fetchUserByIdFromDb(userId));
     } catch (e) {
-      console.log('i am broken L:38', e);
+      console.log(e);
       res.status(400)
         .json(e);
     }
@@ -37,7 +36,7 @@ module.exports = {
       const deletedUser = await deleteUserByIdFromDb(userId);
       res.json(deletedUser);
     } catch (e) {
-      console.log('i am broken L:48', e);
+      console.log(e);
       res.status(400)
         .json(e);
     }

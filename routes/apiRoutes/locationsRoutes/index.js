@@ -14,7 +14,7 @@ router.use(authMiddleware);
 
 // /api/locations/userlocations
 router.route('/userlocations')
-    .get(findLocationsByLoggedInUserApi)
+    .get(findLocationsByLoggedInUserApi);
 
 // /api/locations
 router.route('/')
@@ -22,7 +22,7 @@ router.route('/')
     .post(insertLocationApi);
 
 
-//  /api/locations/:locationId
+// /api/locations/:locationId
 router.route('/:locationId')
     .get(findLocationByIdApi)
     .delete(deleteLocationByIdApi);
