@@ -12,7 +12,7 @@ const authMiddleware = require('../../../middlewares/authorizationMiddleware');
 
 router.use(authMiddleware);
 
-// /api/testData/userFweets
+// /api/testData/usertests
 router.route('/usertests')
   .get(findTestsByLoggedInUserApi)
 

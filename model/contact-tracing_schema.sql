@@ -20,10 +20,12 @@ CREATE TABLE testData (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE loactions (
+CREATE TABLE locations (
 	id INT AUTO_INCREMENT NOT NULL,
-    latitude VARCHAR(255) NOT NULL,
-    longitute VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    latitude DECIMAL NOT NULL,
+    longitude DECIMAL NOT NULL,
     userId INT references users(id),
     PRIMARY KEY (id)
 );
