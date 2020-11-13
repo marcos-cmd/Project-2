@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import { Link, useHistory } from 'react-router-dom';
 
 
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setViewerToken } from '../../Viewer';
 
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+
 }));
 
 export default function ButtonAppBar() {
@@ -28,6 +30,9 @@ export default function ButtonAppBar() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const handleSignUp = () => {
+
+  };
   const handleSignOut = () => {
     localStorage.removeItem('token');
     dispatch(setViewerToken(null));
@@ -75,6 +80,7 @@ export default function ButtonAppBar() {
           }
         </Toolbar>
       </AppBar>
+
     </div>
   );
 };
