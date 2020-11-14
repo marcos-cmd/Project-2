@@ -172,9 +172,6 @@ export default function Profile() {
                         </Badge>
                     </IconButton>
                 </Toolbar>
-
-
-
             </AppBar>
 
             <Drawer

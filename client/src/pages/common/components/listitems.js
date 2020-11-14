@@ -3,49 +3,55 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import BeenhereIcon from '@material-ui/icons/Beenhere';
+import RoomIcon from '@material-ui/icons/Room';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import { Link } from 'react-router-dom';
+
 
 export const mainListItems = (
     <div>
-        <ListItem button>
+        <ListItem
+            component={Link}
+            to='/add-places'>
             <ListItemIcon>
-                <DashboardIcon />
+                <AddCircleOutlineIcon />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Add Visited Places" />
+        </ListItem>
+        <ListItem
+            component={Link}
+            to='/testsite'>
+            <ListItemIcon>
+                <RoomIcon />
+            </ListItemIcon>
+            <ListItemText primary="View Testing Sites" />
+        </ListItem>
+        <ListItem component={Link}
+            to='/covid+locations'>
+            <ListItemIcon>
+                <BeenhereIcon />
+            </ListItemIcon>
+            <ListItemText primary="View Infected Places" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <PersonPinIcon />
+                <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Location" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Friends List" />
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Reports" />
+            <ListItemText primary="View Test Results" />
         </ListItem>
     </div>
 );
 
 export const secondaryListItems = (
     <div>
-        <ListSubheader inset>Virus Status</ListSubheader>
+        <ListSubheader inset></ListSubheader>
         <ListItem button>
             <ListItemIcon>
-                <AssignmentIcon />
+                {/* <AssignmentIcon /> */}
             </ListItemIcon>
-            <ListItemText primary="Active Cases" />
+            <ListItemText primary="" />
         </ListItem>
 
     </div>
