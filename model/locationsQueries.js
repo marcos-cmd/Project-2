@@ -1,4 +1,4 @@
-const insertLocationQuery = 'INSERT INTO locations (name, address, latitude, longitude, userId) VALUES (?, ?, ?, ?, ?);';
+const insertLocationQuery = 'INSERT INTO locations (name, latitude, longitude, userId) VALUES (?, ?, ?, ?);';
 const findAllLocationsQuery = 'SELECT * FROM locations;';
 const findLocationByIdQuery = 'SELECT * FROM locations WHERE id = ?;';
 const findLocationsByUserQuery = 'SELECT * FROM locations WHERE userId = ?;';

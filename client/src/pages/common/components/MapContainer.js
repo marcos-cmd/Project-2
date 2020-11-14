@@ -6,6 +6,7 @@ const mapStyles = {
   height: '90%'
 };
 
+// This component is a map that displays Covid testing locations
 export class MapContainer extends Component {
   state = {
     coords: [],
@@ -13,9 +14,8 @@ export class MapContainer extends Component {
     activeMarker: {},
     selectedPlace: {},
     address: "",
-
   };
-
+  // This function sets the state so that an info window will display after the marker click
   onMarkerClick = (props, marker, e) => {
     console.log('this is props', props);
     this.setState({
@@ -25,7 +25,7 @@ export class MapContainer extends Component {
       address: props.address.address
     });
   }
-
+  // This function sets the state so that an info window will stop displaying after the map click
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -34,11 +34,19 @@ export class MapContainer extends Component {
       })
     }
   };
-
+  // This function loads the API Request
+  loadAPI = async () => {
+    return await API.search()
+  };
+  // The API request pulls coords from SF Database
+  // Coords represent testing locations in SF
+  // This function sets the coords into state
   async componentDidMount() {
     const coords = await this.loadAPI();
     // console.log('I am coords', coords);
     let positionArray = []
+    // positionArray will become the empty array 'coords', 
+    // which is waiting empty in state at this point
     coords.map(coordinate => positionArray.push(
       {
         lat: coordinate.point[1],
@@ -49,22 +57,21 @@ export class MapContainer extends Component {
         activeMarker: null,
         showingInfoWindow: false
       }));
+    // this line sets position array as the array 'coords' in our state
     this.setState({ coords: positionArray })
-
-    console.log('Position Array', positionArray);
+    // console.log('Position Array', positionArray);
   };
 
-  loadAPI = async () => {
-    return await API.search()
-  };
+
 
   render() {
     return (
+      // This map displays SF
       <Map google={this.props.google}
-        onClick={this.onMapClicked}>
-        <Marker onClick={this.onMarkerClick}
-          name={'Current location'} />
+        onClick={this.onMapClicked}
+        style={mapStyles}>
 
+        {/* This function maps the coords array into individual markers on the map */}
         {this.state?.coords?.map((coord, index) => {
           // console.log('this is coord', coord);
           return <Marker
@@ -76,7 +83,7 @@ export class MapContainer extends Component {
             address={{ address: coord.address }}>
           </Marker>
         })}
-
+        {/* This Info Window displays the name and address of the selected testing site */}
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>

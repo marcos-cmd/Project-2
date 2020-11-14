@@ -55,6 +55,12 @@ export default function ButtonAppBar() {
             color="inherit">
             Test Locations
           </Button>
+          <Button
+            component={Link}
+            to='/covid+locations'
+            color="inherit">
+            Covid+ Locations
+          </Button>
           {
             token ?
               <Button
