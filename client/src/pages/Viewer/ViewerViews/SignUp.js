@@ -73,7 +73,7 @@ class SignUp extends Component {
           component={TextFieldInput}
         />
         <Button
-          onClick={ handleSubmit(this.handleSignUp) }
+          onClick={handleSubmit(this.handleSignUp)}
           variant="contained"
           color="primary">
           Sign up
