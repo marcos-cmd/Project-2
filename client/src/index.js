@@ -25,7 +25,7 @@ const store = configureStore({
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <App />
   </Provider>
   ,
   document.getElementById('root'));

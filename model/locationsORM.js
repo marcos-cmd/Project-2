@@ -37,9 +37,9 @@ const findLocationsByUserFromDb = async (userId) => {
 };
 
 
-const insertLocationToDb = async (name, address, latitude, longitude, userId) => {
+const insertLocationToDb = async (name, latitude, longitude, userId) => {
     try {
-        const [result] = await connection.query(insertLocationQuery, [name, address, latitude, longitude, userId]);
+        const [result] = await connection.query(insertLocationQuery, [name, latitude, longitude, userId]);
         return await findLocationByIdFromDb(result.insertId);
     } catch (e) {
         throw new Error(e);

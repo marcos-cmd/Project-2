@@ -49,14 +49,16 @@ module.exports = {
         }
     },
     insertLocationApi: async (req, res) => {
+        console.log(req.user);
         //  req.user // logged in user
         //  req.body // coming from form
         //  req.params // coming from wildcards declared in routes
-        const { name, address, latitude, longitude } = req.body;
+        const { name, latitude, longitude } = req.body;
         try {
-            const createdLocation = await insertLocationToDb(name, address, latitude, longitude, req.user.id);
+            const createdLocation = await insertLocationToDb(name, latitude, longitude, req.user.id);
             res.json(createdLocation);
         } catch (e) {
+            console.log(e);
             res.status(401).json(e);
         }
     },
