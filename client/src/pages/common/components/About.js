@@ -91,7 +91,7 @@ export default function About() {
             <Container maxWidth="lg" className={classes.blogsContainer}>
                 <Typography variant="h4" className={classes.blogTitle}>
                     Infected Users
-        </Typography>
+                </Typography>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
@@ -100,14 +100,19 @@ export default function About() {
                                     className={classes.media}
                                     image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQwa2hf7EJH4I5xksAc8hN8LcvkgUuC_QQhAg&usqp=CAU"
                                     title="Contemplative Reptile"
-                                />
+                                    component={Link}
+                                    to='/covid+locations'
+                                    color="inherit">
+
+                                </CardMedia>
+
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        Test Locations
-                  </Typography>
+                                        Test Site Locations
+                                    </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
                                         Where can you get tested?
-                  </Typography>
+                                    </Typography>
                                 </CardContent>
                             </CardActionArea>
                             <CardActions className={classes.cardActions}>
@@ -116,10 +121,10 @@ export default function About() {
                                     <Box ml={2}>
                                         <Typography variant="subtitle2" component="p">
                                             CVS Pharmacy
-                    </Typography>
+                                        </Typography>
                                         <Typography variant="subtitle2" color="textSecondary" component="p">
                                             Location: Fremont
-                    </Typography>
+                                        </Typography>
                                     </Box>
                                 </Box>
                                 <Box>
@@ -139,10 +144,10 @@ export default function About() {
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
                                         Test Results
-                  </Typography>
+                                    </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
                                         Tested
-                  </Typography>
+                                    </Typography>
                                 </CardContent>
                             </CardActionArea>
                             <CardActions className={classes.cardActions}>
@@ -151,10 +156,10 @@ export default function About() {
                                     <Box ml={2}>
                                         <Typography variant="subtitle2" component="p">
                                             User
-                    </Typography>
+                                        </Typography>
                                         <Typography variant="subtitle2" color="textSecondary" component="p">
                                             Test Date: May 14, 2020
-                    </Typography>
+                                        </Typography>
                                     </Box>
                                 </Box>
                                 <Box>
@@ -174,7 +179,7 @@ export default function About() {
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
                                         Form
-                  </Typography>
+                                    </Typography>
                                     <Typography variant="body2" color="textSecondary" component="p">
 
                                     </Typography>
@@ -186,10 +191,10 @@ export default function About() {
                                     <Box ml={2}>
                                         <Typography variant="subtitle2" component="p">
                                             input
-                    </Typography>
+                                        </Typography>
                                         <Typography variant="subtitle2" color="textSecondary" component="p">
                                             May 14, 2020
-                    </Typography>
+                                        </Typography>
                                     </Box>
                                 </Box>
                                 <Box>
