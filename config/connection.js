@@ -8,8 +8,7 @@ if (process.env.NODE_ENV === 'production') {
     host: 'localhost',
     user: 'root',
     password: 'password',
-    // We need to change this
-    database: 'fwitter_db',
+    database: 'contact_tracing_db',
   }).promise();
 }
 module.exports = connection;
