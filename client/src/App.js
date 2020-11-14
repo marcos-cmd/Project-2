@@ -10,6 +10,8 @@ import {
 } from './pages/Viewer';
 import User from '../src/pages/common/components/User.js';
 import About from '../src/pages/common/components/About.js';
+import Profile from '../src/pages/common/components/Profile.js';
+
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path='/testsite' component={TestSite} />
         <Route path='/signup' component={User} />
         <Route path='/signin' component={WrappedSignIn} />
+        <Route path='/Profile' component={Profile} />
+
 
       </Switch>
 
