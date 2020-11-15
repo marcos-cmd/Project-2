@@ -4,7 +4,6 @@ import Navbar from './pages/common/components/Navbar';
 import MapContainer from '../src/pages/common/components/MapContainer';
 import CovidLocation from '../src/pages/common/components/CovidLocation';
 
-import TestSite from '../src/pages/common/components/TestSite';
 import { Button } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 import {
@@ -24,10 +23,12 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path='/' component={About} />
-        <Route path='/testsite' component={TestSite} />
-        <Route path='/signup' component={User} />
+        <Route path='/testsite' component={MapContainer} />
+        <Route path='/signup' component={WrappedSignUp} />
         <Route path='/signin' component={WrappedSignIn} />
         <Route path='/Profile' component={Profile} />
+        <Route path='/covid+locations' component={CovidLocation} />
+
 
 
       </Switch>
