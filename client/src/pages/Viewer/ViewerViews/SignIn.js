@@ -49,7 +49,7 @@ const SignIn = (props) => {
       const res = await axios.post('/auth/signin', formValues);
       localStorage.setItem('token', res.data);
       dispatch(setViewerToken(res.data));
-      history.push('/users');
+      history.push('/Profile');
     } catch (e) {
       throw new Error(e);
     }
@@ -68,7 +68,7 @@ const SignIn = (props) => {
         component={TextFieldInput}
       />
       <Button
-        onClick={ handleSubmit(handleSignIn) }
+        onClick={handleSubmit(handleSignIn)}
         variant="contained"
         color="primary">
         Sign in
