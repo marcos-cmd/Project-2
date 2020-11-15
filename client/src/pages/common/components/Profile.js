@@ -142,12 +142,11 @@ export default function Profile() {
     const [open, setOpen] = React.useState(true);
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
+    const toggleDrawer = () => {
+        if (open === true) {
+            setOpen(false);
+        } else setOpen(true);
+    }
 
     // ==================================================================================//
     // === Test Results Input ===========================================================//
@@ -190,7 +189,7 @@ export default function Profile() {
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                        onClick={toggleDrawer}
                         className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
                     >
                         <MenuIcon />
@@ -215,7 +214,7 @@ export default function Profile() {
                 open={open}
             >
                 <div className={classes.toolbarIcon}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={toggleDrawer}>
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>
