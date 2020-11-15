@@ -99,9 +99,9 @@ export default function About() {
                                 <CardMedia
                                     className={classes.media}
                                     image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQwa2hf7EJH4I5xksAc8hN8LcvkgUuC_QQhAg&usqp=CAU"
-                                    title="Contemplative Reptile"
+                                    title="Testing Site Locations"
                                     component={Link}
-                                    to='/covid+locations'
+                                    to='/testsite'
                                     color="inherit">
 
                                 </CardMedia>
