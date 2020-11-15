@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -25,10 +25,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-
-
-
-
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import moment from 'moment';
+import axios from 'axios';
 
 
 function Copyright() {
@@ -135,11 +135,12 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
+
+
 export default function Profile() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -147,6 +148,38 @@ export default function Profile() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    // ==================================================================================//
+    // === Test Results Input ===========================================================//
+    // ==================================================================================//
+    // Using useEffect will allow us to access previous test results to show on a page
+    const [date, setDate] = useState(
+        moment(new Date()).format("MM-DD-YY")
+    );
+    const [results, setResults] = useState(null);
+
+    //handles when user changes input in date inputfield
+    const handleChangeDate = e => {
+        setDate(e.target.value);
+    };
+
+    // handles when user changes input in results inputfield
+    const handleNewResults = e => {
+        setResults(e.target.value);
+    }
+    console.log(date);
+
+    const addTestResults = async () => {
+        const testDate = date;
+        const testResult = results;
+        try {
+            const res = await axios.post('/api/testData', { testDate, testResult }, { headers: { authorization: localStorage.getItem('token') } })
+            console.log('this is res', res);
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
+    // ==================================================================================//
 
     return (
         <div className={classes.root}>
@@ -172,9 +205,6 @@ export default function Profile() {
                         </Badge>
                     </IconButton>
                 </Toolbar>
-
-
-
             </AppBar>
 
             <Drawer
@@ -230,7 +260,13 @@ export default function Profile() {
                 </Card>
             </Grid>
             <main className={classes.content}>
-
+                <form className={classes.root} noValidate autoComplete="off">
+                    <div>
+                        <TextField id="date" name="date" label="MM/DD/YY" variant="outlined" value={date} onChange={handleChangeDate} required />
+                        <TextField id="outlined-basic" label="Positive or Negative" variant="outlined" value={results} onChange={handleNewResults} required />
+                    </div>
+                    <Button onClick={addTestResults} variant="contained" color="primary">Submit Test Results</Button>
+                </form>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container spacing={3}>
