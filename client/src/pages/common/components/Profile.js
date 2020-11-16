@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -139,12 +140,41 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Profile() {
+export default function Profile(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-    const toggleDrawer = () => {
+
+    // console.log('props', props);
+    const { username } = useParams();
+    const [user, setUser] = useState([]);
+
+    // const fetchDatas = async () => {
+    //     // console.log("i am user", username)
+    //     const response = await axios.get(`/api/users/user/${username}`, { headers: { authorization: localStorage.getItem('token') } })
+    //     console.log('res', response.data)
+    //     setUser()
+    //     console.log('user', user)
+    // }
+
+    useEffect(async () => {
+        await axios.get(`/api/testData/usertests`, { headers: { authorization: localStorage.getItem('token') } })
+            .then((res) => {
+                console.log('testData', res.data)
+                setUser(res.data)
+            });
+    }, [username]);
+    // setUser(testData)
+    // console.log('user', user)
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+  const toggleDrawer = () => {
         if (open === true) {
             setOpen(false);
         } else setOpen(true);
@@ -228,14 +258,24 @@ export default function Profile() {
 
             <Grid item xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            User Name
+
+                    <CardActionArea>
+                        <CardMedia
+                            className={classes.media}
+                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQwa2hf7EJH4I5xksAc8hN8LcvkgUuC_QQhAg&usqp=CAU"
+                            title="Contemplative Reptile"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {username}
                             </Typography>
-                        <button>
-                            Places Visited
-                            </button>
-                    </CardContent>
+                            <h3>Testing History</h3>
+                            <div>
+                                {user.map(data => (
+                                    <p>{data.testDate} : {data.testResult}</p>
+                                ))}
+                            </div>
+
 
                     <CardActions className={classes.cardActions}>
                         <Box className={classes.author}>

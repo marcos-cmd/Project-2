@@ -50,7 +50,7 @@ class SignUp extends Component {
       console.log('I AM THE SIGNUP USERS TOKEN', res.data);
       localStorage.setItem('token', res.data);
       this.props.setViewerToken(res.data);
-      this.props.history.push('/Profile');
+      this.props.history.push(`/Profile/${formValues.username}`);
       // sessionStorage.setItem('token', res.data);
     } catch (e) {
       throw new Error(e);

@@ -3,6 +3,7 @@ const router = require('express')
 const {
   getAllUsersApi,
   getUserByIdApi,
+  getUserByUsernameApi,
   deleteUserByIdApi,
 } = require('../../../controllers/userController');
 
@@ -18,5 +19,6 @@ router.route('/')
 router.route('/:userId')
   .get(getUserByIdApi)
   .delete(deleteUserByIdApi);
-
+router.route('/user/:username')
+  .get(getUserByUsernameApi)
 module.exports = router;
