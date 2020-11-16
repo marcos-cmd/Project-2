@@ -110,6 +110,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4),
     },
     container: {
         paddingTop: theme.spacing(4),
@@ -227,38 +229,31 @@ export default function Profile() {
 
             <Grid item xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
-                    <CardActionArea>
-                        <CardMedia
-                            className={classes.media}
-                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQwa2hf7EJH4I5xksAc8hN8LcvkgUuC_QQhAg&usqp=CAU"
-                            title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                User Name
-                  </Typography>
-                            <button>
-                                Places Visited
-                                </button>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            User Name
+                            </Typography>
+                        <button>
+                            Places Visited
+                            </button>
+                    </CardContent>
 
-
-                        </CardContent>
-                    </CardActionArea>
                     <CardActions className={classes.cardActions}>
                         <Box className={classes.author}>
-
                             <Box ml={2}>
                                 <Typography variant="subtitle2" component="p">
-
                                 </Typography>
                                 <Typography variant="subtitle2" color="textSecondary" component="p">
                                 </Typography>
                             </Box>
                         </Box>
-
                     </CardActions>
                 </Card>
             </Grid>
+            <Grid>
+
+            </Grid>
+            {/*Test Results*/}
             <main className={classes.content}>
                 <form className={classes.root} noValidate autoComplete="off">
                     <div>
@@ -276,8 +271,6 @@ export default function Profile() {
                                 <Chart />
                             </Paper>
                         </Grid>
-
-
                     </Grid>
                     <Box pt={4}>
                         <Copyright />

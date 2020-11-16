@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import API from '../../../utils/API';
+import { makeStyles } from '@material-ui/core/styles';
 
 const mapStyles = {
-  width: '90%',
-  height: '90%'
+  width: '50%',
+  height: '50%',
+  position: 'relative'
+
 };
+
 
 // This component is a map that displays locations users have inserted into our database
 export class CovidLocation extends Component {
@@ -50,34 +54,36 @@ export class CovidLocation extends Component {
     this.setState({ markers })
   };
 
-
   render() {
     return (
-      // This map displays San Francisco
-      <Map google={this.props.google}
-        onClick={this.onMapClicked}>
+      <div>
+        {/* // This map displays San Francisco */}
+        <Map google={this.props.google}
+          onClick={this.onMapClicked}
+          style={mapStyles}>
 
-        {/* This function maps the markers in our database to display individual markers */}
-        {this.state?.markers?.map((marker, index) => {
-          console.log('this is marker', marker);
-          return <Marker
-            key={index}
-            onClick={this.onMarkerClick}
-            position={{ lat: marker.latitude, lng: marker.longitude }}
-            selectedPlace={{ name: marker.name }}
-            style={mapStyles}>
-          </Marker>
-        })}
-        {/* This info Window displays the name of the place a user has been */}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-            {/* <h3>{this.state.address}</h3> */}
-          </div>
-        </InfoWindow>
-      </Map>
+          {/* This function maps the markers in our database to display individual markers */}
+          {this.state?.markers?.map((marker, index) => {
+            console.log('this is marker', marker);
+            return <Marker
+              key={index}
+              onClick={this.onMarkerClick}
+              position={{ lat: marker.latitude, lng: marker.longitude }}
+              selectedPlace={{ name: marker.name }}
+            >
+            </Marker>
+          })}
+          {/* This info Window displays the name of the place a user has been */}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+              {/* <h3>{this.state.address}</h3> */}
+            </div>
+          </InfoWindow>
+        </Map>
+      </div>
     )
   }
 }

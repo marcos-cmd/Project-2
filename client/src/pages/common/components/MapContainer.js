@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import API from '../../../utils/API';
+import Button from '@material-ui/core/Button';
+import axios from 'axios';
+import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+
+
 const mapStyles = {
-  width: '90%',
-  height: '90%'
+
+  width: '50%',
+  height: '50%'
 };
 
 // This component is a map that displays Covid testing locations
@@ -59,40 +65,42 @@ export class MapContainer extends Component {
       }));
     // this line sets position array as the array 'coords' in our state
     this.setState({ coords: positionArray })
-    // console.log('Position Array', positionArray);
   };
 
 
 
   render() {
+    const { classes } = this.props;
     return (
-      // This map displays SF
-      <Map google={this.props.google}
-        onClick={this.onMapClicked}
-        style={mapStyles}>
+      <div>
+        {/* // This map displays SF */}
+        <Map google={this.props.google}
+          onClick={this.onMapClicked}
+          style={mapStyles}>
 
-        {/* This function maps the coords array into individual markers on the map */}
-        {this.state?.coords?.map((coord, index) => {
-          // console.log('this is coord', coord);
-          return <Marker
-            key={index}
-            onClick={this.onMarkerClick}
-            position={{ lat: coord.lat, lng: coord.lng }}
-            id={{ id: coord.id }}
-            selectedPlace={{ name: coord.name }}
-            address={{ address: coord.address }}>
-          </Marker>
-        })}
-        {/* This Info Window displays the name and address of the selected testing site */}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-            <h3>{this.state.address}</h3>
-          </div>
-        </InfoWindow>
-      </Map>
+          {/* This function maps the coords array into individual markers on the map */}
+          {this.state?.coords?.map((coord, index) => {
+            // console.log('this is coord', coord);
+            return <Marker
+              key={index}
+              onClick={this.onMarkerClick}
+              position={{ lat: coord.lat, lng: coord.lng }}
+              id={{ id: coord.id }}
+              selectedPlace={{ name: coord.name }}
+              address={{ address: coord.address }}>
+            </Marker>
+          })}
+          {/* This Info Window displays the name and address of the selected testing site */}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>{this.state.selectedPlace.name}</h1>
+              <h3>{this.state.address}</h3>
+            </div>
+          </InfoWindow>
+        </Map>
+      </div>
     )
   }
 }

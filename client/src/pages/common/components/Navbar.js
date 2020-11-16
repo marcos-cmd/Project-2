@@ -4,8 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Link, useHistory } from 'react-router-dom';
-
-
+import styled from 'styled-components';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setViewerToken } from '../../Viewer';
@@ -13,13 +12,10 @@ import { setViewerToken } from '../../Viewer';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginBottom: theme.spacing(3),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
+    marginBottom: theme.spacing(1),
+    fontFamily: 'Arial',
+    color: 'red',
+    backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzyydCV1gnw0K9tj8tEIISFBlGPJS6oBj1Iw&usqp=CAU)`
   },
 
 }));
@@ -40,9 +36,10 @@ export default function ButtonAppBar() {
   };
 
   return (
+
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="sticky" style={{ background: '#2E3B55', fontFamily: '"Segoe UI"' }}>
+        <Toolbar >
           <Button
             component={Link}
             to='/'
@@ -86,7 +83,6 @@ export default function ButtonAppBar() {
           }
         </Toolbar>
       </AppBar>
-
     </div>
   );
 };
