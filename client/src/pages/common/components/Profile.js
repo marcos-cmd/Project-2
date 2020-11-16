@@ -174,7 +174,7 @@ export default function Profile(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-  const toggleDrawer = () => {
+    const toggleDrawer = () => {
         if (open === true) {
             setOpen(false);
         } else setOpen(true);
@@ -275,6 +275,8 @@ export default function Profile(props) {
                                     <p>{data.testDate} : {data.testResult}</p>
                                 ))}
                             </div>
+                        </CardContent>
+                    </CardActionArea>
 
 
                     <CardActions className={classes.cardActions}>
