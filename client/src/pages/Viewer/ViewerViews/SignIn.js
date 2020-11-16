@@ -48,6 +48,7 @@ const SignIn = (props) => {
     try {
       const res = await axios.post('/auth/signin', formValues);
       localStorage.setItem('token', res.data);
+      localStorage.setItem('username', formValues.username)
       dispatch(setViewerToken(res.data));
       history.push(`/Profile/${formValues.username}`);
     } catch (e) {

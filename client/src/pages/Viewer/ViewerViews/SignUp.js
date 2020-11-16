@@ -49,6 +49,7 @@ class SignUp extends Component {
       const res = await axios.post('/auth/signup', formValues);
       console.log('I AM THE SIGNUP USERS TOKEN', res.data);
       localStorage.setItem('token', res.data);
+      localStorage.setItem('username', formValues.username)
       this.props.setViewerToken(res.data);
       this.props.history.push(`/Profile/${formValues.username}`);
       // sessionStorage.setItem('token', res.data);
