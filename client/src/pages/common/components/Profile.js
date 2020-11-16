@@ -111,6 +111,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4),
     },
     container: {
         paddingTop: theme.spacing(4),
@@ -143,6 +145,7 @@ export default function Profile(props) {
     const [open, setOpen] = React.useState(true);
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+
     // console.log('props', props);
     const { username } = useParams();
     const [user, setUser] = useState([]);
@@ -171,6 +174,11 @@ export default function Profile(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+  const toggleDrawer = () => {
+        if (open === true) {
+            setOpen(false);
+        } else setOpen(true);
+    }
 
     // ==================================================================================//
     // === Test Results Input ===========================================================//
@@ -213,7 +221,7 @@ export default function Profile(props) {
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                        onClick={toggleDrawer}
                         className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
                     >
                         <MenuIcon />
@@ -238,7 +246,7 @@ export default function Profile(props) {
                 open={open}
             >
                 <div className={classes.toolbarIcon}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={toggleDrawer}>
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>
@@ -250,6 +258,7 @@ export default function Profile(props) {
 
             <Grid item xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
+
                     <CardActionArea>
                         <CardMedia
                             className={classes.media}
@@ -268,24 +277,22 @@ export default function Profile(props) {
                             </div>
 
 
-
-                        </CardContent>
-                    </CardActionArea>
                     <CardActions className={classes.cardActions}>
                         <Box className={classes.author}>
-
                             <Box ml={2}>
                                 <Typography variant="subtitle2" component="p">
-
                                 </Typography>
                                 <Typography variant="subtitle2" color="textSecondary" component="p">
                                 </Typography>
                             </Box>
                         </Box>
-
                     </CardActions>
                 </Card>
             </Grid>
+            <Grid>
+
+            </Grid>
+            {/*Test Results*/}
             <main className={classes.content}>
                 <form className={classes.root} noValidate autoComplete="off">
                     <div>
@@ -303,8 +310,6 @@ export default function Profile(props) {
                                 <Chart />
                             </Paper>
                         </Grid>
-
-
                     </Grid>
                     <Box pt={4}>
                         <Copyright />
