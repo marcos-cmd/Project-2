@@ -9,6 +9,6 @@ if (process.env.JAWSDB_URL) {
     user: 'root',
     password: 'password',
     database: 'contact_tracing_db',
-  }).promise();
+  });
 }
 module.exports = connection;
