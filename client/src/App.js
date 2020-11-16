@@ -25,7 +25,7 @@ function App() {
         <Route path='/covid+locations' component={CovidLocation} />
         <Route path='/signup' component={WrappedSignUp} />
         <Route path='/signin' component={WrappedSignIn} />
-        <Route path='/Profile' component={Profile} />
+        <Route path='/Profile/:username' component={Profile} />
       </Switch>
       <Route exact path="/">
 
