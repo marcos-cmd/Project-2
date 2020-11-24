@@ -21,6 +21,13 @@ class Application extends React.Component {
             zoom: this.state.zoom
         });
     }
+    render() {
+        return (
+            <div>
+                <div ref={el => this.mapContainer = el} />
+            </div>
+        )
+    }
 }
 
 ReactDOM.render(<Application />, document.getElementById('app'));
