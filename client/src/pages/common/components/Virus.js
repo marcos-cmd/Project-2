@@ -11,13 +11,11 @@ const Virus = () => {
         <Sky
           images={{
             0: virusImg, 
-            1: virusImg,
-            2: virusImg,
           }}
-          how={130} /* Pass the number of images Sky will render chosing randomly */
-          time={40} /* time of animation */
+          how={150} /* Pass the number of images Sky will render chosing randomly */
+          time={50} /* time of animation */
           size={'30px'} /* size of the rendered images */
-           background={'white'} /* color of background */
+          
         />
       </div>
     );

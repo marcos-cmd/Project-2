@@ -17,6 +17,9 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import Pagination from "@material-ui/lab/Pagination";
 import Typography from "@material-ui/core/Typography";
 import Virus from "./Virus";
+import Pin from '../../../pin.png';
+import Positive from '../../../positive.png';
+import RoadMap from '../../../roadmap.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,39 +27,73 @@ const useStyles = makeStyles((theme) => ({
   },
   coronaUpdate: {
     color: "#455a64",
-    fontFamily: "Quicksand, sans-serif",
-    zIndex: 1,
-    height: "500px",
-    backgroundSize: "cover",
+    fontWeight: 'bold',
+    fontFamily: "Raleway, sans-serif",
     position: "relative",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     fontSize: "5rem",
-    paddingTop: theme.spacing(9),
-    [theme.breakpoints.down("sm")]: {
-      height: 300,
-      fontSize: "3em",
-    },
+    padding: '280px 0px',
+    height: "50%",
   },
 angledBackground: {
   height: '1000px',
-  background: 'linear-gradient(28deg, #cfcfcf 47%, #fff calc(44% + 2px))',
+  background: 'linear-gradient(28deg, #cfcfcf 47%, transparent calc(44% + 2px))',
   display: 'flex',
   alignItems: 'center',
 },
 
 generalInfo:{
-  // border: 'solid 5px #1c313a',
-  height: '600px',
+  fontFamily: 'Raleway, sans-serif',
+  height: '900px', 
+  width: '80%',
   background: 'white',
   boxShadow: '5px 5px 20px 0px #1c313a',
+  color:"#455a64",
+},
+title:{
+ textAlign: 'center',
+ padding: '50px 0px 30px 0px',
+ fontSize: '50px',
+ borderBottom: '1px solid #cfcfcf',
+},
+sectionTitles:{
+  padding: '100px 0 30px 0'
+},
+topRow: {
+display: 'flex',
+justifyContent: 'space-around',
+fontSize: '20px',
+textAlign: 'center',
+padding: '50px 0px 40px 0px',
+borderBottom: '1px solid #cfcfcf',
+height: '40%',
+},
+sectionOne: {
+  background: `url(${Pin})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+},
+sectionTwo: {
+background: `url(${Positive})`,
+backgroundRepeat: 'no-repeat',
+backgroundPosition: 'center',
+},
+sectionThree:{
+textAlign: 'center',
+fontSize: '20px',
+height: '40%',
+marginTop: '40px',
+background: `url(${RoadMap})`,
+backgroundRepeat: 'no-repeat',
+backgroundSize: 'contain',
 },
 
   blogsContainer: {
     paddingTop: theme.spacing(3),
-    
-    
+    maxWidth: '100%',
+    background: '#cfcfcf',
   },
   blogTitle: {
     fontWeight: 400,
@@ -88,16 +125,31 @@ export default function About() {
   const classes = useStyles();
   const usersname = localStorage.getItem("username");
   return (
-    <div >
+    <div>
+      <Virus></Virus>
       <Box>
         <Box className={classes.coronaUpdate}>
-          <Virus></Virus>
-          <Box>Roaming for Rona</Box>
+          
+          <Box>ROAMING FOR RONA</Box>
         </Box>
       </Box>
       <Box className={classes.angledBackground} >
         <Container className={classes.generalInfo}>
-
+          <h1 className={classes.title}>WE  CATCH  CORONA  SO  YOU  DON'T  HAVE  TO.</h1>
+          <div className={classes.topRow}>
+            <div className={classes.sectionOne}>
+            <h1 className={classes.sectionTitles}>THINK YOU HAVE CORONA? </h1>
+          <p >Sign up and find a location near you to get tested.</p>
+          </div>
+          <div className={classes.sectionTwo}>
+            <h1 className={classes.sectionTitles} >TESTED POSITIVE? </h1>
+          <p>Track on your profile so others around you can stay safe.</p>
+          </div>
+          </div>
+          <div className={classes.sectionThree}>
+            <h1 style={{padding: '60px 0 30px 0'}}>GOING SOMEWHERE?</h1>
+          <p >Know before you go, check to see active cases of the locations you are going. Maybe we'll stay home today...</p>
+          </div>
         </Container>
            
       </Box>

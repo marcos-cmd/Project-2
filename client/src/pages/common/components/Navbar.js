@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "space-between",
-    fontFamily: "Quicksand, sans-serif",
+    fontFamily: "Raleway, sans-serif",
     color: 'white',
     fontSize: '20px',
   },
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#455a64",
   },
   signIn: {
-    fontFamily: "Quicksand, sans-serif",
+    fontFamily: "Raleway, sans-serif",
     color: 'white',
     fontSize: '20px',
   },
