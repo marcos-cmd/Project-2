@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = Process.env.REACT_APP_MAPBOX_API_KEY;
@@ -30,4 +30,4 @@ class Application extends React.Component {
     }
 }
 
-ReactDOM.render(<Application />, document.getElementById('app'));
+export default Application;

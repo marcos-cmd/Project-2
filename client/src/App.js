@@ -14,6 +14,7 @@ import User from '../src/pages/common/components/User.js';
 import About from '../src/pages/common/components/About.js';
 import Profile from '../src/pages/common/components/Profile.js';
 import './App.css';
+import Application from './pages/common/components/mapBoxContainer';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path='/' component={About} />
-        <Route path='/testsite' component={MapContainer} />
+        <Route path='/testsite' component={Application} />
         <Route path='/add-places' component={AddLocationMap} />
         <Route path='/covid+locations' component={CovidLocation} />
         <Route path='/signup' component={WrappedSignUp} />
