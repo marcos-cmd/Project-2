@@ -12,7 +12,7 @@ export default {
         console.log(res.data);
         const coords = _.map(res.data, (data) => {
           data.point = data.point.coordinates;
-          return _.pick(data, ['point', 'id', 'address', 'name',])
+          return _.pick(data, ['point', 'id', 'address', 'name', 'cta_link'])
         });
         return coords;
       })

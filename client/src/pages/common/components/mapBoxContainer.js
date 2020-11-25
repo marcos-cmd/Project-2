@@ -33,10 +33,6 @@ class Application extends React.Component {
             zoom: 12,
             bounds: [-122.517910874663, 37.6044780500533, -122.354995082683, 37.8324430069081],
             coords: [],
-            showingInfoWindow: false,
-            activeMarker: {},
-            selectedPlace: {},
-            address: "",
         };
     }
     // This function loads the API Request
@@ -65,6 +61,9 @@ class Application extends React.Component {
                 data: dataUrl
             });
         })
+        map.on('click', () => {
+
+        })
 
         const coords = await this.loadAPI();
         // console.log('I am coords', coords);
@@ -78,16 +77,19 @@ class Application extends React.Component {
                 id: coordinate.id,
                 address: coordinate.address,
                 name: coordinate.name,
-                activeMarker: null,
-                showingInfoWindow: false
+                link: coordinate.cta_link,
             }));
         // this line sets position array as the array 'coords' in our state
         this.setState({ coords: positionArray })
 
         const createMarker = () => {
             this.state.coords.map((coord, index) => {
+                console.log();
+                const popup = new mapboxgl.Popup()
+                    .setHTML(`<div><h1>${coord.name}</h1><br /><h2>${coord.address}</h2><br/><p>${coord.link}</p></div>`)
                 const marker = new mapboxgl.Marker()
                     .setLngLat([coord.lng, coord.lat])
+                    .setPopup(popup)
                     .addTo(map);
             });
         };
