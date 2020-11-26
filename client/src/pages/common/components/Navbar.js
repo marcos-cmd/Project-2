@@ -1,88 +1,75 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import { Link, useHistory } from 'react-router-dom';
-import styled from 'styled-components';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { setViewerToken } from '../../Viewer';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import { Link, useHistory } from "react-router-dom";
+import styled from "styled-components";
+// import Logo from '../../../../public/logo.png'
+import { useSelector, useDispatch } from "react-redux";
+import { setViewerToken } from "../../Viewer";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    marginBottom: theme.spacing(1),
-    fontFamily: 'Arial',
-    color: 'red',
-    backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRzyydCV1gnw0K9tj8tEIISFBlGPJS6oBj1Iw&usqp=CAU)`
+    display: "flex",
+    justifyContent: "space-between",
+    fontFamily: "Raleway, sans-serif",
+    color: 'white',
+    fontSize: '20px',
   },
-
+  appBar: {
+    background: "#455a64",
+  },
+  signIn: {
+    fontFamily: "Raleway, sans-serif",
+    color: 'white',
+    fontSize: '20px',
+  },
+  logo: {
+    height: '40px',
+    cursor: 'pointer',
+  }
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-  const { token } = useSelector(state => state.viewer);
+  const { token } = useSelector((state) => state.viewer);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSignUp = () => {
+  const handleSignUp = () => {};
 
-  };
   const handleSignOut = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     dispatch(setViewerToken(null));
-    history.push('/');
+    history.push("/");
   };
+
+  const handleClick = () => {
+    history.push("/");
+  }
 
   return (
-
-    <div className={classes.root}>
-      <AppBar position="sticky" style={{ background: '#2E3B55', fontFamily: '"Segoe UI"' }}>
-        <Toolbar >
-          <Button
-            component={Link}
-            to='/'
-            color="inherit">
-            About
-          </Button>
-          <Button
-            component={Link}
-            to='/testsite'
-            color="inherit">
-            Test Locations
-          </Button>
-          <Button
-            component={Link}
-            to='/covid+locations'
-            color="inherit">
-            Covid+ Locations
-          </Button>
-          {
-            token ?
-              <Button
-                color='inherit'
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </Button> :
-              <div>
-                <Button
-                  to='/signup'
-                  component={Link}
-                  color="inherit">
+    <div>
+      <AppBar className={classes.appBar}>
+        <Toolbar className={classes.root}>
+          <div onClick={handleClick}><img className={classes.logo} src='../../../logo.png' /></div>
+          <div >
+            {token ? (
+              <Button onClick={handleSignOut}>Sign Out</Button>
+            ) : (
+              <div className={classes.signIn}>
+                <Button to="/signup" component={Link} className={classes.signIn}>
                   Sign Up
                 </Button>
-                <Button
-                  to='/signin'
-                  component={Link}
-                  color="inherit">
+                <Button to="/signin" component={Link} className={classes.signIn}>
                   Sign In
                 </Button>
               </div>
-          }
+            )}
+          </div>
         </Toolbar>
       </AppBar>
     </div>
   );
-};
+}
