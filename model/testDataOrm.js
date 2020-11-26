@@ -5,7 +5,7 @@ const {
   findTestsByUserQuery,
   deleteTestByIdQuery,
 } = require('./testDataQueries');
-const connection = require('../config/connection');
+const connection = require('../config/connection').promise();
 
 
 const findAllTestsFromDb = async () => {

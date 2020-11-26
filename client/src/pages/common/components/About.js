@@ -18,6 +18,7 @@ import mask from "../../../mask.png";
 import One from '../../../one.png';
 import Two from '../../../two.png';
 import Three from '../../../three.png';
+import Navbar from './Navbar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -132,7 +133,8 @@ export default function About() {
   const usersname = localStorage.getItem("username");
   return (
     <div>
-      <Virus></Virus>
+      <Navbar/>
+      <Virus/>
       <Box>
         <Box className={classes.coronaUpdate}>
           <Box>ROAMING FOR RONA</Box>

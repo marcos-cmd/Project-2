@@ -6,7 +6,7 @@ const {
   insertUserQuery,
   deleteUserByIdQuery,
 } = require('./userQueries');
-const connection = require('../config/connection');
+const connection = require('../config/connection').promise();
 
 //1st parameter is the password that the person trying to sign in is providing us
 // the 2nd parameter is the actual password that's in the database
@@ -53,15 +53,20 @@ const fetchUserByIdFromDb = async (userId) => {
 
 // Insert
 const insertUserToDb = async (username, password) => {
+  console.log("insertUserToDb");
   // going to generate some random String to add on to our hashed password once we start hashing it
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+  
   try {
+    const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
     const [result] = await connection.query(insertUserQuery, [username, hashedPassword]);
+    console.log("RESULT",result);
     const [userResult] = await connection.query(findUserByIdQuery, result.insertId);
+    console.log("USER RESULT",userResult);
     return userResult[0];
   } catch (e) {
-    throw new Error(e);
+    console.log("insertUserQuery", e);
+    // throw new Error(e);
   }
 };
 
