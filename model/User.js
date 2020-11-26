@@ -13,6 +13,7 @@ const UserSchema = new Schema({
         required: [true, 'Password is required'],
     },
     testData: [{ type: Schema.Types.ObjectId, ref: 'TestData' }],
+    locations: [{ type: Schema.Types.ObjectId, ref: 'Location' }],
     // creditCard: {
     //   type: String,
     //   validate: {
@@ -28,65 +29,53 @@ const UserSchema = new Schema({
 
 // Static belongs to the full ORM
 
-// UserSchema.static({
-//     findByUsername: function (username) {
-//         try {
-//             return this.find({ username });
-//         } catch (e) {
-//             console.log(e);
-//             throw new Error(e);
-//         }
-//     },
-//     findOneByUsername: function (username) {
-//         try {
-//             return this.findOne({ username });
-//         } catch (e) {
-//             console.log(e);
-//             throw new Error(e);
-//         }
-//     },
-//     findByHobbies: function (hobbies) {
-//         try {
-//             return this.find({
-//                 $in: {
-//                     hobbies
-//                 }
-//             });
-//         } catch (e) {
-//             console.log(e);
-//             throw new Error(e);
-//         }
-//     }
-// });
+UserSchema.static({
+    findByUsername: function (username) {
+        try {
+            return this.find({ username });
+        } catch (e) {
+            console.log(e);
+            throw new Error(e);
+        }
+    },
+    findOneByUsername: function (username) {
+        try {
+            return this.findOne({ username });
+        } catch (e) {
+            console.log(e);
+            throw new Error(e);
+        }
+    },
+});
 
 // // Methods belongs to an INSTANCE of the collection
-// UserSchema.method({
-//     sayMyUsername: function () {
-//         console.log(`I AM ${this.username}`);
-//     },
-//     comparePassword: async function (candidatePassword) {
-//         console.log('this in compare password', this);
-//         try {
-//             return await bcrypt.compare(candidatePassword, this.password);
-//         } catch (e) {
-//             throw new Error(e);
-//         }
-//     },
-// });
+UserSchema.method({
+    sayMyUsername: function () {
+        console.log(`I AM ${this.username}`);
+    },
+    comparePassword: async function (candidatePassword) {
+        console.log('this in compare password', this);
+        try {
+            return await bcrypt.compare(candidatePassword, this.password);
+        } catch (e) {
+            throw new Error(e);
+        }
+    },
+});
 
-// UserSchema.pre('save', async function (next) {
-//     console.log('I am the this in pre hook', this);
-//     const user = this;
-//     if (user.isModified('password')) {
-//         try {
-//             const salt = await bcrypt.genSalt(10);
-//             user.password = await bcrypt.hash(user.password, salt);
-//         } catch (e) {
-//             next(e);
-//         }
-//     }
-//     next();
-// });
+UserSchema.pre('save', async function (next) {
+    console.log('I am the this in pre hook', this);
+    const user = this;
+    if (user.isModified('password')) {
+        try {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
+        } catch (e) {
+            next(e);
+        }
+    }
+    next();
+});
 
 
 const User = model('User', UserSchema);
