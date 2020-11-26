@@ -10,7 +10,7 @@ import {
   WrappedSignIn,
 } from './pages/Viewer';
 import AddLocationMap from './pages/common/components/AddLocationMap';
-import User from '../src/pages/common/components/User.js';
+// import User from '../src/pages/common/components/SignUp.js';
 import About from '../src/pages/common/components/About.js';
 import Profile from '../src/pages/common/components/Profile.js';
 import './App.css';
