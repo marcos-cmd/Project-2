@@ -12,7 +12,6 @@ router.route('/')
 
 router.route('/:locationId')
     .get(locationController.findLocationById)
-    .delete(locationController.deleteLocationById)
-//   .put(testDataController.updateChameleonById);
+    .delete(locationController.deleteLocationById);
 
 module.exports = router;
