@@ -15,6 +15,7 @@ import About from '../src/pages/common/components/About.js';
 import Profile from '../src/pages/common/components/Profile.js';
 import './App.css';
 import Application from './pages/common/components/mapBoxContainer';
+import AddLocationMapBox from './pages/common/components/AddLocationMapBox';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={About} />
         <Route path='/testsite' component={Application} />
-        <Route path='/add-places' component={AddLocationMap} />
+        <Route path='/add-places' component={AddLocationMapBox} />
         <Route path='/covid+locations' component={CovidLocation} />
         <Route path='/signup' component={WrappedSignUp} />
         <Route path='/signin' component={WrappedSignIn} />

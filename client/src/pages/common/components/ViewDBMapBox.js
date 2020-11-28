@@ -55,12 +55,15 @@ class Application extends React.Component {
                 zoom: map.getZoom().toFixed(2)
             });
         });
-        // map.on('load', function (e) {
-        //     map.addSource('covid cases', {
-        //         type: 'geojson',
-        //         data: dataUrl
-        //     });
-        // })
+        map.on('load', function (e) {
+            map.addSource('covid cases', {
+                type: 'geojson',
+                data: dataUrl
+            });
+        })
+        map.on('click', () => {
+
+        })
 
         const coords = await this.loadAPI();
         // console.log('I am coords', coords);
