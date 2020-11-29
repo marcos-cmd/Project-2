@@ -1,9 +1,20 @@
 require('dotenv')
   .config();
 const express = require('express');
+const mongoose = require('mongoose');
 const routes = require('./routes');
 const path = require('path');
 require('./services/passport');
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log('Yee'))
+  .catch(e => console.log(e));
+
+mongoose.set('debug', true);
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 if (process.env.NODE_ENV === 'production') {

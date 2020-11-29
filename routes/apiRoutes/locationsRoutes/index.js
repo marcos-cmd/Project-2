@@ -1,30 +1,17 @@
 const router = require('express').Router();
-
-const {
-    findAllLocationsApi,
-    deleteLocationByIdApi,
-    insertLocationApi,
-    findLocationByIdApi,
-    findLocationsByLoggedInUserApi,
-} = require('../../../controllers/locationsController');
+const locationController = require('../../../controllers/locationsController');
 
 const authMiddleware = require('../../../middlewares/authorizationMiddleware');
-
+// Every route we declare inside of here already has
+// /api/testData prepended
 router.use(authMiddleware);
 
-// /api/locations/userlocations
-router.route('/userlocations')
-    .get(findLocationsByLoggedInUserApi);
-
-// /api/locations
 router.route('/')
-    .get(findAllLocationsApi)
-    .post(insertLocationApi);
+    .post(locationController.createLocation)
+    .get(locationController.findAllLocations);
 
-
-// /api/locations/:locationId
 router.route('/:locationId')
-    .get(findLocationByIdApi)
-    .delete(deleteLocationByIdApi);
+    .get(locationController.findLocationById)
+    .delete(locationController.deleteLocationById);
 
 module.exports = router;

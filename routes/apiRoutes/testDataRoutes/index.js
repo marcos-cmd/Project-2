@@ -1,30 +1,17 @@
 const router = require('express').Router();
-
-const {
-  findAllTestsApi,
-  deleteTestByIdApi,
-  insertTestApi,
-  findTestByIdApi,
-  findTestsByLoggedInUserApi,
-} = require('../../../controllers/testDataController');
+const testDataController = require('../../../controllers/testDataController');
 
 const authMiddleware = require('../../../middlewares/authorizationMiddleware');
-
+// Every route we declare inside of here already has
+// /api/testData prepended
 router.use(authMiddleware);
 
-// /api/testData/usertests
-router.route('/usertests')
-  .get(findTestsByLoggedInUserApi);
-
-// /api/testData
 router.route('/')
-  .get(findAllTestsApi)
-  .post(insertTestApi);
+  .post(testDataController.createTestData)
+  .get(testDataController.findAllTestData);
 
-
-//  /api/testData/:testId
 router.route('/:testId')
-  .get(findTestByIdApi)
-  .delete(deleteTestByIdApi);
+  .get(testDataController.findTestDataById)
+  .delete(testDataController.deleteTestDataById);
 
 module.exports = router;
