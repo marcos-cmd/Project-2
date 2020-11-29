@@ -19,7 +19,7 @@ import Application from './pages/common/components/mapBoxContainer';
 function App() {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Switch>
         <Route exact path='/' component={About} />
         <Route path='/testsite' component={Application} />

@@ -8,6 +8,7 @@
 // } = require('./userQueries');
 // const connection = require('../config/connection');
 
+
 // //1st parameter is the password that the person trying to sign in is providing us
 // // the 2nd parameter is the actual password that's in the database
 // const comparePassword = async (candidatePassword, userPassword) => {
