@@ -1,24 +1,17 @@
-const router = require('express')
-  .Router();
-const {
-  getAllUsersApi,
-  getUserByIdApi,
-  getUserByUsernameApi,
-  deleteUserByIdApi,
-} = require('../../../controllers/userController');
+const router = require('express').Router();
+const userController = require('../../../controllers/userController');
 
 const authMiddleware = require('../../../middlewares/authorizationMiddleware');
-
+// Every route we declare inside of here already has
+// /api/users prepended
 router.use(authMiddleware);
 
-// /api/users
 router.route('/')
-  .get(getAllUsersApi);
+    .get(userController.findAllUsers);
 
-// /api/users/:userId  
 router.route('/:userId')
-  .get(getUserByIdApi)
-  .delete(deleteUserByIdApi);
-router.route('/user/:username')
-  .get(getUserByUsernameApi)
+    .get(userController.findUserById)
+    .delete(userController.deleteUserById)
+// .put(userController.updateUserById);
+
 module.exports = router;
