@@ -30,6 +30,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import moment from "moment";
 import axios from "axios";
+import { setViewerToken } from "../../Viewer";
+import { useDispatch } from "react-redux";
+
 
 function Copyright() {
   return (
@@ -66,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    background: "#455a64",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -83,6 +87,14 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontFamily: "Raleway, sans-serif",
+    fontWeight: "600",
+  },
+  signOut: {
+    fontFamily: "Raleway, sans-serif",
+    color: 'white',
+    fontSize: '16px',
+    fontWeight: "600",
   },
   drawerPaper: {
     position: "relative",
@@ -112,6 +124,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+    margin: '100px 30px 0px 30px'
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -128,6 +141,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     maxWidth: "100%",
+    margin: "100px 30px 0px 30px",
   },
   cardActions: {
     display: "flex",
@@ -138,9 +152,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  const dispatch = useDispatch();
+  const history = useHistory();
   // console.log('props', props);
   const { username } = useParams();
   const [user, setUser] = useState([]);
@@ -209,6 +224,12 @@ export default function Profile(props) {
       throw new Error(error);
     }
   };
+  const handleSignOut = () => {
+    localStorage.clear();
+    // localStorage.removeItem("username");
+    dispatch(setViewerToken(null));
+    history.push("/");
+  };
   // ==================================================================================//
 
   return (
@@ -238,14 +259,11 @@ export default function Profile(props) {
             noWrap
             className={classes.title}
           >
-            User Profile
+            {localStorage.getItem("username")}
           </Typography>
-
-          <IconButton color="inherit">
-            <Badge badgeContent={1} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+         
+              <Button className={classes.signOut} onClick={handleSignOut}>Sign Out</Button>
+            
         </Toolbar>
       </AppBar>
 

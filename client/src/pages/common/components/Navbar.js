@@ -40,7 +40,7 @@ export default function ButtonAppBar() {
   const handleSignUp = () => {};
 
   const handleSignOut = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
     dispatch(setViewerToken(null));
     history.push("/");
   };
@@ -55,7 +55,7 @@ export default function ButtonAppBar() {
         <Toolbar className={classes.root}>
           <div onClick={handleClick}><img className={classes.logo} src='../../../logo.png' /></div>
           <div >
-            {token ? (
+            {localStorage.getItem('token')? (
               <Button onClick={handleSignOut}>Sign Out</Button>
             ) : (
               <div className={classes.signIn}>
