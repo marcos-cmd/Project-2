@@ -1,7 +1,7 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import API from '../../../utils/API';
-import './TestSite.css';
+import './Maps.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 

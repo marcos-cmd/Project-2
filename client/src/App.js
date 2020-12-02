@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './pages/common/components/Navbar';
-import MapContainer from '../src/pages/common/components/MapContainer';
 import CovidLocation from '../src/pages/common/components/CovidLocation';
 import { Button } from "@material-ui/core";
 import { Link } from 'react-router-dom';
@@ -10,6 +9,7 @@ import {
   WrappedSignIn,
 } from './pages/Viewer';
 import AddLocationMap from './pages/common/components/AddLocationMap';
+import AddPlacesMap from './pages/common/components/AddPlacesMap';
 // import User from '../src/pages/common/components/SignUp.js';
 import About from '../src/pages/common/components/About.js';
 import Profile from '../src/pages/common/components/Profile.js';
@@ -23,7 +23,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={About} />
         <Route path='/testsite' component={Application} />
-        <Route path='/add-places' component={AddLocationMap} />
+        <Route path='/add-places' component={AddPlacesMap} />
         <Route path='/covid+locations' component={CovidLocation} />
         <Route path='/signup' component={WrappedSignUp} />
         <Route path='/signin' component={WrappedSignIn} />
