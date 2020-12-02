@@ -13,18 +13,29 @@ const mapStyle = {
     height: '100vh',
     width: '100vw'
 }
-// const Markers = props => (
-//     props.markers.map((marker, index) =>
-//         <Marker
-//         // {...props}
-//         // key={index}
-//         // title={marker.name}
-//         // name={index}
-//         // // position={{ lat: marker.lat, lng: marker.lng }}
-//         // onClick={props.onMarkerClick}
-//         />
-//     )
-// )
+const sidebarStyle = {
+    display: "inline-block",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    margin: "12px",
+    backgroundcolor: "#404040",
+    color: "#ffffff",
+    zindex: 1,
+    padding: "6px",
+}
+const Markers = props => (
+    props.markers.map((marker, index) =>
+        <Marker
+        // {...props}
+        // key={index}
+        // title={marker.name}
+        // name={index}
+        // // position={{ lat: marker.lat, lng: marker.lng }}
+        // onClick={props.onMarkerClick}
+        />
+    )
+)
 class AddPlacesMap extends React.Component {
     constructor(props) {
         super(props)
@@ -34,11 +45,14 @@ class AddPlacesMap extends React.Component {
             position: null,
             markers: [],
             // markerPosition: {},
-            // showingPopup: false,
+            lng: -122.431297,
+            lat: 37.773972,
+            showingPopup: false,
             activeMarker: {},
             selectedPlace: {},
             // value: ""
         }
+        this.onMapClicked = this.onMapClicked.bind(this);
     }
     // onSubmit(e) {
     //     e.preventDefault();
@@ -68,35 +82,29 @@ class AddPlacesMap extends React.Component {
     //     this.setState({ markers: arr })
     // }
 
-    // onMapClicked(props, map, e) {
-    //     // console.log('hello')
-    //     if (this.state.showingInfoWindow)
-    //         this.setState({
-    //             activeMarker: null,
-    //             showingInfoWindow: false
-    //         });
-    //     // let location = [0, 0];
-    //     // location.lat = e.latLng.lat();
-    //     // location.lng = e.latLng.lng();
+    onMapClicked(props, Map, e) {
+        // console.log('hello')
+        console.log(e.lngLat);
+        this.setState({
+            lng: e.lngLat.lng,
+            lat: e.lngLat.lat,
+        })
 
-    //     this.setState({
-    //         // markerPosition: location
-    //     })
-    //     // console.log('I am the marker position', this.state.markerPosition);
-    // }
+        // console.log('I am the marker position', this.state.markerPosition);
+    }
     // onMarkerClick = (props, marker, e) => {
     //     console.log(props)
     //     this.setState({
     //         selectedPlace: props,
     //         activeMarker: marker,
-    //         showingInfoWindow: true
+    //         showingPopup: true
     //     });
     // }
-    // onInfoWindowClose = () => {
-    //     // console.log('onInfoWindowClose')
+    // onPopupClose = () => {
+    //     // console.log('onPopupClose')
     //     this.setState({
     //         activeMarker: null,
-    //         showingInfoWindow: false
+    //         showingPopup: false
     //     });
     // }
 
@@ -120,28 +128,33 @@ class AddPlacesMap extends React.Component {
     render() {
         return (
             <div>
-                <div></div>
+                <div>
+                    <div className="sidebarStyle">
+                        <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
+                    </div>
+                </div>
 
                 <div>
                     <Map style="mapbox://styles/mapbox/dark-v10"
                         containerStyle={mapStyle}
                         center={this.state.center}
                         maxBounds={this.state.bounds}
+                        onClick={this.onMapClicked}
                     >
                         <ZoomControl />
-                        {/* {
+                        {
                             this.state.markerPosition ?
-                                <Marker position={{ lng: -122.431297, lat: 37.773972 }} name={'Current location'} />
+                                <Marker position={{ lng: -122.431297, lat: 37.773972 }} draggable={true} name={'Current location'} />
                                 : null
                         }
                         <Markers
                             onMarkerClick={this.onMarkerClick}
                             markers={this.state.markers}
                         />
-                        <Popup
+                        {/* <Popup
                             marker={this.state.activeMarker}
-                            onClose={this.onInfoWindowClose}
-                            visible={this.state.showingInfoWindow}
+                            onClose={this.onPopupClose}
+                            visible={this.state.showingPopup}
                         >
                         </Popup> */}
                     </Map>
