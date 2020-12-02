@@ -25,7 +25,7 @@ export default function Chart() {
 
     return (
         <React.Fragment>
-            <Title>Today</Title>
+            <Title style={{ color: 'black' }}>Today</Title>
             <ResponsiveContainer>
                 <LineChart
                     data={data}
@@ -41,7 +41,7 @@ export default function Chart() {
                         <Label
                             angle={270}
                             position="left"
-                            style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
+                            style={{ textAnchor: 'middle', fill: theme.palette.text, fontColor: '#455a64' }}
                         >
                             Active cases
             </Label>

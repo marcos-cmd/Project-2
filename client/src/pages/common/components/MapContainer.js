@@ -8,8 +8,10 @@ import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material
 
 const mapStyles = {
 
-  width: '50%',
-  height: '50%'
+  width: '90%',
+  height: '60%',
+  margin: '0 auto',
+  padding: '30px',
 };
 
 // This component is a map that displays Covid testing locations
