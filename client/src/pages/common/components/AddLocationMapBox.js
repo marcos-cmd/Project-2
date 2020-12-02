@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import API from '../../../utils/API';
 import axios from 'axios';
+import { Marker } from 'google-maps-react';
 
 
 // const Markers = props => (
@@ -35,10 +36,10 @@ const popupHtml =
 
 const AddLocationMapBox = () => {
     const [map, setMap] = useState(null);
-    const [marker, setMarker] = useState(null);
+    const [currentMarkers, setCurrentMarkers] = useState(null);
     const [value, setValue] = useState(null);
     const mapContainer = useRef(null);
-    const currentMarkers = [];
+    // const currentMarkers = [];
 
     // function handleChange({
     //     setValue()
@@ -46,6 +47,7 @@ const AddLocationMapBox = () => {
 
     useEffect(() => {
         mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
+
 
         // Create the map
         const initializeMap = ({ setMap, mapContainer }) => {
@@ -60,33 +62,40 @@ const AddLocationMapBox = () => {
                 setMap(map);
                 map.resize();
             });
-            map.on('click', (e) => {
-                const coords = `lat: ${e.lngLat.lat} <br> lng: ${e.lngLat.lng}`;
-                console.log(coords);
-                const popup = new mapboxgl.Popup()
-                    .setHTML(popupHtml)
-                const newMarker = new mapboxgl.Marker({
-                    draggable: true
-                })
-                    .setLngLat(e.lngLat)
-                    .setPopup(popup)
-                    .addTo(map);
-                currentMarkers.push({
-                    name: value,
-
-                })
-            });
+            map.on('click', addNewMarker);
         };
 
         if (!map) initializeMap({ setMap, mapContainer });
 
+        function addNewMarker(e) {
+            const popup = new mapboxgl.Popup()
+                .setHTML(popupHtml)
+            const newMarker = new mapboxgl.Marker({
+                draggable: true
+            })
+                .setLngLat(e.lngLat)
+                .setPopup(popup)
+                .addTo(map);
+        }
+
+        // const addNewMarker = ({ setCurrentMarkers, currentMarkers }) => {
+
+        // Marker.on('dragend', (e) => {
+        //     setCurrentMarkers(currentMarkers.push(newMarker));
+        // });
+        // });
+        // if (!newMarker) addNewMarker({ setMarker, currentMarkers });
     }, [map]);
+
 
 
 
     return (
         <div>
             <div className='sidebarStyle'>
+                <div>
+                    This is the Legend
+                </div>
                 {/* <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div> */}
             </div>
             <div ref={el => (mapContainer.current = el)} className='mapContainer' />
