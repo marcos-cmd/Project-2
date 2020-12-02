@@ -1,28 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
-import testingLocations from './'
 import API from '../../../utils/API';
+import './TestSite.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
-
-const dataUrl = "https://data.sfgov.org/resource/dtit-7gp4.geojson?$where=point+is+not+null";
-
-// let locations;
-
-// fetch(dataUrl)
-//     .then(function (response) {
-//         if (!response.ok) {
-//             throw new Error
-//         }
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         locations = data;
-//         return;
-//     });
-
-
 
 class Application extends React.Component {
     constructor(props) {
@@ -41,6 +22,7 @@ class Application extends React.Component {
     };
 
     async componentDidMount() {
+        // This function creates the map for the component to render later
         const map = new mapboxgl.Map({
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/dark-v10',
@@ -48,6 +30,7 @@ class Application extends React.Component {
             zoom: this.state.zoom,
             maxBounds: this.state.bounds
         });
+        // This function controls the top sidebar, sharing the user's coordinates and zoom
         map.on('move', () => {
             this.setState({
                 lng: map.getCenter().lng.toFixed(4),
@@ -55,21 +38,14 @@ class Application extends React.Component {
                 zoom: map.getZoom().toFixed(2)
             });
         });
-        map.on('load', function (e) {
-            map.addSource('covid cases', {
-                type: 'geojson',
-                data: dataUrl
-            });
-        })
-        map.on('click', () => {
-
-        })
-
+        // this line saves the API request into coords
         const coords = await this.loadAPI();
         // console.log('I am coords', coords);
         let positionArray = []
+
         // positionArray will become the empty array 'coords', 
         // which is waiting empty in state at this point
+
         coords.map(coordinate => positionArray.push(
             {
                 lat: coordinate.point[1],
@@ -79,9 +55,11 @@ class Application extends React.Component {
                 name: coordinate.name,
                 link: coordinate.cta_link,
             }));
+
         // this line sets position array as the array 'coords' in our state
         this.setState({ coords: positionArray })
 
+        // this function creates the markers and the popups 
         const createMarker = () => {
             this.state.coords.map((coord, index) => {
                 console.log();
@@ -95,6 +73,7 @@ class Application extends React.Component {
         };
         createMarker();
     };
+    // The rendering of the following containers requires the css file, to render properly
     render() {
         return (
             <div>
