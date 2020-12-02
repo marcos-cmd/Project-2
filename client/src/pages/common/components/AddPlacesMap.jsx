@@ -1,6 +1,6 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
-import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
+import ReactMapboxGl, { ZoomControl, Marker, Popup } from 'react-mapbox-gl';
 import API from '../../../utils/API';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // import './Maps.css';
@@ -9,15 +9,146 @@ import Button from '@material-ui/core/Button';
 const Map = ReactMapboxGl({
     accessToken: process.env.REACT_APP_MAPBOX_API_KEY
 });
+const mapStyle = {
+    height: '100vh',
+    width: '100vw'
+}
+// const Markers = props => (
+//     props.markers.map((marker, index) =>
+//         <Marker
+//         // {...props}
+//         // key={index}
+//         // title={marker.name}
+//         // name={index}
+//         // // position={{ lat: marker.lat, lng: marker.lng }}
+//         // onClick={props.onMarkerClick}
+//         />
+//     )
+// )
 class AddPlacesMap extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            center: [-122.431297, 37.773972],
+            bounds: [-122.517910874663, 37.6044780500533, -122.354995082683, 37.8324430069081],
+            position: null,
+            markers: [],
+            // markerPosition: {},
+            // showingPopup: false,
+            activeMarker: {},
+            selectedPlace: {},
+            // value: ""
+        }
+    }
+    // onSubmit(e) {
+    //     e.preventDefault();
+    // }
+
+    // handleChange(event) {
+    //     this.setState({ value: event.target.value });
+    // }
+
+    // saveMarker() {
+    //     let newWayPoint = {
+    //         name: this.state.value,
+    //         // lat: this.state.markerPosition.lat,
+    //         // lng: this.state.markerPosition.lng,
+    //     };
+    //     this.setState({ markers: [...this.state.markers, newWayPoint], });
+    //     console.log('these are markers', this.state.markers);
+    // };
+    // Remember to filter out duplicate markers in final submit button function
+    // Validation in form for the name of location
+    // deleteMarker() {
+    //     this.setState({
+    //         // markerPosition: [0, 0]
+    //     })
+    //     let arr = this.state.markers
+    //     arr.pop()
+    //     this.setState({ markers: arr })
+    // }
+
+    // onMapClicked(props, map, e) {
+    //     // console.log('hello')
+    //     if (this.state.showingInfoWindow)
+    //         this.setState({
+    //             activeMarker: null,
+    //             showingInfoWindow: false
+    //         });
+    //     // let location = [0, 0];
+    //     // location.lat = e.latLng.lat();
+    //     // location.lng = e.latLng.lng();
+
+    //     this.setState({
+    //         // markerPosition: location
+    //     })
+    //     // console.log('I am the marker position', this.state.markerPosition);
+    // }
+    // onMarkerClick = (props, marker, e) => {
+    //     console.log(props)
+    //     this.setState({
+    //         selectedPlace: props,
+    //         activeMarker: marker,
+    //         showingInfoWindow: true
+    //     });
+    // }
+    // onInfoWindowClose = () => {
+    //     // console.log('onInfoWindowClose')
+    //     this.setState({
+    //         activeMarker: null,
+    //         showingInfoWindow: false
+    //     });
+    // }
+
+    // submitLocations = () => {
+    //     this.state.markers.map(async marker => {
+    //         const name = marker.name;
+    //         const latitude = marker.lat;
+    //         const longitude = marker.lng;
+
+    //         try {
+    //             const res = await axios.post('/api/locations', { name, latitude, longitude }, { headers: { authorization: localStorage.getItem('token') } })
+    //             console.log('this is res', res);
+    //         } catch (error) {
+    //             throw new Error(error);
+    //         }
+    //     })
+
+    // };
+
 
     render() {
         return (
-            <Map style="mapbox://styles/mapbox/streets-v8"
-                containerStyle={{
-                    height: '100vh',
-                    width: '100vw'
-                }} />
+            <div>
+                <div></div>
+
+                <div>
+                    <Map style="mapbox://styles/mapbox/dark-v10"
+                        containerStyle={mapStyle}
+                        center={this.state.center}
+                        maxBounds={this.state.bounds}
+                    >
+                        <ZoomControl />
+                        {/* {
+                            this.state.markerPosition ?
+                                <Marker position={{ lng: -122.431297, lat: 37.773972 }} name={'Current location'} />
+                                : null
+                        }
+                        <Markers
+                            onMarkerClick={this.onMarkerClick}
+                            markers={this.state.markers}
+                        />
+                        <Popup
+                            marker={this.state.activeMarker}
+                            onClose={this.onInfoWindowClose}
+                            visible={this.state.showingInfoWindow}
+                        >
+                        </Popup> */}
+                    </Map>
+                </div>
+            </div>
+
+
         )
 
     }
