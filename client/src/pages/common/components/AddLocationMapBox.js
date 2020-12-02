@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import API from '../../../utils/API';
-import axios from 'axios';
-import { Marker } from 'google-maps-react';
 
 
 // const Markers = props => (
@@ -48,7 +46,6 @@ const AddLocationMapBox = () => {
     useEffect(() => {
         mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
-
         // Create the map
         const initializeMap = ({ setMap, mapContainer }) => {
             const map = new mapboxgl.Map({
@@ -62,21 +59,22 @@ const AddLocationMapBox = () => {
                 setMap(map);
                 map.resize();
             });
-            map.on('click', addNewMarker);
+            map.on('click', (e) => {
+                // const coords = `lat: ${e.lngLat.lat} <br> lng: ${e.lngLat.lng}`;
+                // console.log(coords);
+                const popup = new mapboxgl.Popup()
+                    .setHTML(popupHtml)
+                const newMarker = new mapboxgl.Marker({
+                    draggable: true
+                })
+                    .setLngLat(e.lngLat)
+                    .setPopup(popup)
+                    .addTo(map);
+
+            });
         };
 
         if (!map) initializeMap({ setMap, mapContainer });
-
-        function addNewMarker(e) {
-            const popup = new mapboxgl.Popup()
-                .setHTML(popupHtml)
-            const newMarker = new mapboxgl.Marker({
-                draggable: true
-            })
-                .setLngLat(e.lngLat)
-                .setPopup(popup)
-                .addTo(map);
-        }
 
         // const addNewMarker = ({ setCurrentMarkers, currentMarkers }) => {
 
