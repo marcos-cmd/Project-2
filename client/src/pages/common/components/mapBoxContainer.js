@@ -6,24 +6,6 @@ import API from '../../../utils/API';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
-const dataUrl = "https://data.sfgov.org/resource/dtit-7gp4.geojson?$where=point+is+not+null";
-
-// let locations;
-
-// fetch(dataUrl)
-//     .then(function (response) {
-//         if (!response.ok) {
-//             throw new Error
-//         }
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         locations = data;
-//         return;
-//     });
-
-
-
 class Application extends React.Component {
     constructor(props) {
         super(props);
@@ -55,12 +37,6 @@ class Application extends React.Component {
                 zoom: map.getZoom().toFixed(2)
             });
         });
-        // map.on('load', function (e) {
-        //     map.addSource('covid cases', {
-        //         type: 'geojson',
-        //         data: dataUrl
-        //     });
-        // })
 
         const coords = await this.loadAPI();
         // console.log('I am coords', coords);
@@ -96,7 +72,7 @@ class Application extends React.Component {
         return (
             <div>
                 <div className='sidebarStyle'>
-                    <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
+                    {/* <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div> */}
                 </div>
                 <div ref={el => this.mapContainer = el} className='mapContainer' />
             </div>
