@@ -13,19 +13,28 @@ class Cluster extends React.Component {
             lat: 40.66995747013945,
             zoom: 4,
             // bounds: [-122.517910874663, 37.6044780500533, -122.354995082683, 37.8324430069081],
-            points: [
-                { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-122.4129, 37.8016] } },
-                { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-122.4048, 37.8224] } },
-                { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-122.4597, 37.8781] } },
-                { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-122.497, 37.899667] } },
-            ],
+            points: [],
         };
     }
     loadAPI = async () => {
         return await API.newMarkers()
     };
 
+
+
     async componentDidMount() {
+        const coords = await this.loadAPI();
+
+        let positionArray = []
+
+        coords.map(coordinate => positionArray.push(
+            { "type": "Feature", "geometry": { "type": "Point", "coordinates": [coordinate.longitude, coordinate.latitude] } }));
+
+        // this line sets position array as the array 'coords' in our state
+        this.setState({ points: positionArray })
+
+        console.log('array', positionArray)
+
         const points = this.state.points;
         // This function creates the map for the component to render later
         const map = new mapboxgl.Map({
@@ -44,7 +53,8 @@ class Cluster extends React.Component {
             });
         });
 
-        map.on('load', async function () {
+        map.on('load', function () {
+            console.log(points)
             // Add a new source from our GeoJSON data and
             // set the 'cluster' option to true. GL-JS will
             // add the point_count property to your source data.

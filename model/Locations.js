@@ -9,17 +9,15 @@ const LocationSchema = new Schema({
         trim: true,
         required: [true, 'location name is required']
     },
-    location: {
-        type: {
-            type: String, // Don't do `{ location: { type: String } }`
-            enum: ['Point'], // 'location.type' must be 'Point'
-            required: true
-        },
-        coordinates: {
-            type: [Number],
-            required: true
-        }
+    latitude: {
+        type: Number,
+        required: true
     },
+    longitude: {
+        type: Number,
+        required: true
+    },
+
     user: { type: Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
 
