@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Switch, Route, BrowserRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
@@ -26,7 +26,9 @@ import moment from "moment";
 import axios from "axios";
 import { setViewerToken } from "../../Viewer";
 import { useDispatch } from "react-redux";
-import Map from "./Map";
+import Map from "./mapBoxContainer";
+import addLocations from './AddLocationMap';
+import covidLocation from './CovidLocation';
 
 // function Copyright() {
 //   return (
@@ -144,6 +146,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     padding: '40px 0px 10px 0px',
     fontWeight: 'bold',
+  },
+  mapContainer:{
+    width: '90%',
+    background: 'red',
+    height: '400px',
+    margin: '50px auto',
   }
 }));
 
@@ -231,6 +239,7 @@ export default function Profile(props) {
 
   return (
     <div>
+       <BrowserRouter>
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
@@ -341,9 +350,16 @@ export default function Profile(props) {
         </Grid>
      
       </div>
-
-    
-      <Map />
+     
+      <div  className={classes.mapContainer}>             
+       <Switch>
+             <Route path='/add-places' component={addLocations} />
+             <Route path='/testsite'  component = {covidLocation} />
+             {/* <Route path='/covid+locations'  /> */}
+        </Switch>       
+      
+      </div>
+      </BrowserRouter>
     </div>
   );
 }
