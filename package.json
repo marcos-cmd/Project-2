@@ -38,7 +38,6 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "react-mapbox-gl": "^5.1.1",
     "react-sky": "^1.1.0",
     "recharts": "^1.8.5",
     "styled-components": "^5.2.1"

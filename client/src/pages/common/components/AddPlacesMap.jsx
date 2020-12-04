@@ -2,6 +2,7 @@ import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import './Maps.css';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY
 
@@ -20,16 +21,17 @@ const sidebarStyle = {
     zindex: 1,
     padding: "6px",
 }
-
-
+let map;
 
 class AddPlacesMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            // change to latitude and longitude
             lng: -122.431297,
             lat: 37.773972,
             markers: [],
+            recentMarker: {},
             coordinates: { lat: "", lng: "" },
             value: "",
         };
@@ -51,9 +53,27 @@ class AddPlacesMap extends React.Component {
             lat: this.state.lat,
             lng: this.state.lng,
         };
+        this.setState({ recentMarker: newMarker });
         // console.log(newMarker);
         this.setState({ markers: [...this.state.markers, newMarker], });
         console.log('these are markers', this.state.markers);
+    };
+
+    submitLocations = () => {
+        console.log('submitted');
+        this.state.markers.map(async marker => {
+            const name = marker.name;
+            const latitude = marker.lat;
+            const longitude = marker.lng;
+
+            try {
+                const res = await axios.post('/api/locations', { name, latitude, longitude }, { headers: { authorization: localStorage.getItem('token') } })
+                console.log('this is res', res);
+            } catch (error) {
+                throw new Error(error);
+            }
+        })
+
     };
 
     // Remember to filter out duplicate markers in final submit button function
@@ -117,10 +137,15 @@ class AddPlacesMap extends React.Component {
 
         }
         marker.on('dragend', onDragEnd);
+        const addMarker = () => {
+            this.state.newMarker = new mapboxgl.Marker({
+                draggable: true
+            })
+                .setLngLat([this.state.newMarker.lng, this.state.newMarker.lat])
+                .addTo(map);
+        }
+
     }
-
-
-
 
     // The rendering of the following containers requires the css file, to render properly
     render() {
