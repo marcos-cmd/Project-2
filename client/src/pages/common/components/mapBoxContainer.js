@@ -77,6 +77,7 @@ class Application extends React.Component {
     render() {
         return (
             <div>
+              <h1>Testing Sites</h1>
                 <div className='sidebarStyle'>
                     <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
                 </div>

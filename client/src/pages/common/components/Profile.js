@@ -26,7 +26,8 @@ import moment from "moment";
 import axios from "axios";
 import { setViewerToken } from "../../Viewer";
 import { useDispatch } from "react-redux";
-import Application from "./mapBoxContainer";
+import TestSite from "./mapBoxContainer";
+import Cluster from './Cluster.js';
 import addLocations from './AddLocationMap';
 import covidLocation from './CovidLocation';
 
@@ -149,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mapContainer:{
     width: '90%',
-    background: 'red',
+    
     height: '400px',
     margin: '50px auto',
   }
@@ -257,7 +258,7 @@ export default function Profile(props) {
                 open && classes.menuButtonHidden
               )}
             >
-              <MenuIcon />
+              <p> > </p>
             </IconButton>
             <Typography
               component="h1"
@@ -353,9 +354,9 @@ export default function Profile(props) {
      
       <div  className={classes.mapContainer}>             
        <Switch>
-             <Route path='/add-places' component={Application} />
-             <Route path='/testsite'  component = {covidLocation} />
-             {/* <Route path='/covid+locations'  /> */}
+             {/* <Route path='/add-places' component={Application} /> */}
+             <Route path='/testsite'  component = {TestSite} />
+             <Route path='/covid+locations' component = {Cluster} />
         </Switch>       
       
       </div>
