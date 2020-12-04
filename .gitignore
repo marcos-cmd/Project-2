@@ -3,4 +3,5 @@ node_modules
 .DS_Store
 .vscode
 .env
-model/seed.js
+seed.js
+

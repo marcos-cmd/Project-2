@@ -26,7 +26,7 @@ import moment from "moment";
 import axios from "axios";
 import { setViewerToken } from "../../Viewer";
 import { useDispatch } from "react-redux";
-import Map from "./mapBoxContainer";
+import Application from "./mapBoxContainer";
 import addLocations from './AddLocationMap';
 import covidLocation from './CovidLocation';
 
@@ -353,7 +353,7 @@ export default function Profile(props) {
      
       <div  className={classes.mapContainer}>             
        <Switch>
-             <Route path='/add-places' component={addLocations} />
+             <Route path='/add-places' component={Application} />
              <Route path='/testsite'  component = {covidLocation} />
              {/* <Route path='/covid+locations'  /> */}
         </Switch>       
