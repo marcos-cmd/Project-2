@@ -69,11 +69,11 @@ const db = require('../model');
 module.exports = {
     createLocation: async (req, res) => {
         const { name, longitude, latitude } = req.body;
-        const point = { type: "Point", coordinates: [latitude, longitude] };
         try {
             const newLocation = await db.Location.create({
                 name,
-                location: point,
+                latitude,
+                longitude,
                 user: req.user._id,
             });
 

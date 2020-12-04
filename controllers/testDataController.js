@@ -99,7 +99,7 @@ module.exports = {
     try {
       const testById = await db.TestData.findById(testId).exec();
       res.json(testById);
-    } catch (error) {
+    } catch (e) {
       console.log(e);
       res.status(401).json(e);
     }
