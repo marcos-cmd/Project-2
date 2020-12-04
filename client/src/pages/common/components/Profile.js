@@ -13,7 +13,7 @@ import Drawer from "@material-ui/core/Drawer";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
-import { mainListItems, secondaryListItems } from "./listitems";
+import MainListItems from "./listitems";
 import Chart from "./Chart";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -149,10 +149,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   mapContainer:{
-    width: '90%',
-    
+    width: '85%',
     height: '400px',
-    margin: '50px auto',
+    margin: '50px auto 50px auto',
+    paddingBottom: '50px',
   }
 }));
 
@@ -267,7 +267,7 @@ export default function Profile(props) {
               noWrap
               className={classes.title}
             >
-              {localStorage.getItem("username")}
+              {username}
             </Typography>
 
             <Button className={classes.signOut} onClick={handleSignOut}>
@@ -289,9 +289,9 @@ export default function Profile(props) {
             </IconButton>
           </div>
           <Divider />
-          <List>{mainListItems}</List>
+          <MainListItems/>
           <Divider />
-          <List>{secondaryListItems}</List>
+          {/* <List>{secondaryListItems}</List> */}
         </Drawer>
 
         <Grid item xs={12} sm={6} md={6} className={classes.history}>
@@ -355,8 +355,8 @@ export default function Profile(props) {
       <div  className={classes.mapContainer}>             
        <Switch>
              {/* <Route path='/add-places' component={Application} /> */}
-             <Route path='/testsite'  component = {TestSite} />
-             <Route path='/covid+locations' component = {Cluster} />
+             <Route path= {`/Profile/${username}/testsite` } component = {TestSite} />
+             <Route path={`/Profile/${username}/covid+locations`} component = {Cluster} />
         </Switch>       
       
       </div>

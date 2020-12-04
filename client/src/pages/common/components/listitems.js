@@ -7,10 +7,15 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import BeenhereIcon from '@material-ui/icons/Beenhere';
 import RoomIcon from '@material-ui/icons/Room';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
-export const mainListItems = (
+
+
+export default function MainListItems(props) {
+  const username = localStorage.getItem('username');
+  console.log('Params', username)
+  return(
     <div>
         <ListItem
             component={Link}
@@ -22,14 +27,14 @@ export const mainListItems = (
         </ListItem>
         <ListItem
             component={Link}
-            to='/testsite'>
+            to={`/Profile/${username}/testsite` } >
             <ListItemIcon>
                 <RoomIcon />
             </ListItemIcon>
             <ListItemText primary="View Testing Sites" />
         </ListItem>
         <ListItem component={Link}
-            to='/covid+locations'>
+            to={`/Profile/${username}/covid+locations`}>
             <ListItemIcon>
                 <BeenhereIcon />
             </ListItemIcon>
@@ -42,17 +47,19 @@ export const mainListItems = (
             <ListItemText primary="View Test Results" />
         </ListItem>
     </div>
-);
+  )
+  };
 
-export const secondaryListItems = (
-    <div>
-        <ListSubheader inset></ListSubheader>
-        <ListItem button>
-            <ListItemIcon>
-                {/* <AssignmentIcon /> */}
-            </ListItemIcon>
-            <ListItemText primary="" />
-        </ListItem>
+// export const secondaryListItems = (
+//     <div>
+//         <ListSubheader inset></ListSubheader>
+//         <ListItem button>
+//             <ListItemIcon>
+//                 {/* <AssignmentIcon /> */}
+//             </ListItemIcon>
+//             <ListItemText primary="" />
+//         </ListItem>
 
-    </div>
-);
+//     </div>
+// );
+
