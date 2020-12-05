@@ -7,7 +7,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import BeenhereIcon from '@material-ui/icons/Beenhere';
 import RoomIcon from '@material-ui/icons/Room';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import { Link, useParams } from 'react-router-dom';
+import { NavLink, Link, useParams } from 'react-router-dom';
 
 
 
@@ -19,28 +19,32 @@ export default function MainListItems(props) {
     <div>
         <ListItem
             component={Link}
-            to='/add-places'>
+            className='navLink'
+            activeStyle={{color: 'red'}}
+            to={`/Profile/${username}/add-places` }>
+              
             <ListItemIcon>
                 <AddCircleOutlineIcon />
             </ListItemIcon>
             <ListItemText primary="Add Visited Places" />
         </ListItem>
-        <ListItem
-            component={Link}
-            to={`/Profile/${username}/testsite` } >
+        <ListItem  className='navLink' to={`/Profile/${username}/testsite` } component={Link}>
+            
+            
             <ListItemIcon>
                 <RoomIcon />
             </ListItemIcon>
             <ListItemText primary="View Testing Sites" />
         </ListItem>
         <ListItem component={Link}
-            to={`/Profile/${username}/covid+locations`}>
+        className='navLink'
+            to={`/Profile/${username}/covid+locations`} >
             <ListItemIcon>
                 <BeenhereIcon />
             </ListItemIcon>
             <ListItemText primary="View Infected Places" />
         </ListItem>
-        <ListItem button>
+        <ListItem className='navLink'>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>

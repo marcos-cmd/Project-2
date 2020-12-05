@@ -267,7 +267,7 @@ export default function Profile(props) {
               noWrap
               className={classes.title}
             >
-              {username}
+              {username.toUpperCase()}
             </Typography>
 
             <Button className={classes.signOut} onClick={handleSignOut}>
@@ -299,7 +299,7 @@ export default function Profile(props) {
             <CardActionArea>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {username}
+                  {username.toUpperCase()}
                 </Typography>
                 <h3>Testing History</h3>
                 <div>
@@ -354,7 +354,7 @@ export default function Profile(props) {
      
       <div  className={classes.mapContainer}>             
        <Switch>
-             {/* <Route path='/add-places' component={Application} /> */}
+             {/* <Route path={`/Profile/${username}/add-places` }component={Application} /> */}
              <Route path= {`/Profile/${username}/testsite` } component = {TestSite} />
              <Route path={`/Profile/${username}/covid+locations`} component = {Cluster} />
         </Switch>       
