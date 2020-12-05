@@ -30,6 +30,7 @@ import TestSite from "./mapBoxContainer";
 import Cluster from './Cluster.js';
 import addLocations from './AddLocationMap';
 import covidLocation from './CovidLocation';
+import AddPlacesMap from "./AddPlacesMap";
 
 // function Copyright() {
 //   return (
@@ -137,18 +138,18 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 10px",
     justifyContent: "space-between",
   },
-  resultForm:{
+  resultForm: {
     margin: "20px 0",
     display: 'flex',
     justifyContent: "space-between",
   },
-  resultsTitle:{
-    fontFamily:"Raleway, sans-serif",
+  resultsTitle: {
+    fontFamily: "Raleway, sans-serif",
     fontSize: "20px",
     padding: '40px 0px 10px 0px',
     fontWeight: 'bold',
   },
-  mapContainer:{
+  mapContainer: {
     width: '85%',
     height: '400px',
     margin: '50px auto 50px auto',
@@ -240,81 +241,81 @@ export default function Profile(props) {
 
   return (
     <div>
-       <BrowserRouter>
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="absolute"
-          className={clsx(classes.appBar, open && classes.appBarShift)}
-        >
-          <Toolbar className={classes.toolbar}>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              className={clsx(
-                classes.menuButton,
-                open && classes.menuButtonHidden
-              )}
-            >
-              <p> > </p>
-            </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.title}
-            >
-              {username.toUpperCase()}
-            </Typography>
+      <BrowserRouter>
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar
+            position="absolute"
+            className={clsx(classes.appBar, open && classes.appBarShift)}
+          >
+            <Toolbar className={classes.toolbar}>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={toggleDrawer}
+                className={clsx(
+                  classes.menuButton,
+                  open && classes.menuButtonHidden
+                )}
+              >
+                <p> > </p>
+              </IconButton>
+              <Typography
+                component="h1"
+                variant="h6"
+                color="inherit"
+                noWrap
+                className={classes.title}
+              >
+                {username.toUpperCase()}
+              </Typography>
 
-            <Button className={classes.signOut} onClick={handleSignOut}>
-              Sign Out
+              <Button className={classes.signOut} onClick={handleSignOut}>
+                Sign Out
             </Button>
-          </Toolbar>
-        </AppBar>
+            </Toolbar>
+          </AppBar>
 
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-          }}
-          open={open}
-        >
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
-          <Divider />
-          <MainListItems/>
-          <Divider />
-          {/* <List>{secondaryListItems}</List> */}
-        </Drawer>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+            }}
+            open={open}
+          >
+            <div className={classes.toolbarIcon}>
+              <IconButton onClick={toggleDrawer}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
+            <Divider />
+            <MainListItems />
+            <Divider />
+            {/* <List>{secondaryListItems}</List> */}
+          </Drawer>
 
-        <Grid item xs={12} sm={6} md={6} className={classes.history}>
-          <Card >
-            <CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {username.toUpperCase()}
-                </Typography>
-                <h3>Testing History</h3>
-                <div>
-                  {user.map((data) => (
-                    <p>
-                      {data.testDate} : {data.testResult}
-                    </p>
-                  ))}
-                </div>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-          <h1 className={classes.resultsTitle}>Submit Test Results</h1>
-          <form noValidate autoComplete="off" className={classes.resultForm}>
-           
+          <Grid item xs={12} sm={6} md={6} className={classes.history}>
+            <Card >
+              <CardActionArea>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {username.toUpperCase()}
+                  </Typography>
+                  <h3>Testing History</h3>
+                  <div>
+                    {user.map((data) => (
+                      <p>
+                        {data.testDate} : {data.testResult}
+                      </p>
+                    ))}
+                  </div>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+            <h1 className={classes.resultsTitle}>Submit Test Results</h1>
+            <form noValidate autoComplete="off" className={classes.resultForm}>
+
 
               <TextField
                 id="date"
@@ -333,33 +334,33 @@ export default function Profile(props) {
                 onChange={handleNewResults}
                 required
               />
-          
-            <Button
-              onClick={addTestResults}
-              variant="contained"
-              backgroundColor="#455a64"
-            >
-              Submit
+
+              <Button
+                onClick={addTestResults}
+                variant="contained"
+                backgroundColor="#455a64"
+              >
+                Submit
             </Button>
-          </form>
-        </Grid>
-       
-        <Grid item xs={12} sm={6} md={6} className={classes.container}>
-          <Paper className={fixedHeightPaper}>
-            <Chart />
-          </Paper>
-        </Grid>
-     
-      </div>
-     
-      <div  className={classes.mapContainer}>             
-       <Switch>
-             {/* <Route path={`/Profile/${username}/add-places` }component={Application} /> */}
-             <Route path= {`/Profile/${username}/testsite` } component = {TestSite} />
-             <Route path={`/Profile/${username}/covid+locations`} component = {Cluster} />
-        </Switch>       
-      
-      </div>
+            </form>
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={6} className={classes.container}>
+            <Paper className={fixedHeightPaper}>
+              <Chart />
+            </Paper>
+          </Grid>
+
+        </div>
+
+        <div className={classes.mapContainer}>
+          <Switch>
+            <Route path={`/Profile/${username}/add-places`} component={AddPlacesMap} />
+            <Route path={`/Profile/${username}/testsite`} component={TestSite} />
+            <Route path={`/Profile/${username}/covid+locations`} component={Cluster} />
+          </Switch>
+
+        </div>
       </BrowserRouter>
     </div>
   );
