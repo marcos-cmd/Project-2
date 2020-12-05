@@ -94,8 +94,8 @@ const useStyles = makeStyles((theme) => ({
   reminder: {
     background: "#cfcfcf",
     fontFamily: "Raleway, sans-serif",
-   padding: '45px 0px',
-   textAlign: "center",
+    padding: '45px 0px',
+    textAlign: "center",
   },
   reminderItems: {
     fontSize: '40px',
@@ -130,11 +130,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function About() {
   const classes = useStyles();
-  const usersname = localStorage.getItem("username");
+  // const usersname = localStorage.getItem("username");
   return (
     <div>
-      <Navbar/>
-      <Virus/>
+      <Navbar />
+      <Virus />
       <Box>
         <Box className={classes.coronaUpdate}>
           <Box>ROAMING FOR RONA</Box>
@@ -253,21 +253,21 @@ export default function About() {
       </Container>
       <Box className={classes.reminder}>
         <h1 className={classes.title}>REMEMBER</h1>
-        <div className={classes.reminderItems} style={{background: `url(${One})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
-     
-        <p>Wash your hands</p>
+        <div className={classes.reminderItems} style={{ background: `url(${One})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+
+          <p>Wash your hands</p>
         </div>
-        <div className={classes.reminderItems} style={{background: `url(${Two})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
-     
-        <p>Wear your mask when going out</p>
+        <div className={classes.reminderItems} style={{ background: `url(${Two})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+
+          <p>Wear your mask when going out</p>
         </div>
-        <div className={classes.reminderItems} style={{background: `url(${Three})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
-    
-        <p>Social distance whenever possible</p>
+        <div className={classes.reminderItems} style={{ background: `url(${Three})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+
+          <p>Social distance whenever possible</p>
         </div>
       </Box>
       <footer className={classes.footer}>
-          Roaming with Rona
+        Roaming with Rona
       </footer>
     </div>
   );
