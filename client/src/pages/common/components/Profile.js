@@ -26,6 +26,10 @@ import { useDispatch } from "react-redux";
 import TestSite from "./mapBoxContainer";
 import Cluster from './Cluster.js';
 import AddPlacesMap from "./AddPlacesMap";
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import { FormControl } from "@material-ui/core";
 
 // function Copyright() {
 //   return (
@@ -149,6 +153,9 @@ const useStyles = makeStyles((theme) => ({
     height: '400px',
     margin: '50px auto 50px auto',
     paddingBottom: '50px',
+  },
+  formcontrol: {
+    minWidth: 120,
   }
 }));
 
@@ -161,6 +168,7 @@ export default function Profile(props) {
   // console.log('props', props);
   const { username } = useParams();
   const [user, setUser] = useState([]);
+  const [userId, setUserId] = useState('')
 
   // const fetchDatas = async () => {
   //     // console.log("i am user", username)
@@ -170,17 +178,18 @@ export default function Profile(props) {
   //     console.log('user', user)
   // }
 
-  useEffect(() => {
+  useEffect(async () => {
     const userTestsRequest = async () => {
-      const result = await axios.get(`/api/testData/usertests`, {
+      const result = await axios.get(`/api/users/user/${username}`, {
         headers: { authorization: localStorage.getItem("token") },
       });
-      setUser(result.data);
+      const result2 = await axios.get(`/api/testData/user/${result.data[0]._id}`, {
+        headers: { authorization: localStorage.getItem("token") },
+      });
+      setUser(result2.data);
     };
     userTestsRequest();
   }, [username]);
-  // setUser(testData)
-  // console.log('user', user)
 
   const toggleDrawer = () => {
     if (open === true) {
@@ -202,6 +211,7 @@ export default function Profile(props) {
 
   // handles when user changes input in results inputfield
   const handleNewResults = (e) => {
+    console.log('value', e.target.value)
     setResults(e.target.value);
   };
   console.log(date);
@@ -215,7 +225,7 @@ export default function Profile(props) {
         { testDate, testResult },
         { headers: { authorization: localStorage.getItem("token") } }
       );
-      console.log("this is res", res);
+      window.location.reload(false);
     } catch (error) {
       throw new Error(error);
     }
@@ -248,7 +258,7 @@ export default function Profile(props) {
                   open && classes.menuButtonHidden
                 )}
               >
-                <p> {'>'} </p>
+                <p> &gt; </p>
               </IconButton>
               <Typography
                 component="h1"
@@ -295,7 +305,7 @@ export default function Profile(props) {
                   <div>
                     {user.map((data) => (
                       <p>
-                        {data.testDate} : {data.testResult}
+                        {data.testDate.slice(0, 10)} : {data.testResult}
                       </p>
                     ))}
                   </div>
@@ -315,14 +325,21 @@ export default function Profile(props) {
                 onChange={handleChangeDate}
                 required
               />
-              <TextField
-                id="outlined-basic"
-                label="Positive or Negative"
-                variant="outlined"
-                value={results}
-                onChange={handleNewResults}
-                required
-              />
+              <FormControl className={classes.formcontrol}>
+                <InputLabel id="demo-simple-select-label">Test Result</InputLabel>
+                <Select
+                  id="demo-simple-select-label"
+                  label="Positive or Negative"
+                  variant="outlined"
+                  value={results}
+                  onChange={handleNewResults}
+                  placeholder="Hello"
+                  required
+                >
+                  <MenuItem value='Positive'>Positive</MenuItem>
+                  <MenuItem value='Negative'>Negative</MenuItem>
+                </Select>
+              </FormControl>
 
               <Button
                 onClick={addTestResults}

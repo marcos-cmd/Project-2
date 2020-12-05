@@ -11,6 +11,16 @@ module.exports = {
         }
 
     },
+    findUserByUsername: async (req, res) => {
+        const { username } = req.params;
+        try {
+            const User = await db.User.find({ username: username });
+            res.json(User);
+        } catch (e) {
+            console.log(e);
+            res.status(401).json(e);
+        }
+    },
     findUserById: async (req, res) => {
         const { userId } = req.params;
         try {

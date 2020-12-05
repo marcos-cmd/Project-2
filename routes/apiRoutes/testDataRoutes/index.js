@@ -14,4 +14,7 @@ router.route('/:testId')
   .get(testDataController.findTestDataById)
   .delete(testDataController.deleteTestDataById);
 
+router.route('/user/:userId')
+  .get(testDataController.findTestDataByUserId)
+
 module.exports = router;
