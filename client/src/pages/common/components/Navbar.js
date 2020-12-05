@@ -4,7 +4,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import { Link, useHistory } from "react-router-dom";
-import styled from "styled-components";
 // import Logo from '../../../../public/logo.png'
 import { useSelector, useDispatch } from "react-redux";
 import { setViewerToken } from "../../Viewer";
@@ -37,7 +36,7 @@ export default function ButtonAppBar() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSignUp = () => {};
+  const handleSignUp = () => { };
 
   const handleSignOut = () => {
     localStorage.clear();
@@ -55,18 +54,18 @@ export default function ButtonAppBar() {
         <Toolbar className={classes.root}>
           <div onClick={handleClick}><img className={classes.logo} src='../../../logo.png' /></div>
           <div >
-            {localStorage.getItem('token')? (
+            {localStorage.getItem('token') ? (
               <Button onClick={handleSignOut}>Sign Out</Button>
             ) : (
-              <div className={classes.signIn}>
-                <Button to="/signup" component={Link} className={classes.signIn}>
-                  Sign Up
+                <div className={classes.signIn}>
+                  <Button to="/signup" component={Link} className={classes.signIn}>
+                    Sign Up
                 </Button>
-                <Button to="/signin" component={Link} className={classes.signIn}>
-                  Sign In
+                  <Button to="/signin" component={Link} className={classes.signIn}>
+                    Sign In
                 </Button>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </Toolbar>
       </AppBar>
