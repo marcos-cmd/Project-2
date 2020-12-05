@@ -7,23 +7,6 @@ import './TestSite.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY
 
-const mapStyle = {
-    height: '100vh',
-    width: '100vw'
-}
-const sidebarStyle = {
-    display: "inline-block",
-    position: "absolute",
-    top: 0,
-    left: 0,
-    margin: "12px",
-    backgroundcolor: "#404040",
-    color: "#ffffff",
-    zindex: 1,
-    padding: "6px",
-}
-let map;
-
 class AddPlacesMap extends React.Component {
     constructor(props) {
         super(props);
