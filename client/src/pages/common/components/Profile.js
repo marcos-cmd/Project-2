@@ -26,6 +26,10 @@ import { useDispatch } from "react-redux";
 import TestSite from "./mapBoxContainer";
 import Cluster from './Cluster.js';
 import AddPlacesMap from "./AddPlacesMap";
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import { FormControl } from "@material-ui/core";
 
 // function Copyright() {
 //   return (
@@ -149,6 +153,9 @@ const useStyles = makeStyles((theme) => ({
     height: '400px',
     margin: '50px auto 50px auto',
     paddingBottom: '50px',
+  },
+  formcontrol: {
+    minWidth: 120,
   }
 }));
 
@@ -204,6 +211,7 @@ export default function Profile(props) {
 
   // handles when user changes input in results inputfield
   const handleNewResults = (e) => {
+    console.log('value', e.target.value)
     setResults(e.target.value);
   };
   console.log(date);
@@ -217,7 +225,7 @@ export default function Profile(props) {
         { testDate, testResult },
         { headers: { authorization: localStorage.getItem("token") } }
       );
-      console.log("this is res", res);
+      window.location.reload(false);
     } catch (error) {
       throw new Error(error);
     }
@@ -297,7 +305,7 @@ export default function Profile(props) {
                   <div>
                     {user.map((data) => (
                       <p>
-                        {data.testDate} : {data.testResult}
+                        {data.testDate.slice(0, 10)} : {data.testResult}
                       </p>
                     ))}
                   </div>
@@ -317,14 +325,21 @@ export default function Profile(props) {
                 onChange={handleChangeDate}
                 required
               />
-              <TextField
-                id="outlined-basic"
-                label="Positive or Negative"
-                variant="outlined"
-                value={results}
-                onChange={handleNewResults}
-                required
-              />
+              <FormControl className={classes.formcontrol}>
+                <InputLabel id="demo-simple-select-label">Test Result</InputLabel>
+                <Select
+                  id="demo-simple-select-label"
+                  label="Positive or Negative"
+                  variant="outlined"
+                  value={results}
+                  onChange={handleNewResults}
+                  placeholder="Hello"
+                  required
+                >
+                  <MenuItem value='Positive'>Positive</MenuItem>
+                  <MenuItem value='Negative'>Negative</MenuItem>
+                </Select>
+              </FormControl>
 
               <Button
                 onClick={addTestResults}
