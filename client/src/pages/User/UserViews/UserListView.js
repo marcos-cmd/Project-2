@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useFetchUsers } from '../UserHooks';
 
@@ -28,7 +27,7 @@ export const UserListView = () => {
         users.map(user => {
           return (
             <ListItem key={user.id} component={Link} to={`/users/user/${user.id}`}>
-              <ListItemText primary={user.username}/>
+              <ListItemText primary={user.username} />
             </ListItem>
           );
         })

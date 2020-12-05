@@ -3,16 +3,13 @@ import { useParams, useHistory, Switch, Route, BrowserRouter } from "react-route
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
 import clsx from "clsx";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
-import List from "@material-ui/core/List";
 import MainListItems from "./listitems";
 import Chart from "./Chart";
 import Grid from "@material-ui/core/Grid";
@@ -28,8 +25,6 @@ import { setViewerToken } from "../../Viewer";
 import { useDispatch } from "react-redux";
 import TestSite from "./mapBoxContainer";
 import Cluster from './Cluster.js';
-import addLocations from './AddLocationMap';
-import covidLocation from './CovidLocation';
 import AddPlacesMap from "./AddPlacesMap";
 
 // function Copyright() {
@@ -187,12 +182,6 @@ export default function Profile(props) {
   // setUser(testData)
   // console.log('user', user)
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
   const toggleDrawer = () => {
     if (open === true) {
       setOpen(false);
@@ -259,7 +248,7 @@ export default function Profile(props) {
                   open && classes.menuButtonHidden
                 )}
               >
-                <p> > </p>
+                <p> {'>'} </p>
               </IconButton>
               <Typography
                 component="h1"

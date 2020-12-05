@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { reduxForm, Field } from "redux-form";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
@@ -75,8 +75,8 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Raleway, sans-serif",
     fontWeight: "normal"
   },
-  test:{
-   boxShadow: '5px 5px 5px rgba',
+  test: {
+    boxShadow: '5px 5px 5px rgba',
   }
 }));
 
@@ -169,11 +169,11 @@ export default function SignUp(props) {
               </Grid>
             </Grid>
             <Box mt={5}>
-          <Copyright className={classes.font} />
-        </Box>
+              <Copyright className={classes.font} />
+            </Box>
           </form>
         </div>
-       
+
       </Container>
     </div>
   );
