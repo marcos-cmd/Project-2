@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import Reactfrom 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   WrappedSignUp,
@@ -7,8 +7,6 @@ import {
 import About from '../src/pages/common/components/About.js';
 import Profile from '../src/pages/common/components/Profile.js';
 import './App.css';
-import Application from './pages/common/components/mapBoxContainer';
-import Cluster from './pages/common/components/Cluster';
 import Tour from './pages/common/components/Tour';
 
 function App() {
