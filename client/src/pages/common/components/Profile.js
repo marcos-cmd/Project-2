@@ -161,6 +161,7 @@ export default function Profile(props) {
   // console.log('props', props);
   const { username } = useParams();
   const [user, setUser] = useState([]);
+  const [userId, setUserId] = useState('')
 
   // const fetchDatas = async () => {
   //     // console.log("i am user", username)
@@ -170,17 +171,18 @@ export default function Profile(props) {
   //     console.log('user', user)
   // }
 
-  useEffect(() => {
+  useEffect(async () => {
     const userTestsRequest = async () => {
-      const result = await axios.get(`/api/testData/usertests`, {
+      const result = await axios.get(`/api/users/user/${username}`, {
         headers: { authorization: localStorage.getItem("token") },
       });
-      setUser(result.data);
+      const result2 = await axios.get(`/api/testData/user/${result.data[0]._id}`, {
+        headers: { authorization: localStorage.getItem("token") },
+      });
+      setUser(result2.data);
     };
     userTestsRequest();
   }, [username]);
-  // setUser(testData)
-  // console.log('user', user)
 
   const toggleDrawer = () => {
     if (open === true) {
@@ -248,7 +250,7 @@ export default function Profile(props) {
                   open && classes.menuButtonHidden
                 )}
               >
-                <p> {'>'} </p>
+                <p> &gt; </p>
               </IconButton>
               <Typography
                 component="h1"

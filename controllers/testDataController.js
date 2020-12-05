@@ -39,6 +39,16 @@ module.exports = {
       res.status(401).json(e);
     }
   },
+  findTestDataByUserId: async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const testByUserId = await db.TestData.find({ user: userId }).exec();
+      res.json(testByUserId);
+    } catch (e) {
+      console.log(e);
+      res.status(401).json(e);
+    }
+  },
   deleteTestDataById: async (req, res) => {
     const { testId } = req.params;
     try {
