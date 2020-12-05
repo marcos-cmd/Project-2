@@ -23,10 +23,10 @@ function App() {
       {/* <Navbar /> */}
       <Switch>
         <Route exact path='/' component={About} />
-        <Route path='/testsite' component={Application} />
+        {/* <Route path='/testsite' component={Application} />
         <Route path='/cluster' component={Cluster} />
         <Route path='/add-places' component={AddLocationMap} />
-        <Route path='/covid+locations' component={CovidLocation} />
+        <Route path='/covid+locations' component={CovidLocation} /> */}
         <Route path='/signup' component={WrappedSignUp} />
         <Route path='/signin' component={WrappedSignIn} />
         <Route path='/Profile/:username' component={Profile} />

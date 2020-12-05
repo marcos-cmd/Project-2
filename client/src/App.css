@@ -5,3 +5,11 @@
 * {
   margin: 0;
 }
+
+.navLink :hover{
+  color: red
+}
+.navLink:active{
+  color: red;
+  background: black
+}

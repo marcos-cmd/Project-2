@@ -1,5 +1,5 @@
-import React from "react";
-import { reduxForm, Field } from "redux-form";
+import React, {useState} from "react";
+import { reduxForm, Field} from "redux-form";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../../common/components/Navbar";
 import { setViewerToken } from "../ViewerReducer";
+
 
 function Copyright() {
   return (
@@ -105,7 +106,7 @@ const TextFieldInput = ({ input, meta, label, ...custom }) => {
 const SignIn = (props) => {
   const { handleSubmit, history } = props;
   const classes = useStyles();
-
+  const [validation, setValidation]= useState(true);
   console.log(props);
   const handleSignIn = async (formValues, dispatch) => {
     console.log(formValues);
@@ -116,8 +117,14 @@ const SignIn = (props) => {
       localStorage.setItem("username", formValues.username);
       dispatch(setViewerToken(res.data));
       history.push(`/Profile/${formValues.username}`);
+      setValidation(true)
     } catch (e) {
-      throw new Error(e);
+      dispatch(
+        setViewerToken({
+          userauth: null,
+        })
+      )
+      setValidation(false)
     }
   };
 
@@ -133,6 +140,14 @@ const SignIn = (props) => {
           </Avatar>
           <Typography component="h1" variant="h5" className={classes.font}>
             SIGN IN
+          </Typography>
+          <Typography component="div">
+            <span style={{ color: "#ff0134", fontSize: "6" }}>
+              {!validation ? " Invalid Login" : ""}
+              {/* {st.authorized
+                ? ""
+                : " Wrong username and password"} */}
+            </span>
           </Typography>
           <form noValidate autoComplete="off" className={classes.form}>
             <Field

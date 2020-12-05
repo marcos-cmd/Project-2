@@ -190,6 +190,7 @@ class Cluster extends React.Component {
     render() {
         return (
             <div>
+                <h1>Infected Locations</h1>
                 <div className='sidebarStyle'>
                     <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
                 </div>
