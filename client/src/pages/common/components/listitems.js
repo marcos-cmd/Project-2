@@ -27,7 +27,7 @@ export default function MainListItems(props) {
             </ListItemIcon>
             <ListItemText primary="Add Visited Places" />
         </ListItem>
-        <ListItem  className='navLink '  to={`/Profile/${username}/testsite` } component={Link}>
+        <ListItem  className='navLink' to={`/Profile/${username}/testsite`} component={Link}>
             
             
             <ListItemIcon className='testingSites'>
@@ -65,4 +65,3 @@ export default function MainListItems(props) {
 
 //     </div>
 // );
-
