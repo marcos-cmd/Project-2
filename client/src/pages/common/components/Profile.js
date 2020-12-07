@@ -30,6 +30,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import { FormControl } from "@material-ui/core";
+import CurrentCasesMap from "./CurrentCasesMap";
 
 // function Copyright() {
 //   return (
@@ -361,6 +362,7 @@ export default function Profile(props) {
 
         <div className={classes.mapContainer}>
           <Switch>
+            <Route exact path={`/Profile/${username}/`} component={CurrentCasesMap} />
             <Route path={`/Profile/${username}/add-places`} component={AddPlacesMap} />
             <Route path={`/Profile/${username}/testsite`} component={TestSite} />
             <Route path={`/Profile/${username}/covid+locations`} component={Cluster} />
