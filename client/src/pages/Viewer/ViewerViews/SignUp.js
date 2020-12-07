@@ -93,7 +93,7 @@ function Copyright() {
   );
 }
 
-export default function SignUp(props,) {
+export default function SignUp(props) {
   const classes = useStyles();
 
   const handleSignUp = async (formValues) => {
