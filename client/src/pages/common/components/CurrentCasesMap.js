@@ -1,6 +1,7 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import './TestSite.css';
+import { red } from '@material-ui/core/colors';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
@@ -31,78 +32,53 @@ class CurrentCasesMap extends React.Component {
         });
         map.on('load', () => {
             map.getCanvas().style.cursor = 'default';
+            map.on('mousemove', function (e) {
+                var states = map.queryRenderedFeatures(e.point, {
+                    layers: ['covid-cases']
+                });
+
+                // if (states.length > 0) {
+                //     document.getElementById('pd').innerHTML = '<h3><strong>' + states[0].properties.name + '</strong></h3><p><strong><em>' + states[0].properties.density + '</strong> people per square mile</em></p>';
+                // } else {
+                //     document.getElementById('pd').innerHTML = '<p>Hover over a state!</p>';
+                // }
+            });
+            map.fitBounds([
+                [-133.2421875, 16.972741],
+                [-47.63671875, 52.696361]
+            ]);
+
         })
-        map.fitBounds([
-            [-133.2421875, 16.972741],
-            [-47.63671875, 52.696361]
-        ]);
-        const layers = [
-            '0-10',
-            '10-20',
-            '20-50',
-            '50-100',
-            '100-200',
-            '200-500',
-            '500-1000',
-            '1000+',
-        ];
-        const colors = [
-            '#ffd149',
-            '#ffa000',
-            '#c67100',
-            '#f05545',
-            '#b71c1c',
-            '#7f0000',
-        ];
-        // // create legend
-        // for (i = 0; i < layers.length; i++) {
-        //     var layer = layers[i];
-        //     var color = colors[i];
-        //     var item = document.createElement('div');
-        //     var key = document.createElement('span');
-        //     key.className = 'legend-key';
-        //     key.style.backgroundColor = color;
 
-        //     var value = document.createElement('span');
-        //     value.innerHTML = layer;
-        //     item.appendChild(key);
-        //     item.appendChild(value);
-        //     legend.appendChild(item);
-        // };
-        // change info window on hover
-        // map.on('mousemove', function (e) {
-        //     var states = map.queryRenderedFeatures(e.point, {
-        //         layers: ['statedata']
-        //     });
-
-        //     if (states.length > 0) {
-        //         document.getElementById('pd').innerHTML =
-        //             '<h3><strong>' +
-        //             states[0].properties.name +
-        //             '</strong></h3><p><strong><em>' +
-        //             states[0].properties.density +
-        //             '</strong> people per square mile</em></p>';
-        //     } else {
-        //         document.getElementById('pd').innerHTML =
-        //             '<p>Hover over a state!</p>';
-
-        //     }
-        // });
 
     }
 
     // The rendering of the following containers requires the css file, to render properly
     render() {
+        const legendKeys = [
+            { id: 1, layer: '0-341', color: '#ffd149' },
+            { id: 2, layer: '341-1015', color: '#ffa000' },
+            { id: 3, layer: '1015-2000', color: '#c67100' },
+            { id: 4, layer: '2000-3174', color: '#c74200' },
+            { id: 5, layer: '3174-5911', color: '#f05545' },
+            { id: 6, layer: '5911-13319', color: '#b71c1c' },
+            { id: 7, layer: '13319-288045', color: '#7f0000' },
+        ];
         return (
             <div>
                 <h1>Current Cases</h1>
-                <div className='sidebarStyle'>
-                    <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
+                <div ref={el => this.mapContainer = el} className='mapContainer'>
                 </div>
                 <div class="map-overlay" id="legend">
+                    <h3></h3>
+                    {legendKeys.map(key => (<div key={red}> <span backgroundColor={key.color} className="legend-key" ></span><span>{key.layer}</span></div>))}
+
                 </div>
-                <div ref={el => this.mapContainer = el} className='mapContainer' />
+                <div class="embed-container">
+                    <iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="COVID-19" src="https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6"></iframe>
+                </div>
             </div >
+
         )
     }
 }
