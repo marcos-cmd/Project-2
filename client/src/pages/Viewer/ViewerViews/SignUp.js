@@ -106,6 +106,7 @@ export default function SignUp(props) {
       localStorage.setItem("username", formValues.username);
       props.setViewerToken(res.data);
       props.history.push(`/Profile/${formValues.username}`);
+      document.cookie = "true";
       // sessionStorage.setItem('token', res.data);
     } catch (e) {
       throw new Error(e);

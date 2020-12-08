@@ -7,6 +7,7 @@ import {
 import About from '../src/pages/common/components/About.js';
 import Profile from '../src/pages/common/components/Profile.js';
 import './App.css';
+import Tour from './pages/common/components/Tour';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/signup' component={WrappedSignUp} />
         <Route path='/signin' component={WrappedSignIn} />
         <Route path='/Profile/:username' component={Profile} />
+        <Route path='/tour' component={Tour} />
       </Switch>
       <Route exact path="/">
 

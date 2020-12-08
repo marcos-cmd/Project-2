@@ -30,6 +30,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import { FormControl } from "@material-ui/core";
+import Tour from './Tour'
 
 // function Copyright() {
 //   return (
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+
   },
   toolbarIcon: {
     display: "flex",
@@ -101,6 +103,8 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    zIndex: 0,
+    overflow: "hidden",
   },
   //add class here --
   drawerPaperClose: {
@@ -159,7 +163,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Profile(props) {
+export default function Profile() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -240,6 +244,7 @@ export default function Profile(props) {
 
   return (
     <div>
+      
       <BrowserRouter>
         <div className={classes.root}>
           <CssBaseline />
@@ -258,7 +263,7 @@ export default function Profile(props) {
                   open && classes.menuButtonHidden
                 )}
               >
-                <p> &gt; </p>
+                <p className='menuIcon'> &gt; </p>
               </IconButton>
               <Typography
                 component="h1"
@@ -269,7 +274,7 @@ export default function Profile(props) {
               >
                 {username.toUpperCase()}
               </Typography>
-
+              <Tour></Tour>
               <Button className={classes.signOut} onClick={handleSignOut}>
                 Sign Out
             </Button>

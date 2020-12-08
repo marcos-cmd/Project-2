@@ -12,46 +12,46 @@ import { Link } from 'react-router-dom';
 
 
 export default function MainListItems(props) {
-    const username = localStorage.getItem('username');
-    console.log('Params', username)
-    return (
-        <div>
-            <ListItem
-                component={Link}
-                className='navLink'
-                activeStyle={{ color: 'red' }}
-                to={`/Profile/${username}/add-places`}>
-
-                <ListItemIcon>
-                    <AddCircleOutlineIcon />
-                </ListItemIcon>
-                <ListItemText primary="Add Visited Places" />
-            </ListItem>
-            <ListItem className='navLink' to={`/Profile/${username}/testsite`} component={Link}>
-
-
-                <ListItemIcon>
-                    <RoomIcon />
-                </ListItemIcon>
-                <ListItemText primary="View Testing Sites" />
-            </ListItem>
-            <ListItem component={Link}
-                className='navLink'
-                to={`/Profile/${username}/covid+locations`} >
-                <ListItemIcon>
-                    <BeenhereIcon />
-                </ListItemIcon>
-                <ListItemText primary="View Infected Places" />
-            </ListItem>
-            <ListItem className='navLink'>
-                <ListItemIcon>
-                    <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="View Test Results" />
-            </ListItem>
-        </div>
-    )
-};
+  const username = localStorage.getItem('username');
+  console.log('Params', username)
+  return(
+    <div>
+        <ListItem
+            component={Link}
+            className='navLink'
+            activeStyle={{color: 'red'}}
+            to={`/Profile/${username}/add-places` }>
+              
+            <ListItemIcon className='addLocations'>
+                <AddCircleOutlineIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Add Visited Places" />
+        </ListItem>
+        <ListItem  className='navLink' to={`/Profile/${username}/testsite`} component={Link}>
+            
+            
+            <ListItemIcon className='testingSites'>
+                <RoomIcon />
+            </ListItemIcon>
+            <ListItemText primary="View Testing Sites" />
+        </ListItem>
+        <ListItem component={Link}
+        className='navLink'
+            to={`/Profile/${username}/covid+locations`} >
+            <ListItemIcon className='covidLocations'>
+                <BeenhereIcon />
+            </ListItemIcon>
+            <ListItemText primary="View Infected Places" />
+        </ListItem>
+        <ListItem className='navLink'>
+            <ListItemIcon className='testHistory'>
+                <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="View Test Results" />
+        </ListItem>
+    </div>
+  )
+  };
 
 // export const secondaryListItems = (
 //     <div>
@@ -65,4 +65,3 @@ export default function MainListItems(props) {
 
 //     </div>
 // );
-
