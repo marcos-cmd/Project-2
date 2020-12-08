@@ -71,7 +71,7 @@ class CurrentCasesMap extends React.Component {
                 </div>
                 <div class="map-overlay" id="legend">
                     <h3></h3>
-                    {legendKeys.map(key => (<div key={red}> <span backgroundColor={key.color} className="legend-key" ></span><span>{key.layer}</span></div>))}
+                    {legendKeys.map(key => (<div key={red}> <span style={{ backgroundColor: key.color }} className="legend-key" ></span><span>{key.layer}</span></div>))}
 
                 </div>
                 <div class="embed-container">
