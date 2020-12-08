@@ -191,6 +191,8 @@ export default function Profile() {
         const result2 = await axios.get(`/api/testData/user/${result.data[0]._id}`, {
           headers: { authorization: localStorage.getItem("token") },
         });
+        console.log(result)
+        console.log(result2)
         setUser(result2.data);
       } catch (error) {
         console.log(error);
