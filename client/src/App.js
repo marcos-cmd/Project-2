@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import {
   WrappedSignUp,
   WrappedSignIn,
@@ -19,9 +19,6 @@ function App() {
         <Route path='/Profile/:username' component={Profile} />
         <Route path='/tour' component={Tour} />
       </Switch>
-      <Route exact path="/">
-
-      </Route>
     </Router>
 
   );
