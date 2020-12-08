@@ -184,15 +184,19 @@ export default function Profile() {
 
   useEffect(async () => {
     const userTestsRequest = async () => {
-      const result = await axios.get(`/api/users/user/${username}`, {
-        headers: { authorization: localStorage.getItem("token") },
-      });
-      const result2 = await axios.get(`/api/testData/user/${result.data[0]._id}`, {
-        headers: { authorization: localStorage.getItem("token") },
-      });
-      setUser(result2.data);
+      try {
+        const result = await axios.get(`/api/users/user/${username}`, {
+          headers: { authorization: localStorage.getItem("token") },
+        });
+        const result2 = await axios.get(`/api/testData/user/${result.data[0]._id}`, {
+          headers: { authorization: localStorage.getItem("token") },
+        });
+        setUser(result2.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    userTestsRequest();
+    await userTestsRequest();
   }, [username]);
 
   const toggleDrawer = () => {
@@ -241,7 +245,7 @@ export default function Profile() {
     history.push("/");
   };
   // ==================================================================================//
-
+ console.log(user);
   return (
     <div>
       
@@ -308,11 +312,11 @@ export default function Profile() {
                   </Typography>
                   <h3>Testing History</h3>
                   <div>
-                    {user?.map((data) => (
+                    {user.length ? user?.map((data) => (
                       <p>
                         {data.testDate.slice(0, 10)} : {data.testResult}
                       </p>
-                    ))}
+                    )): null} 
                   </div>
                 </CardContent>
               </CardActionArea>
