@@ -28,7 +28,7 @@ class Cluster extends React.Component {
         let positionArray = []
 
         coords.map(coordinate => positionArray.push(
-            { "type": "Feature", "geometry": { "type": "Point", "coordinates": [coordinate.longitude, coordinate.latitude] } }));
+            { "type": "Feature", "geometry": { "type": "Point", "coordinates": [coordinate.longitude, coordinate.latitude] }, "properties": { "name": coordinate.name } }));
 
         // this line sets position array as the array 'coords' in our state
         this.setState({ points: positionArray })
@@ -153,8 +153,9 @@ class Cluster extends React.Component {
             // the location of the feature, with
             // description HTML from its properties.
             map.on('click', 'unclustered-point', function (e) {
+                // console.log('e', e.features[0].properties)
                 var coordinates = e.features[0].geometry.coordinates.slice();
-                var mag = e.features[0].properties.mag;
+                var name = e.features[0].properties.name;
                 var tsunami;
 
                 if (e.features[0].properties.tsunami === 1) {
@@ -173,7 +174,7 @@ class Cluster extends React.Component {
                 new mapboxgl.Popup()
                     .setLngLat(coordinates)
                     .setHTML(
-                        'magnitude: ' + mag + '<br>Was there a tsunami?: ' + tsunami
+                        '<br>' + name
                     )
                     .addTo(map);
             });
