@@ -182,8 +182,9 @@ export default function Profile() {
   //     console.log('user', user)
   // }
 
-  useEffect(async () => {
-    const userTestsRequest = async () => {
+  useEffect(() => {
+    // IIFE immediately invoked function 
+    (async() => {
       try {
         const result = await axios.get(`/api/users/user/${username}`, {
           headers: { authorization: localStorage.getItem("token") },
@@ -197,8 +198,8 @@ export default function Profile() {
       } catch (error) {
         console.log(error);
       }
-    };
-    await userTestsRequest();
+    })()
+
   }, [username]);
 
   const toggleDrawer = () => {

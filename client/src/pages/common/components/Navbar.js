@@ -55,7 +55,7 @@ export default function ButtonAppBar() {
           <div onClick={handleClick}><img className={classes.logo} src='../../../logo.png' /></div>
           <div >
             {localStorage.getItem('token') ? (
-              <Button onClick={handleSignOut}>Sign Out</Button>
+              <Button onClick={handleSignOut}>Sign Out blah blah blah</Button>
             ) : (
                 <div className={classes.signIn}>
                   <Button to="/signup" component={Link} className={classes.signIn}>
