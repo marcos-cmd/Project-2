@@ -308,7 +308,7 @@ export default function Profile() {
                   </Typography>
                   <h3>Testing History</h3>
                   <div>
-                    {user.map((data) => (
+                    {user?.map((data) => (
                       <p>
                         {data.testDate.slice(0, 10)} : {data.testResult}
                       </p>
