@@ -1,54 +1,91 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '@material-ui/core/styles';
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core/';
+import numeral from 'numeral';
 import Title from './Title';
+import './TestSite.css';
 
-// Generate Sales Data
-function createData(time, amount) {
-    return { time, amount };
-}
-
-const data = [
-    createData('00:00', 0),
-    createData('03:00', 300),
-    createData('06:00', 600),
-    createData('09:00', 800),
-    createData('12:00', 1500),
-    createData('15:00', 2000),
-    createData('18:00', 2400),
-    createData('21:00', 2400),
-    createData('24:00', undefined),
-];
 
 export default function Chart() {
     const theme = useTheme();
+    const [colony, setInputColony] = useState("states");
+    const [colonyInfo, setColonyInfo] = useState({});
+    const [colonies, setColonies] = useState([]);
+    const [chartData, setChartData] = useState([]);
+
+    useEffect(() => {
+        fetch("https://disease.sh/v3/covid-19/states")
+            .then((response) => response.json())
+            .then((data) => {
+                setColonyInfo(data);
+            });
+    }, []);
+
+    useEffect(() => {
+        const getColoniesData = async () => {
+            await fetch("https://disease.sh/v3/covid-19/states")
+                .then((response) => response.json())
+                .then((data) => {
+                    const colonies = data.map((colony) => (
+                        {
+                            name: colony.state,
+                            cases: colony.cases,
+                            population: colony.population,
+                            casePM: colony.casesPerOneMillion,
+                        }
+                    ));
+                    setColonies(colonies);
+                    console.log('this is colonies', colonies);
+                });
+        };
+        getColoniesData();
+    }, []);
+
+    const onColonyChange = async (e) => {
+        const colonyCode = e.target.value;
+
+        console.log('this is the code', colonyCode);
+
+        const url =
+            colonyCode === "states"
+                ? "https://disease.sh/v3/covid-19/states/states"
+                : `https://disease.sh/v3/covid-19/states/${colonyCode}`
+        await fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                setInputColony(colonyCode);
+                setColonyInfo(data);
+            })
+
+    }
 
     return (
         <React.Fragment>
-            <Title style={{ color: 'black' }}>Today</Title>
-            <ResponsiveContainer>
-                <LineChart
-                    data={data}
-                    margin={{
-                        top: 16,
-                        right: 16,
-                        bottom: 0,
-                        left: 24,
-                    }}
+            <Title textColor="424242">Today's Cases</Title>
+
+            <FormControl className="chart__dropdown">
+                <Select
+                    variant="outlined"
+                    value={colony}
+                    onChange={onColonyChange}
                 >
-                    <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
-                    <YAxis stroke={theme.palette.text.secondary}>
-                        <Label
-                            angle={270}
-                            position="left"
-                            style={{ textAnchor: 'middle', fill: theme.palette.text, fontColor: '#455a64' }}
-                        >
-                            Active cases
-            </Label>
-                    </YAxis>
-                    <Line type="monotone" dataKey="amount" stroke={theme.palette.primary.main} dot={false} />
-                </LineChart>
-            </ResponsiveContainer>
-        </React.Fragment>
+                    <MenuItem value="states">United States</MenuItem>
+                    {colonies.map((colony) => (
+                        <MenuItem value={colony.name}>{colony.name}</MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+
+            <table className="table">
+                {colonies.map((colony) => (
+                    <tr>
+                        <td>{colony.name}</td>
+                        <td>
+                            <strong>{numeral(colony.cases).format("0,0")}</strong>
+                        </td>
+                    </tr>
+                ))}
+            </table>
+        </React.Fragment >
     );
 }
