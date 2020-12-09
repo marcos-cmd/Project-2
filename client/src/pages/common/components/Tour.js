@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import ReactJoyride from "react-joyride";
 
 const Tour = () => {
-   const tour = document.cookie;
-   console.log("COOOKIES",tour)
+   
   const [joyride, setJoyride] = useState({
     
-    run: true,
+    run: false,
     steps: [
       {
         title: "Welcome to your Profile",
@@ -61,7 +60,7 @@ const Tour = () => {
       },
     ],
   });
-  document.cookie = "false";
+  
 
   return (
     <React.Fragment>

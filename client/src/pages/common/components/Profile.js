@@ -172,8 +172,7 @@ export default function Profile() {
   // console.log('props', props);
   const { username } = useParams();
   const [user, setUser] = useState([]);
-  const [userId, setUserId] = useState('')
-
+  const [testResult, setTestResult] = useState('true');
   // const fetchDatas = async () => {
   //     // console.log("i am user", username)
   //     const response = await axios.get(`/api/users/user/${username}`, { headers: { authorization: localStorage.getItem('token') } })
@@ -237,8 +236,9 @@ export default function Profile() {
         { headers: { authorization: localStorage.getItem("token") } }
       );
       window.location.reload(false);
+      setTestResult(true)
     } catch (error) {
-      throw new Error(error);
+      setTestResult(false)
     }
   };
   const handleSignOut = () => {
@@ -325,6 +325,11 @@ export default function Profile() {
               </CardActionArea>
             </Card>
             <h1 className={classes.resultsTitle}>Submit Test Results</h1>
+            <Typography component="div">
+            <span style={{ color: "#ff0134", fontSize: "6" }}>
+              {!testResult ? "Please fill out all fields" : ""}
+            </span>
+          </Typography>
             <form noValidate autoComplete="off" className={classes.resultForm}>
 
 
