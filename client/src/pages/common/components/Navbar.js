@@ -35,13 +35,11 @@ export default function ButtonAppBar() {
   const { token } = useSelector((state) => state.viewer);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const username =localStorage.getItem("username")
   const handleSignUp = () => { };
 
-  const handleSignOut = () => {
-    localStorage.clear();
-    dispatch(setViewerToken(null));
-    history.push("/");
+  const handleProfile = () => {
+    history.push(`/Profile/${username}`);
   };
 
   const handleClick = () => {
@@ -55,7 +53,7 @@ export default function ButtonAppBar() {
           <div onClick={handleClick}><img className={classes.logo} src='../../../logo.png' /></div>
           <div >
             {localStorage.getItem('token') ? (
-              <Button onClick={handleSignOut}>Sign Out blah blah blah</Button>
+              <Button className={classes.signIn} onClick={handleProfile}>Profile</Button>
             ) : (
                 <div className={classes.signIn}>
                   <Button to="/signup" component={Link} className={classes.signIn}>
