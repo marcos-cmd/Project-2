@@ -21,6 +21,8 @@ class CurrentCasesMap extends React.Component {
     //     return await API.search()
     // };
 
+
+
     async componentDidMount() {
         // This function creates the map for the component to render later
         const map = new mapboxgl.Map({
