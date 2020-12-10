@@ -71,15 +71,16 @@ const Tour = () => {
           }}
           style={{
             backgroundColor: "transparent",
-            color: "red",
-            border: "1px solid red",
+            color: "white",
+            border: "none",
+            borderRight: "1px solid white",
             fontSize: "18px",
             padding: "5px 10px",
             cursor: "pointer",
-            borderRadius: "10px",
+            // borderRadius: "10px",
           }}
         >
-          TOUR
+          TOUR 
         </button>
       </div>
       <ReactJoyride
