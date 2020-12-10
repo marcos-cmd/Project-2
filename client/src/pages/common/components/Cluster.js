@@ -2,6 +2,7 @@ import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import API from '../../../utils/API';
 import './TestSite.css';
+import virusImg from '../../../virus.png'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
@@ -116,18 +117,23 @@ class Cluster extends React.Component {
                 }
             });
 
-            map.addLayer({
-                id: 'unclustered-point',
-                type: 'circle',
-                source: 'covidPoints',
-                filter: ['!', ['has', 'point_count']],
-                paint: {
-                    'circle-color': '#11b4da',
-                    'circle-radius': 4,
-                    'circle-stroke-width': 1,
-                    'circle-stroke-color': '#fff'
+            map.loadImage(
+                virusImg,
+                function (error, image) {
+                    if (error) throw error;
+                    map.addImage('virus', image);
+                    map.addLayer({
+                        id: 'unclustered-point',
+                        type: 'symbol',
+                        source: 'covidPoints',
+                        filter: ['!', ['has', 'point_count']],
+                        layout: {
+                            'icon-image': 'virus',
+                            'icon-size': 0.15
+                        }
+                    });
                 }
-            });
+            );
 
             // inspect a cluster on click
             map.on('click', 'clusters', function (e) {
@@ -156,13 +162,6 @@ class Cluster extends React.Component {
                 // console.log('e', e.features[0].properties)
                 var coordinates = e.features[0].geometry.coordinates.slice();
                 var name = e.features[0].properties.name;
-                var tsunami;
-
-                if (e.features[0].properties.tsunami === 1) {
-                    tsunami = 'yes';
-                } else {
-                    tsunami = 'no';
-                }
 
                 // Ensure that if the map is zoomed out such that
                 // multiple copies of the feature are visible, the
