@@ -55,13 +55,16 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   all: {
-    // backgroundImage:'url("https://img.freepik.com/free-vector/wave-textures-white-background-vector_53876-60286.jpg?size=626&ext=jpg")',
-    // backgroundRepeat: 'no-repeat',
-    // backgroundSize: 'cover',
+    background: 'linear-gradient(to right, #70a7ec7a, #b06ab3a6,#63b9dc4f)',
+    backgroundSize: 'cover',
     color: "#FF0344",
+    height: '100%',
   },
   root: {
     display: "flex",
+    flexWrap: "wrap",
+    // backgroundColor: 'rgba(255, 255, 255, .15)',
+    // backdropFilter: 'blur(5px)',
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -80,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     background: "#FF0344",
+    opacity: '0.8',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -128,12 +132,20 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9),
     },
-    height: "300%",
+    opacity: '0.8',
+  },
+  mainGrid: {
+    margin: '0 auto',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
   container: {
     padding: "15px",
     margin: "80px auto 0 auto",
     boxShadow: "1px 1px 5px #ccc",
+    backgroundColor: 'rgba(255, 255, 255, .15)',
+    backdropFilter: 'blur(5px)',
   },
   paper: {
     padding: theme.spacing(2),
@@ -173,9 +185,11 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   mapContainer: {
-    margin: "10px auto 0 auto",
+    margin: "10px 0 50px 0",
     padding: "15px",
     boxShadow: "1px 1px 5px #ccc",
+    backgroundColor: 'rgba(255, 255, 255, .15)',
+    backdropFilter: 'blur(5px)',
   },
   formcontrol: {
     minWidth: 120,
@@ -329,7 +343,7 @@ export default function Profile() {
             <MainListItems />
             <Divider />
           </Drawer>
-
+         <Grid xs={11} className={classes.mainGrid}>
           <Grid item xs={4} className={classes.container}>
             <Card>
               <CardActionArea>
@@ -393,16 +407,17 @@ export default function Profile() {
               </Button>
             </form>
           </Grid>
-
+          
+          
           <Grid item xs={7} className={classes.container}>
             <h1>Daily Cases</h1>
             <Paper className={fixedHeightPaper}>
               <Chart />
             </Paper>
           </Grid>
-        
-        </div>
-        <div className={classes.root} style={{marginLeft: '55px', marginRight: '0px'}}>
+         
+          {/* <div className={classes.root} style={{marginLeft: '55px', marginRight: '0px'}}> */}
+         
             <Grid item xs={7} className={classes.mapContainer}>
               <Switch>
                 <Route
@@ -423,7 +438,32 @@ export default function Profile() {
               <h1>New Graph</h1>
               {/* {place holder for new graph} */}
             </Grid>
-          </div>
+            </Grid>
+           
+          {/* </div> */}
+        </div>
+        {/* <div className={classes.root} style={{marginLeft: '55px', marginRight: '0px'}}>
+            <Grid item xs={7} className={classes.mapContainer}>
+              <Switch>
+                <Route
+                  path={`/Profile/${username}/add-places`}
+                  component={AddPlacesMap}
+                />
+                <Route
+                  path={`/Profile/${username}/testsite`}
+                  component={TestSite}
+                />
+                <Route
+                  path={`/Profile/${username}/covid+locations`}
+                  component={Cluster}
+                />
+              </Switch>
+            </Grid>
+            <Grid item xs={4} className={classes.mapContainer}>
+              <h1>New Graph</h1>
+              {/* {place holder for new graph} */}
+            {/* </Grid>
+          </div> */} */}
       </BrowserRouter>
     </div>
   );
