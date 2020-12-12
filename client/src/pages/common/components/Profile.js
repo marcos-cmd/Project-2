@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory, Switch, Route, BrowserRouter } from "react-router-dom";
+import {
+  useParams,
+  useHistory,
+  Switch,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
@@ -24,13 +30,14 @@ import axios from "axios";
 import { setViewerToken } from "../../Viewer";
 import { useDispatch } from "react-redux";
 import TestSite from "./mapBoxContainer";
-import Cluster from './Cluster.js';
+import Cluster from "./Cluster.js";
 import AddPlacesMap from "./AddPlacesMap";
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from "@material-ui/core";
-import Tour from './Tour'
+import Tour from "./Tour";
+import { spacing } from "@material-ui/system";
 
 // function Copyright() {
 //   return (
@@ -48,12 +55,22 @@ import Tour from './Tour'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  all: {
+    background: "linear-gradient(to right, #da4453, #89216b)",
+    backgroundSize: "cover",
+    color: "black",
+    height: "100%",
+  },
+
   root: {
     display: "flex",
+    flexWrap: "wrap",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(4px)",
+    fontFamily: "Raleway, sans-serif",
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-
   },
   toolbarIcon: {
     display: "flex",
@@ -68,7 +85,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    background: "#455a64",
+    background: "white",
+    opacity: "0.8",
+    color: "#FF0344",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -88,10 +107,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontFamily: "Raleway, sans-serif",
     fontWeight: "600",
+    color: "#FF0344",
   },
   signOut: {
     fontFamily: "Raleway, sans-serif",
-    color: "white",
+    color: "#FF0344",
     fontSize: "16px",
     fontWeight: "600",
   },
@@ -117,25 +137,52 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9),
     },
+    boxShadow: "1px 1px 5px #fafafa8f",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(5px)",
+  },
+  mainGrid: {
+    margin: "0 auto",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    flexGrow: 1,
   },
   container: {
-    paddingTop: "100px",
-    paddingBottom: theme.spacing(4),
-    margin: '0 20px',
+    padding: "10px",
+    marginTop: "90px",
+    boxShadow: "1px 1px 5px #fafafa8f",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(20px)",
+    borderRadius: "10px",
   },
+  testingHistory: {
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(40px)",
+    height: "200px",
+  },
+
   paper: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
+    width: " 90%",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(40px)",
+    color: "#FF0344",
+    // padding: "30px",
   },
   fixedHeight: {
-    height: 240,
+    height: 260,
+    width: "90%",
+    margin: "0 auto",
+    color: "#FF0344",
   },
-  history: {
-    margin: "100px 0 0 20px",
-    maxWidth: "100%",
-  },
+  // history: {
+  //   margin: "100px 0 0 20px",
+  //   maxWidth: "100%",
+  // },
   cardActions: {
     display: "flex",
     margin: "0 10px",
@@ -143,24 +190,27 @@ const useStyles = makeStyles((theme) => ({
   },
   resultForm: {
     margin: "20px 0",
-    display: 'flex',
+    display: "flex",
     justifyContent: "space-between",
   },
   resultsTitle: {
     fontFamily: "Raleway, sans-serif",
     fontSize: "20px",
-    padding: '40px 0px 10px 0px',
-    fontWeight: 'bold',
+    padding: "40px 0px 10px 0px",
+    fontWeight: "bold",
+    color: "black",
   },
   mapContainer: {
-    width: '85%',
-    height: '400px',
-    margin: '50px auto 50px auto',
-    paddingBottom: '50px',
+    margin: "10px 0 50px 0",
+    padding: "10px",
+    boxShadow: "1px 1px 5px #fafafa8f",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(20px)",
+    borderRadius: "10px",
   },
   formcontrol: {
     minWidth: 120,
-  }
+  },
 }));
 
 export default function Profile() {
@@ -172,8 +222,7 @@ export default function Profile() {
   // console.log('props', props);
   const { username } = useParams();
   const [user, setUser] = useState([]);
-  const [userId, setUserId] = useState('')
-
+  const [testResult, setTestResult] = useState("true");
   // const fetchDatas = async () => {
   //     // console.log("i am user", username)
   //     const response = await axios.get(`/api/users/user/${username}`, { headers: { authorization: localStorage.getItem('token') } })
@@ -183,23 +232,25 @@ export default function Profile() {
   // }
 
   useEffect(() => {
-    // IIFE immediately invoked function 
-    (async() => {
+    // IIFE immediately invoked function
+    (async () => {
       try {
         const result = await axios.get(`/api/users/user/${username}`, {
           headers: { authorization: localStorage.getItem("token") },
         });
-        const result2 = await axios.get(`/api/testData/user/${result.data[0]._id}`, {
-          headers: { authorization: localStorage.getItem("token") },
-        });
-        console.log(result)
-        console.log(result2)
+        const result2 = await axios.get(
+          `/api/testData/user/${result.data[0]._id}`,
+          {
+            headers: { authorization: localStorage.getItem("token") },
+          }
+        );
+        console.log(result);
+        console.log(result2);
         setUser(result2.data);
       } catch (error) {
         console.log(error);
       }
-    })()
-
+    })();
   }, [username]);
 
   const toggleDrawer = () => {
@@ -222,7 +273,7 @@ export default function Profile() {
 
   // handles when user changes input in results inputfield
   const handleNewResults = (e) => {
-    console.log('value', e.target.value)
+    console.log("value", e.target.value);
     setResults(e.target.value);
   };
   console.log(date);
@@ -237,8 +288,9 @@ export default function Profile() {
         { headers: { authorization: localStorage.getItem("token") } }
       );
       window.location.reload(false);
+      setTestResult(true);
     } catch (error) {
-      throw new Error(error);
+      setTestResult(false);
     }
   };
   const handleSignOut = () => {
@@ -248,10 +300,9 @@ export default function Profile() {
     history.push("/");
   };
   // ==================================================================================//
- console.log(user);
+  console.log(user);
   return (
-    <div>
-      
+    <div className={classes.all}>
       <BrowserRouter>
         <div className={classes.root}>
           <CssBaseline />
@@ -270,7 +321,7 @@ export default function Profile() {
                   open && classes.menuButtonHidden
                 )}
               >
-                <p className='menuIcon'> &gt; </p>
+                <p className="menuIcon"> &gt; </p>
               </IconButton>
               <Typography
                 component="h1"
@@ -279,19 +330,27 @@ export default function Profile() {
                 noWrap
                 className={classes.title}
               >
-                {username.toUpperCase()}
+                <a
+                  href="/"
+                  style={{ textDecoration: "none", color: "#FF0344" }}
+                >
+                  ROAMING FOR RONA
+                </a>
               </Typography>
               <Tour></Tour>
               <Button className={classes.signOut} onClick={handleSignOut}>
                 Sign Out
-            </Button>
+              </Button>
             </Toolbar>
           </AppBar>
 
           <Drawer
             variant="permanent"
             classes={{
-              paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+              paper: clsx(
+                classes.drawerPaper,
+                !open && classes.drawerPaperClose
+              ),
             }}
             open={open}
           >
@@ -303,81 +362,99 @@ export default function Profile() {
             <Divider />
             <MainListItems />
             <Divider />
-            {/* <List>{secondaryListItems}</List> */}
           </Drawer>
-
-          <Grid item xs={12} sm={6} md={6} className={classes.history}>
-            <Card >
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {username.toUpperCase()}
-                  </Typography>
-                  <h3>Testing History</h3>
-                  <div>
-                    {user.length ? user?.map((data) => (
-                      <p>
-                        {data.testDate.slice(0, 10)} : {data.testResult}
-                      </p>
-                    )): null} 
-                  </div>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-            <h1 className={classes.resultsTitle}>Submit Test Results</h1>
-            <form noValidate autoComplete="off" className={classes.resultForm}>
-
-
-              <TextField
-                id="date"
-                name="date"
-                label="MM/DD/YY"
-                variant="outlined"
-                value={date}
-                onChange={handleChangeDate}
-                required
-              />
-              <FormControl className={classes.formcontrol}>
-                <InputLabel id="demo-simple-select-label">Test Result</InputLabel>
-                <Select
-                  id="demo-simple-select-label"
-                  label="Positive or Negative"
-                  variant="outlined"
-                  value={results}
-                  onChange={handleNewResults}
-                  placeholder="Hello"
-                  required
-                >
-                  <MenuItem value='Positive'>Positive</MenuItem>
-                  <MenuItem value='Negative'>Negative</MenuItem>
-                </Select>
-              </FormControl>
-
-              <Button
-                onClick={addTestResults}
-                variant="contained"
-                backgroundColor="#455a64"
+          <Grid container xs={11} className={classes.mainGrid}>
+            <Grid item   style={{width: '28%'}} className={classes.container}>
+              <Card className={classes.testingHistory}>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {username.toUpperCase()}
+                    </Typography>
+                    <h3>TESTING HISTORY</h3>
+                    <div>
+                      {user.length
+                        ? user?.map((data) => (
+                            <p>
+                              {data.testDate.slice(0, 10)} : {data.testResult}
+                            </p>
+                          ))
+                        : null}
+                    </div>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+              <Typography component="div">
+                <span style={{ color: "#ff0134", fontSize: "6" }}>
+                  {!testResult ? "Please fill out all fields" : ""}
+                </span>
+              </Typography>
+              <form
+                noValidate
+                autoComplete="off"
+                className={classes.resultForm}
               >
-                Submit
-            </Button>
-            </form>
+                <TextField
+                  id="date"
+                  name="date"
+                  label="MM/DD/YY"
+                  variant="outlined"
+                  value={date}
+                  onChange={handleChangeDate}
+                  required
+                />
+                <FormControl className={classes.formcontrol}>
+                  <InputLabel id="demo-simple-select-label">
+                    Test Result
+                  </InputLabel>
+                  <Select
+                    id="demo-simple-select-label"
+                    label="Positive or Negative"
+                    variant="outlined"
+                    value={results}
+                    onChange={handleNewResults}
+                    placeholder="Hello"
+                    required
+                  >
+                    <MenuItem value="Positive">Positive</MenuItem>
+                    <MenuItem value="Negative">Negative</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <Button onClick={addTestResults} variant="outlined">
+                  Submit
+                </Button>
+              </form>
+            </Grid>
+
+            <Grid item style={{width: '70%'}} className={classes.container}>
+              <h2>DAILY CASES</h2>
+              <Paper className={fixedHeightPaper}>
+                <Chart />
+              </Paper>
+            </Grid>
+
+            <Grid item style={{width: '70%'}} className={classes.mapContainer}>
+              <Switch>
+                <Route
+                  path={`/Profile/${username}/add-places`}
+                  component={AddPlacesMap}
+                />
+                <Route
+                  path={`/Profile/${username}/testsite`}
+                  component={TestSite}
+                />
+                <Route
+                  path={`/Profile/${username}/covid+locations`}
+                  component={Cluster}
+                />
+              </Switch>
+            </Grid>
+            <Grid item style={{width: '28%'}} className={classes.mapContainer}>
+              <h2>NEW GRAPH</h2>
+              {/* {place holder for new graph} */}
+            </Grid>
           </Grid>
-
-          <Grid item xs={12} sm={6} md={6} className={classes.container}>
-            <Paper className={fixedHeightPaper}>
-              <Chart />
-            </Paper>
-          </Grid>
-
-        </div>
-
-        <div className={classes.mapContainer}>
-          <Switch>
-            <Route path={`/Profile/${username}/add-places`} component={AddPlacesMap} />
-            <Route path={`/Profile/${username}/testsite`} component={TestSite} />
-            <Route path={`/Profile/${username}/covid+locations`} component={Cluster} />
-          </Switch>
-
         </div>
       </BrowserRouter>
     </div>

@@ -135,11 +135,11 @@ class AddPlacesMap extends React.Component {
     render() {
         return (
             <div>
-
-                <div className='sidebarStyle'>
-                </div>
-                <div className='toolboxStyle'>
-                    <form>
+                <h2>ADD PLACES</h2>
+                {/* <div className='sidebarStyle'>
+                </div> */}
+                {/* <div > */}
+                    <form className='toolboxStyle' >
                         <input
                             placeholder={"Name this Location"}
                             type="text"
@@ -147,14 +147,15 @@ class AddPlacesMap extends React.Component {
                             value={this.state.value}
                             onChange={this.handleChange}
                         />
+                         <Button variant="contained" color="primary" onClick={this.saveMarker} style={{margin: '0 10px'}}>Save marker</Button>
+                         <Button variant="contained" color="secondary" onClick={this.deleteMarker} style={{margin: '0 10px'}}>delete</Button>
+                         <Button variant="contained" color="purple" onClick={this.submitLocations} style={{margin: '0 10px'}}>Submit All Locations</Button>
                     </form>
-                    <br />
-                    <div>Longitude: {this.state.lng} | Latitude: {this.state.lat}</div>
-                    <br />
-                    <Button variant="contained" color="primary" onClick={this.saveMarker}>Save marker</Button>
-                    <Button variant="contained" color="secondary" onClick={this.deleteMarker}>delete</Button>
-                    <Button variant="contained" color="purple" onClick={this.submitLocations}>Submit All Locations</Button>
-                </div>
+                    {/* <br />
+                     <div>Longitude: {this.state.lng} | Latitude: {this.state.lat}</div> 
+                    <br /> */}
+                   
+                {/* </div> */}
                 <div
                     ref={el => this.mapContainer = el}
                     className='mapContainer'
