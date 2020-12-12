@@ -135,7 +135,7 @@ class AddPlacesMap extends React.Component {
     render() {
         return (
             <div>
-
+                <h2>ADD PLACES</h2>
                 {/* <div className='sidebarStyle'>
                 </div> */}
                 {/* <div > */}

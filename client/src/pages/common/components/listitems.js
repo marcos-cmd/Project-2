@@ -43,25 +43,7 @@ export default function MainListItems(props) {
             </ListItemIcon>
             <ListItemText primary="View Infected Places" />
         </ListItem>
-        <ListItem className='navLink'>
-            <ListItemIcon className='testHistory'>
-                <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="View Test Results" />
-        </ListItem>
     </div>
   )
   };
 
-// export const secondaryListItems = (
-//     <div>
-//         <ListSubheader inset></ListSubheader>
-//         <ListItem button>
-//             <ListItemIcon>
-//                 {/* <AssignmentIcon /> */}
-//             </ListItemIcon>
-//             <ListItemText primary="" />
-//         </ListItem>
-
-//     </div>
-// );

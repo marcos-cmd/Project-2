@@ -37,6 +37,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from "@material-ui/core";
 import Tour from "./Tour";
+import { spacing } from "@material-ui/system";
 
 // function Copyright() {
 //   return (
@@ -55,16 +56,18 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   all: {
-    background: 'linear-gradient(to right, #70a7ec7a, #b06ab3a6,#63b9dc4f)',
-    backgroundSize: 'cover',
-    color: "#FF0344",
-    height: '100%',
+    background: "linear-gradient(to right, #da4453, #89216b)",
+    backgroundSize: "cover",
+    color: "black",
+    height: "100%",
   },
+
   root: {
     display: "flex",
     flexWrap: "wrap",
-    // backgroundColor: 'rgba(255, 255, 255, .15)',
-    // backdropFilter: 'blur(5px)',
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(4px)",
+    fontFamily: "Raleway, sans-serif",
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -82,8 +85,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    background: "#FF0344",
-    opacity: '0.8',
+    background: "white",
+    opacity: "0.8",
+    color: "#FF0344",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -103,10 +107,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontFamily: "Raleway, sans-serif",
     fontWeight: "600",
+    color: "#FF0344",
   },
   signOut: {
     fontFamily: "Raleway, sans-serif",
-    color: "white",
+    color: "#FF0344",
     fontSize: "16px",
     fontWeight: "600",
   },
@@ -132,28 +137,39 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9),
     },
-    opacity: '0.8',
+    boxShadow: "1px 1px 5px #fafafa8f",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(5px)",
   },
   mainGrid: {
-    margin: '0 auto',
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    margin: "0 auto",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    flexGrow: 1,
   },
   container: {
-    padding: "15px",
-    margin: "80px auto 0 auto",
-    boxShadow: "1px 1px 5px #ccc",
-    backgroundColor: 'rgba(255, 255, 255, .15)',
-    backdropFilter: 'blur(5px)',
+    padding: "10px",
+    marginTop: "90px",
+    boxShadow: "1px 1px 5px #fafafa8f",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(20px)",
+    borderRadius: "10px",
   },
+  testingHistory: {
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(40px)",
+    height: "200px",
+  },
+
   paper: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
     width: " 90%",
-    background: "#404040",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(40px)",
     color: "#FF0344",
     // padding: "30px",
   },
@@ -186,10 +202,11 @@ const useStyles = makeStyles((theme) => ({
   },
   mapContainer: {
     margin: "10px 0 50px 0",
-    padding: "15px",
-    boxShadow: "1px 1px 5px #ccc",
-    backgroundColor: 'rgba(255, 255, 255, .15)',
-    backdropFilter: 'blur(5px)',
+    padding: "10px",
+    boxShadow: "1px 1px 5px #fafafa8f",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(20px)",
+    borderRadius: "10px",
   },
   formcontrol: {
     minWidth: 120,
@@ -313,7 +330,10 @@ export default function Profile() {
                 noWrap
                 className={classes.title}
               >
-                <a href="/" style={{ textDecoration: "none", color: "white" }}>
+                <a
+                  href="/"
+                  style={{ textDecoration: "none", color: "#FF0344" }}
+                >
                   ROAMING FOR RONA
                 </a>
               </Typography>
@@ -343,82 +363,78 @@ export default function Profile() {
             <MainListItems />
             <Divider />
           </Drawer>
-         <Grid xs={11} className={classes.mainGrid}>
-          <Grid item xs={4} className={classes.container}>
-            <Card>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {username.toUpperCase()}
-                  </Typography>
-                  <h3>Testing History</h3>
-                  <div>
-                    {user.length
-                      ? user?.map((data) => (
-                          <p>
-                            {data.testDate.slice(0, 10)} : {data.testResult}
-                          </p>
-                        ))
-                      : null}
-                  </div>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-            {/* <h2 className={classes.resultsTitle}>Submit Test Results</h2> */}
-            <Typography component="div">
-              <span style={{ color: "#ff0134", fontSize: "6" }}>
-                {!testResult ? "Please fill out all fields" : ""}
-              </span>
-            </Typography>
-            <form noValidate autoComplete="off" className={classes.resultForm}>
-              <TextField
-                id="date"
-                name="date"
-                label="MM/DD/YY"
-                variant="outlined"
-                value={date}
-                onChange={handleChangeDate}
-                required
-              />
-              <FormControl className={classes.formcontrol}>
-                <InputLabel id="demo-simple-select-label">
-                  Test Result
-                </InputLabel>
-                <Select
-                  id="demo-simple-select-label"
-                  label="Positive or Negative"
-                  variant="outlined"
-                  value={results}
-                  onChange={handleNewResults}
-                  placeholder="Hello"
-                  required
-                >
-                  <MenuItem value="Positive">Positive</MenuItem>
-                  <MenuItem value="Negative">Negative</MenuItem>
-                </Select>
-              </FormControl>
-
-              <Button
-                onClick={addTestResults}
-                variant="contained"
-                color="#FF0344"
+          <Grid container xs={11} className={classes.mainGrid}>
+            <Grid item   style={{width: '28%'}} className={classes.container}>
+              <Card className={classes.testingHistory}>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {username.toUpperCase()}
+                    </Typography>
+                    <h3>TESTING HISTORY</h3>
+                    <div>
+                      {user.length
+                        ? user?.map((data) => (
+                            <p>
+                              {data.testDate.slice(0, 10)} : {data.testResult}
+                            </p>
+                          ))
+                        : null}
+                    </div>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+              <Typography component="div">
+                <span style={{ color: "#ff0134", fontSize: "6" }}>
+                  {!testResult ? "Please fill out all fields" : ""}
+                </span>
+              </Typography>
+              <form
+                noValidate
+                autoComplete="off"
+                className={classes.resultForm}
               >
-                Submit
-              </Button>
-            </form>
-          </Grid>
-          
-          
-          <Grid item xs={7} className={classes.container}>
-            <h1>Daily Cases</h1>
-            <Paper className={fixedHeightPaper}>
-              <Chart />
-            </Paper>
-          </Grid>
-         
-          {/* <div className={classes.root} style={{marginLeft: '55px', marginRight: '0px'}}> */}
-         
-            <Grid item xs={7} className={classes.mapContainer}>
+                <TextField
+                  id="date"
+                  name="date"
+                  label="MM/DD/YY"
+                  variant="outlined"
+                  value={date}
+                  onChange={handleChangeDate}
+                  required
+                />
+                <FormControl className={classes.formcontrol}>
+                  <InputLabel id="demo-simple-select-label">
+                    Test Result
+                  </InputLabel>
+                  <Select
+                    id="demo-simple-select-label"
+                    label="Positive or Negative"
+                    variant="outlined"
+                    value={results}
+                    onChange={handleNewResults}
+                    placeholder="Hello"
+                    required
+                  >
+                    <MenuItem value="Positive">Positive</MenuItem>
+                    <MenuItem value="Negative">Negative</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <Button onClick={addTestResults} variant="outlined">
+                  Submit
+                </Button>
+              </form>
+            </Grid>
+
+            <Grid item style={{width: '70%'}} className={classes.container}>
+              <h2>DAILY CASES</h2>
+              <Paper className={fixedHeightPaper}>
+                <Chart />
+              </Paper>
+            </Grid>
+
+            <Grid item style={{width: '70%'}} className={classes.mapContainer}>
               <Switch>
                 <Route
                   path={`/Profile/${username}/add-places`}
@@ -434,36 +450,12 @@ export default function Profile() {
                 />
               </Switch>
             </Grid>
-            <Grid item xs={4} className={classes.mapContainer}>
-              <h1>New Graph</h1>
+            <Grid item style={{width: '28%'}} className={classes.mapContainer}>
+              <h2>NEW GRAPH</h2>
               {/* {place holder for new graph} */}
             </Grid>
-            </Grid>
-           
-          {/* </div> */}
+          </Grid>
         </div>
-        {/* <div className={classes.root} style={{marginLeft: '55px', marginRight: '0px'}}>
-            <Grid item xs={7} className={classes.mapContainer}>
-              <Switch>
-                <Route
-                  path={`/Profile/${username}/add-places`}
-                  component={AddPlacesMap}
-                />
-                <Route
-                  path={`/Profile/${username}/testsite`}
-                  component={TestSite}
-                />
-                <Route
-                  path={`/Profile/${username}/covid+locations`}
-                  component={Cluster}
-                />
-              </Switch>
-            </Grid>
-            <Grid item xs={4} className={classes.mapContainer}>
-              <h1>New Graph</h1>
-              {/* {place holder for new graph} */}
-            {/* </Grid>
-          </div> */} */}
       </BrowserRouter>
     </div>
   );

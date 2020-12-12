@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactJoyride from "react-joyride";
 
 const Tour = () => {
-   
   const [joyride, setJoyride] = useState({
-    
     run: false,
     steps: [
       {
@@ -31,8 +29,7 @@ const Tour = () => {
       {
         title: "Test History",
         target: ".testHistory",
-        content:
-          "All your covid test history can be found here.",
+        content: "All your covid test history can be found here.",
       },
       {
         title: "Tested positive?",
@@ -52,7 +49,7 @@ const Tour = () => {
         content:
           "Going somewhere today? Check here first to see if Covid has been present where you plan on going.",
       },
-     {
+      {
         title: "Forgot what these icons mean?",
         target: ".menuIcon",
         content:
@@ -60,7 +57,6 @@ const Tour = () => {
       },
     ],
   });
-  
 
   return (
     <React.Fragment>
@@ -71,16 +67,16 @@ const Tour = () => {
           }}
           style={{
             backgroundColor: "transparent",
-            color: "white",
+            color: "#FF0344",
             border: "none",
-            borderRight: "1px solid white",
-            fontSize: "18px",
+            borderRight: "1px solid #FF0344",
+            fontSize: "16px",
             padding: "5px 10px",
             cursor: "pointer",
             // borderRadius: "10px",
           }}
         >
-          TOUR 
+          TOUR
         </button>
       </div>
       <ReactJoyride
