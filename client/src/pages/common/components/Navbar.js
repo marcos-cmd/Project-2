@@ -13,20 +13,23 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     fontFamily: "Raleway, sans-serif",
-    color: 'white',
+    color: "#FF0344",
     fontSize: '20px',
   },
   appBar: {
-    background: "#455a64",
+    background: "white",
+    opacity: "0.8",
+    color: "#FF0344",
   },
   signIn: {
     fontFamily: "Raleway, sans-serif",
-    color: 'white',
+    color: "#FF0344",
     fontSize: '20px',
   },
   logo: {
     height: '40px',
     cursor: 'pointer',
+    filter: "saturate(5%)",
   }
 }));
 
@@ -50,7 +53,13 @@ export default function ButtonAppBar() {
     <div>
       <AppBar className={classes.appBar}>
         <Toolbar className={classes.root}>
-          <div onClick={handleClick}><img className={classes.logo} src='../../../logo.png' /></div>
+        <a
+                  href="/"
+                  style={{ textDecoration: "none", color: "#FF0344" }}
+                >
+                  ROAMING FOR RONA
+                </a>
+          {/* <div onClick={handleClick}><img className={classes.logo} src='../../../logo.png' /></div> */}
           <div >
             {localStorage.getItem('token') ? (
               <Button className={classes.signIn} onClick={handleProfile}>Profile</Button>

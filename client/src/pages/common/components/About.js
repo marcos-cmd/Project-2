@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#cfcfcf",
   },
   coronaUpdate: {
-    color: "#455a64",
+    color: "black",
     fontWeight: "bold",
     fontFamily: "Raleway, sans-serif",
     position: "relative",
@@ -49,15 +49,16 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Raleway, sans-serif",
     height: "900px",
     width: "80%",
-    background: "white",
-    boxShadow: "5px 5px 20px 0px #1c313a",
-    color: "#455a64",
+    boxShadow: "5px 5px 20px 0px #797979",
+    color: "black",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(20px)",
   },
   title: {
     textAlign: "center",
     padding: "50px 0px 30px 0px",
     fontSize: "50px",
-    borderBottom: "1px solid #cfcfcf",
+    borderBottom: "1px solid black",
     color: "#455a64",
   },
   sectionTitles: {
@@ -69,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     textAlign: "center",
     padding: "50px 0px 40px 0px",
-    borderBottom: "1px solid #cfcfcf",
+    borderBottom: "1px solid black",
     height: "40%",
   },
   sectionOne: {
@@ -92,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "contain",
   },
   reminder: {
-    background: "#cfcfcf",
+    background: "linear-gradient(141deg, #cfcfcf 47%, transparent calc(44% + 2px))",
     fontFamily: "Raleway, sans-serif",
     padding: '45px 0px',
     textAlign: "center",
@@ -118,13 +119,15 @@ const useStyles = makeStyles((theme) => ({
     height: 300,
   },
   footer: {
+    background: "white",
+    opacity: "0.8",
+    color: "#FF0344",
     fontFamily: "Raleway, sans-serif",
     fontSize: '20px',
     height: '50px',
-    backgroundColor: '#455a64',
-    color: '#cfcfcf',
     textAlign: 'center',
     paddingTop: '20px',
+    boxShadow: '1px 5px 12px 8px #cfcfcf',
   }
 }));
 
@@ -267,7 +270,7 @@ export default function About() {
         </div>
       </Box>
       <footer className={classes.footer}>
-        Roaming with Rona
+        Roaming for Rona
       </footer>
     </div>
   );
