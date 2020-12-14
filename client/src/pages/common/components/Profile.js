@@ -37,26 +37,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from "@material-ui/core";
 import Tour from "./Tour";
-import { spacing } from "@material-ui/system";
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{" "}
-//       {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   all: {
-    background: "linear-gradient(to right, #da4453, #89216b)",
+    background:  "linear-gradient(141deg, #ff03448c 50%, transparent calc(44% + 2px)), linear-gradient(-15deg, #ff03448c 50%, transparent calc(44% + 2px)),linear-gradient(321deg, #ff03448c 50%, transparent calc(44% + 2px))",
     backgroundSize: "cover",
     color: "black",
     height: "100%",
@@ -65,8 +51,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(4px)",
     fontFamily: "Raleway, sans-serif",
   },
   toolbar: {
@@ -137,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9),
     },
-    boxShadow: "1px 1px 5px #fafafa8f",
+    boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
     backdropFilter: "blur(5px)",
   },
@@ -150,8 +134,8 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     padding: "10px",
-    marginTop: "90px",
-    boxShadow: "1px 1px 5px #fafafa8f",
+    marginTop: "80px",
+    boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
     backdropFilter: "blur(20px)",
     borderRadius: "10px",
@@ -159,7 +143,9 @@ const useStyles = makeStyles((theme) => ({
   testingHistory: {
     backgroundColor: "rgba(255, 255, 255, .15)",
     backdropFilter: "blur(40px)",
-    height: "200px",
+    height: "150px",
+    fontWeight: "bold",
+    padding: '5px',
   },
 
   paper: {
@@ -189,7 +175,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },
   resultForm: {
-    margin: "20px 0",
+    margin: "20px 0 5px",
     display: "flex",
     justifyContent: "space-between",
   },
@@ -201,15 +187,15 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   mapContainer: {
-    margin: "10px 0 50px 0",
+    margin: "20px 0 50px 0",
     padding: "10px",
-    boxShadow: "1px 1px 5px #fafafa8f",
+    boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
     backdropFilter: "blur(20px)",
     borderRadius: "10px",
   },
   formcontrol: {
-    minWidth: 120,
+    width: '52%',
   },
 }));
 
@@ -365,13 +351,13 @@ export default function Profile() {
           </Drawer>
           <Grid container xs={11} className={classes.mainGrid}>
             <Grid item   style={{width: '28%'}} className={classes.container}>
-              <Card className={classes.testingHistory}>
-                <CardActionArea>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h5" component="h2">
                       {username.toUpperCase()}
                     </Typography>
-                    <h3>TESTING HISTORY</h3>
+              <Card className={classes.testingHistory}>
+                  <CardContent style={{padding: 0}}>
+                    <h3><strong>YOUR TESTING HISTORY</strong></h3>
+                    <hr></hr>
                     <div>
                       {user.length
                         ? user?.map((data) => (
@@ -382,7 +368,6 @@ export default function Profile() {
                         : null}
                     </div>
                   </CardContent>
-                </CardActionArea>
               </Card>
               <Typography component="div">
                 <span style={{ color: "#ff0134", fontSize: "6" }}>
@@ -402,9 +387,10 @@ export default function Profile() {
                   value={date}
                   onChange={handleChangeDate}
                   required
+                  style={{width: '42%'}}
                 />
                 <FormControl className={classes.formcontrol}>
-                  <InputLabel id="demo-simple-select-label">
+                  <InputLabel id="demo-simple-select-label" style={{marginLeft: '15px'}}>
                     Test Result
                   </InputLabel>
                   <Select
@@ -413,28 +399,26 @@ export default function Profile() {
                     variant="outlined"
                     value={results}
                     onChange={handleNewResults}
-                    placeholder="Hello"
                     required
                   >
                     <MenuItem value="Positive">Positive</MenuItem>
                     <MenuItem value="Negative">Negative</MenuItem>
                   </Select>
                 </FormControl>
-
-                <Button onClick={addTestResults} variant="outlined">
+              </form>
+              <Button onClick={addTestResults} variant="outlined" style={{width: '100%'}}>
                   Submit
                 </Button>
-              </form>
             </Grid>
 
-            <Grid item style={{width: '70%'}} className={classes.container}>
+            <Grid item style={{width: '68%'}} className={classes.container}>
               <h2>DAILY CASES</h2>
               <Paper className={fixedHeightPaper}>
                 <Chart />
               </Paper>
             </Grid>
 
-            <Grid item style={{width: '70%'}} className={classes.mapContainer}>
+            <Grid item style={{width: '68%'}} className={classes.mapContainer}>
               <Switch>
                 <Route
                   path={`/Profile/${username}/add-places`}

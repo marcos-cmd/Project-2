@@ -29,31 +29,32 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+ 
+  main:{
+    width: '100%',
+    height: '100%',
+    background: "linear-gradient(38deg, #ff03448c 42%, transparent calc(66% + 1px))",
+  },
   root: {
    fontFamily: "Raleway, sans-serif",
     margin:'300px auto',
-  },
-  image: {
-    backgroundImage: "url(https://source.unsplash.com/random)",
-    backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[50]
-        : theme.palette.grey[900],
-    backgroundSize: "cover",
-    backgroundPosition: "center",
+    backdropFilter: "blur(20px)",
+    
   },
   paper: {
     margin: theme.spacing(0, 4),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    boxShadow: '2px 2px 6px 0px grey',
+    boxShadow: "0px 0px 5px 0px #40404054",
+    backgroundColor: "rgba(255, 255, 255, .25)",
+    backdropFilter: "blur(20px)",
     padding: '20px',
+    width: '450px',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: '#cfcfcf',
+    backgroundColor: '#FF0344',
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -61,14 +62,16 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#455A64",
-    color: '#cfcfcf',
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    color: 'black',
+    border: '1px solid black',
     fontFamily: "Raleway, sans-serif",
     fontWeight: 'bold',
     fontSize: "20px"
   },
   font: {
     fontFamily: "Raleway, sans-serif",
+    color: 'black',
   }
 }));
 
@@ -129,10 +132,9 @@ const SignIn = (props) => {
   };
 
   return (
-    <Grid container component="main" >
+    <Grid container component="main" className={classes.main} >
       <CssBaseline />
       <Navbar />
-      {/* <Grid item xs={false} sm={4} md={7} className={classes.image} /> */}
       <Grid item xs={12} sm={8} md={5} className={classes.root}>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -144,9 +146,6 @@ const SignIn = (props) => {
           <Typography component="div">
             <span style={{ color: "#ff0134", fontSize: "6" }}>
               {!validation ? " Invalid Login" : ""}
-              {/* {st.authorized
-                ? ""
-                : " Wrong username and password"} */}
             </span>
           </Typography>
           <form noValidate autoComplete="off" className={classes.form}>
@@ -176,8 +175,9 @@ const SignIn = (props) => {
               type="submit"
               fullWidth
               onClick={handleSubmit(handleSignIn)}
-              variant="contained"
+              variant="outline"
               className={classes.submit}
+              
             >
               SIGN IN
             </Button>
