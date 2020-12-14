@@ -65,11 +65,12 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#455A64",
-    color: "#cfcfcf",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    color: 'black',
+    border: '1px solid black',
     fontFamily: "Raleway, sans-serif",
-    fontWeight: "bold",
-    fontSize: "20px",
+    fontWeight: 'bold',
+    fontSize: "20px"
   },
   font: {
     fontFamily: "Raleway, sans-serif",

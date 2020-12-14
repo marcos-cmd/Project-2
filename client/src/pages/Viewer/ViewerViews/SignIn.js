@@ -13,7 +13,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../../common/components/Navbar";
 import { setViewerToken } from "../ViewerReducer";
-import styled, { keyframes } from 'styled-components'
 
 
 function Copyright() {
@@ -34,22 +33,8 @@ const useStyles = makeStyles((theme) => ({
   main:{
     width: '100%',
     height: '100%',
-    background: "linear-gradient(to right, #da4453, #89216b)",
-    // backgroundSize: "cover",
-    
-    animation: `$gradient 15s ease infinite`,
+    background: "linear-gradient(38deg, #ff03448c 42%, transparent calc(66% + 1px))",
   },
-  '@keyframes gradient' : {
-    '0%' :{
-       backgroundPosition: '0% 50%'
-     },
-     '50%': {
-       backgroundPosition: '100% 50%'
-     },
-     '100%':{
-       backgroundPosition: '0% 50%'
-     }
- },
   root: {
    fontFamily: "Raleway, sans-serif",
     margin:'300px auto',
@@ -61,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    boxShadow: "1px 1px 5px #fafafa8f",
-    backgroundColor: "rgba(255, 255, 255, .15)",
+    boxShadow: "0px 0px 5px 0px #40404054",
+    backgroundColor: "rgba(255, 255, 255, .25)",
     backdropFilter: "blur(20px)",
     padding: '20px',
   },
