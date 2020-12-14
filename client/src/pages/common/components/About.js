@@ -15,10 +15,10 @@ import RoadMap from "../../../roadmap.png";
 import virusImg from "../../../virusCluster.png";
 import syringe from "../../../syringe.png";
 import mask from "../../../mask.png";
-import One from '../../../one.png';
-import Two from '../../../two.png';
-import Three from '../../../three.png';
-import Navbar from './Navbar';
+import One from "../../../one.png";
+import Two from "../../../two.png";
+import Three from "../../../three.png";
+import Navbar from "./Navbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   angledBackground: {
     height: "1000px",
     background:
-      "linear-gradient(28deg, #cfcfcf 47%, transparent calc(44% + 2px))",
+      "linear-gradient(28deg, #ff03448c 47%, transparent calc(44% + 2px))",
     display: "flex",
     alignItems: "center",
   },
@@ -49,9 +49,10 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Raleway, sans-serif",
     height: "900px",
     width: "80%",
-    boxShadow: "5px 5px 20px 0px #797979",
+    boxShadow: "5px 5px 20px 0px #7979796b",
     color: "black",
-    backgroundColor: "rgba(255, 255, 255, .15)",
+    background:
+      "linear-gradient(28deg, #ffffffbf 47%, transparent calc(51% + 2px))",
     backdropFilter: "blur(20px)",
   },
   title: {
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   topRow: {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     fontSize: "20px",
     textAlign: "center",
     padding: "50px 0px 40px 0px",
@@ -82,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     background: `url(${Positive})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
+    marginLeft: "20px",
   },
   sectionThree: {
     textAlign: "center",
@@ -93,27 +95,31 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "contain",
   },
   reminder: {
-    background: "linear-gradient(141deg, #cfcfcf 47%, transparent calc(44% + 2px))",
+    background:
+      "linear-gradient(141deg, #ff03448c 47%, transparent calc(44% + 2px))",
     fontFamily: "Raleway, sans-serif",
-    padding: '45px 0px',
+    padding: "45px 0px",
     textAlign: "center",
   },
   reminderItems: {
-    fontSize: '40px',
-    height: '200px',
-    padding: '50px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    fontSize: "40px",
+    height: "200px",
+    padding: "50px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardsContainer: {
-    paddingTop: theme.spacing(18),
+    padding: "20px 0px",
     maxWidth: "100%",
-    background: "#cfcfcf",
+    background: "#ff03448c",
   },
   card: {
     width: "80%",
-    margin: '0 auto',
+    margin: "0 auto",
+    backdropFilter: "blur(20px)",
+    backgroundColor: "rgb(255 255 255 / .50)",
+    boxShadow: "5px 5px 20px 0px #7979796b",
   },
   media: {
     height: 300,
@@ -123,12 +129,12 @@ const useStyles = makeStyles((theme) => ({
     opacity: "0.8",
     color: "#FF0344",
     fontFamily: "Raleway, sans-serif",
-    fontSize: '20px',
-    height: '50px',
-    textAlign: 'center',
-    paddingTop: '20px',
-    boxShadow: '1px 5px 12px 8px #cfcfcf',
-  }
+    fontSize: "20px",
+    height: "50px",
+    textAlign: "center",
+    paddingTop: "20px",
+    boxShadow: "1px 5px 12px 8px #cfcfcf",
+  },
 }));
 
 export default function About() {
@@ -232,10 +238,7 @@ export default function About() {
             >
               <Card className={classes.card}>
                 <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={mask}
-                  />
+                  <CardMedia className={classes.media} image={mask} />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                       Prevention
@@ -256,22 +259,38 @@ export default function About() {
       </Container>
       <Box className={classes.reminder}>
         <h1 className={classes.title}>REMEMBER</h1>
-        <div className={classes.reminderItems} style={{ background: `url(${One})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-
+        <div
+          className={classes.reminderItems}
+          style={{
+            background: `url(${One})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           <p>Wash your hands</p>
         </div>
-        <div className={classes.reminderItems} style={{ background: `url(${Two})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-
+        <div
+          className={classes.reminderItems}
+          style={{
+            background: `url(${Two})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           <p>Wear your mask when going out</p>
         </div>
-        <div className={classes.reminderItems} style={{ background: `url(${Three})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-
+        <div
+          className={classes.reminderItems}
+          style={{
+            background: `url(${Three})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           <p>Social distance whenever possible</p>
         </div>
       </Box>
-      <footer className={classes.footer}>
-        Roaming for Rona
-      </footer>
+      <footer className={classes.footer}>Roaming for Rona</footer>
     </div>
   );
 }
