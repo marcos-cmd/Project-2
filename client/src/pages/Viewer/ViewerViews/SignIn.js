@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgba(255, 255, 255, .25)",
     backdropFilter: "blur(20px)",
     padding: '20px',
+    width: '450px',
   },
   avatar: {
     margin: theme.spacing(1),
