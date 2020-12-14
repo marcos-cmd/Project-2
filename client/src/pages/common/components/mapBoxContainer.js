@@ -54,6 +54,7 @@ class Application extends React.Component {
                 address: coordinate.address,
                 name: coordinate.name,
                 link: coordinate.cta_link,
+                phone: coordinate.phone_number_formatted,
             }));
 
         // this line sets position array as the array 'coords' in our state
@@ -63,12 +64,21 @@ class Application extends React.Component {
         const createMarker = () => {
             this.state.coords.map((coord, index) => {
                 console.log();
-                const popup = new mapboxgl.Popup()
-                    .setHTML(`<div><h1>${coord.name}</h1><br /><h2>${coord.address}</h2><br/><p>${coord.link}</p></div>`)
-                const marker = new mapboxgl.Marker()
-                    .setLngLat([coord.lng, coord.lat])
-                    .setPopup(popup)
-                    .addTo(map);
+                if (coord.link === undefined || coord.link.includes("tel://")) {
+                    const popup = new mapboxgl.Popup()
+                        .setHTML(`<div><h1>${coord.name}</h1><br /><h2>${coord.address}</h2><br/><p>No Link To Testsite</p></div>`)
+                    const marker = new mapboxgl.Marker()
+                        .setLngLat([coord.lng, coord.lat])
+                        .setPopup(popup)
+                        .addTo(map);
+                } else {
+                    const popup = new mapboxgl.Popup()
+                        .setHTML(`<div><h1>${coord.name}</h1><br /><h2>${coord.address}</h2><br/><a href="${coord.link}" target="_blank">${coord.link}</a></div>`)
+                    const marker = new mapboxgl.Marker()
+                        .setLngLat([coord.lng, coord.lat])
+                        .setPopup(popup)
+                        .addTo(map);
+                }
             });
         };
         createMarker();
@@ -77,7 +87,7 @@ class Application extends React.Component {
     render() {
         return (
             <div>
-              <h1>Testing Sites</h1>
+                <h1>Testing Sites</h1>
                 <div className='sidebarStyle'>
                     <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
                 </div>

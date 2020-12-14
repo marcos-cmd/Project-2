@@ -10,8 +10,8 @@ class Cluster extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lng: -103.59179687498357,
-            lat: 40.66995747013945,
+            lng: -122.59179687498357,
+            lat: 37.66995747013945,
             zoom: 4,
             // bounds: [-122.517910874663, 37.6044780500533, -122.354995082683, 37.8324430069081],
             points: [],
