@@ -62,21 +62,7 @@ export default function CurrentCasesTable() {
 
     return (
         <React.Fragment>
-            <Title style={{ color: 'white' }}>United States Cases</Title>
-
-            <FormControl className="chart__dropdown">
-                <Select
-                    variant="outlined"
-                    value={colony}
-                    onChange={onColonyChange}
-                >
-                    <MenuItem value="states">United States</MenuItem>
-                    {colonies.map((colony) => (
-                        <MenuItem value={colony.name}>{colony.name}</MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
-
+            <h2 style={{fontFamily: "Raleway, sans-serif"}}>CURRENT CASES</h2>
             <table className="table">
                 {colonies.map((colony) => (
                     <tr>
