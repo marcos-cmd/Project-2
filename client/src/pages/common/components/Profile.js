@@ -37,12 +37,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from "@material-ui/core";
 import Tour from "./Tour";
+import CurrentCasesTable from "./CurrentCasesTable";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   all: {
-    background:  "linear-gradient(141deg, #ff03448c 50%, transparent calc(44% + 2px)), linear-gradient(-15deg, #ff03448c 50%, transparent calc(44% + 2px)),linear-gradient(321deg, #ff03448c 50%, transparent calc(44% + 2px))",
+    background: "linear-gradient(141deg, #ff03448c 50%, transparent calc(44% + 2px)), linear-gradient(-15deg, #ff03448c 50%, transparent calc(44% + 2px)),linear-gradient(321deg, #ff03448c 50%, transparent calc(44% + 2px))",
     backgroundSize: "cover",
     color: "black",
     height: "100%",
@@ -350,24 +351,24 @@ export default function Profile() {
             <Divider />
           </Drawer>
           <Grid container xs={11} className={classes.mainGrid}>
-            <Grid item   style={{width: '28%'}} className={classes.container}>
-            <Typography gutterBottom variant="h5" component="h2">
-                      {username.toUpperCase()}
-                    </Typography>
+            <Grid item style={{ width: '28%' }} className={classes.container}>
+              <Typography gutterBottom variant="h5" component="h2">
+                {username.toUpperCase()}
+              </Typography>
               <Card className={classes.testingHistory}>
-                  <CardContent style={{padding: 0}}>
-                    <h3><strong>YOUR TESTING HISTORY</strong></h3>
-                    <hr></hr>
-                    <div>
-                      {user.length
-                        ? user?.map((data) => (
-                            <p>
-                              {data.testDate.slice(0, 10)} : {data.testResult}
-                            </p>
-                          ))
-                        : null}
-                    </div>
-                  </CardContent>
+                <CardContent style={{ padding: 0 }}>
+                  <h3><strong>YOUR TESTING HISTORY</strong></h3>
+                  <hr></hr>
+                  <div>
+                    {user.length
+                      ? user?.map((data) => (
+                        <p>
+                          {data.testDate.slice(0, 10)} : {data.testResult}
+                        </p>
+                      ))
+                      : null}
+                  </div>
+                </CardContent>
               </Card>
               <Typography component="div">
                 <span style={{ color: "#ff0134", fontSize: "6" }}>
@@ -387,10 +388,10 @@ export default function Profile() {
                   value={date}
                   onChange={handleChangeDate}
                   required
-                  style={{width: '42%'}}
+                  style={{ width: '42%' }}
                 />
                 <FormControl className={classes.formcontrol}>
-                  <InputLabel id="demo-simple-select-label" style={{marginLeft: '15px'}}>
+                  <InputLabel id="demo-simple-select-label" style={{ marginLeft: '15px' }}>
                     Test Result
                   </InputLabel>
                   <Select
@@ -406,19 +407,19 @@ export default function Profile() {
                   </Select>
                 </FormControl>
               </form>
-              <Button onClick={addTestResults} variant="outlined" style={{width: '100%'}}>
-                  Submit
+              <Button onClick={addTestResults} variant="outlined" style={{ width: '100%' }}>
+                Submit
                 </Button>
             </Grid>
 
-            <Grid item style={{width: '68%'}} className={classes.container}>
+            <Grid item style={{ width: '68%' }} className={classes.container}>
               <h2>DAILY CASES</h2>
               <Paper className={fixedHeightPaper}>
                 <Chart />
               </Paper>
             </Grid>
 
-            <Grid item style={{width: '68%'}} className={classes.mapContainer}>
+            <Grid item style={{ width: '68%' }} className={classes.mapContainer}>
               <Switch>
                 <Route
                   path={`/Profile/${username}/add-places`}
@@ -434,9 +435,9 @@ export default function Profile() {
                 />
               </Switch>
             </Grid>
-            <Grid item style={{width: '28%'}} className={classes.mapContainer}>
+            <Grid item style={{ width: '28%' }} className={classes.mapContainer}>
               <h2>NEW GRAPH</h2>
-              {/* {place holder for new graph} */}
+              <CurrentCasesTable />
             </Grid>
           </Grid>
         </div>
