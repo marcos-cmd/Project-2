@@ -18,6 +18,7 @@ export default function Chart() {
             .then((response) => response.json())
             .then((data) => {
                 setColonyInfo(data);
+                console.log(colonyInfo);
             });
     }, []);
 

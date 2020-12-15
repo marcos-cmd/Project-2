@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './TestSite.css';
 import { red } from '@material-ui/core/colors';
+import covidData from './covidData.GeoJSON';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
-class CurrentCasesMap extends React.Component {
+class Application extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             lng: -122.431297,
             lat: 37.773972,
             zoom: 12,
-            bounds: [-122.517910874663, 37.6044780500533, -122.354995082683, 37.8324430069081],
+            // bounds: [-122.517910874663, 37.6044780500533, -122.354995082683, 37.8324430069081],
             coords: [],
+            stateData: [],
+            features: []
         };
     }
-    // This function loads the API Request
+    // // This function loads the API Request
     // loadAPI = async () => {
     //     return await API.search()
     // };
@@ -24,65 +27,106 @@ class CurrentCasesMap extends React.Component {
 
 
     async componentDidMount() {
+        const getCaseCount = async () => {
+            await fetch("https://disease.sh/v3/covid-19/nyt/states?lastdays=1")
+                .then((response) => response.json())
+
+                .then((data) => {
+                    // console.log('this is data', data)
+                    const caseCount = data.map((colony) => (
+                        {
+                            id: colony.fips,
+                            state: colony.state,
+                            cases: colony.cases,
+                            deaths: colony.deaths,
+                        }
+                    ));
+                    this.setState({ stateData: caseCount })
+                    console.log('this is caseCount', caseCount);
+                    // const notCovidData = JSON.parse(covidData);
+                    // this.setState({ features: notCovidData });
+                    // console.log('this is features', this.state.features);
+                    console.log('this is covidData', covidData);
+                });
+        };
+        getCaseCount();
+
+        function fetchJSON(url) {
+            return fetch(url)
+                .then(function (response) {
+                    return response;
+                });
+        }
+        const data = fetchJSON('https://raw.githubusercontent.com/DiegoFurtt/Covid-19-Choropleth-Map/master/covidData.geojson')
+            .then(function (data) { return data })
+        console.log('this is data', data);
+
+
+        const switchData = () => {
+            for (let i = 0; i < this.state.stateData.length; i++) {
+                for (let j = 0; j < this.state.features.length; j++) {
+                    if (this.state.stateData[i].id === this.state.features[j].id) {
+                        return this.state.features[j].properties.density === this.state.stateData[i].cases;
+                    }
+                }
+            }
+        }
+        switchData();
+        console.log('this is features', this.state.features);
+
+
         // This function creates the map for the component to render later
         const map = new mapboxgl.Map({
             container: this.mapContainer,
-            style: 'mapbox://styles/marcos-cmd/ckic7a1gn1fnq19mlbinadamo',
+            style: 'mapbox://styles/mapbox/dark-v10',
             // center: [this.state.lng, this.state.lat],
             // zoom: this.state.zoom,
             // maxBounds: this.state.bounds
         });
-        map.on('load', () => {
-            map.getCanvas().style.cursor = 'default';
-            map.on('mousemove', function (e) {
-                var states = map.queryRenderedFeatures(e.point, {
-                    layers: ['covid-cases']
-                });
-
-                // if (states.length > 0) {
-                //     document.getElementById('pd').innerHTML = '<h3><strong>' + states[0].properties.name + '</strong></h3><p><strong><em>' + states[0].properties.density + '</strong> people per square mile</em></p>';
-                // } else {
-                //     document.getElementById('pd').innerHTML = '<p>Hover over a state!</p>';
-                // }
+        // This function controls the top sidebar, sharing the user's coordinates and zoom
+        map.on('load', function () {
+            map.addSource('covidCases', {
+                'type': 'geojson',
+                'data': covidData,
             });
-            map.fitBounds([
-                [-133.2421875, 16.972741],
-                [-47.63671875, 52.696361]
-            ]);
-
-        })
-
+            map.addLayer({
+                'id': 'states',
+                'type': 'fill',
+                'source': 'covidCases',
+                'layout': {},
+                'paint': {
+                    'fill-color': [
+                        'step',
+                        ['get', 'density'],
+                        'green',
+                        6270,
+                        'orange',
+                        8000,
+                        'red'
+                    ],
+                    'fill-opacity': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        .8,
+                        0.5
+                    ]
+                }
+            });
+        });
 
     }
-
     // The rendering of the following containers requires the css file, to render properly
     render() {
-        const legendKeys = [
-            { id: 1, layer: '0-341', color: '#ffd149' },
-            { id: 2, layer: '341-1015', color: '#ffa000' },
-            { id: 3, layer: '1015-2000', color: '#c67100' },
-            { id: 4, layer: '2000-3174', color: '#c74200' },
-            { id: 5, layer: '3174-5911', color: '#f05545' },
-            { id: 6, layer: '5911-13319', color: '#b71c1c' },
-            { id: 7, layer: '13319-288045', color: '#7f0000' },
-        ];
         return (
             <div>
                 <h1>Current Cases</h1>
-                <div ref={el => this.mapContainer = el} className='mapContainer'>
+                <div className='sidebarStyle'>
+                    <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
                 </div>
-                <div class="map-overlay" id="legend">
-                    <h3></h3>
-                    {legendKeys.map(key => (<div key={red}> <span style={{ backgroundColor: key.color }} className="legend-key" ></span><span>{key.layer}</span></div>))}
-
-                </div>
-                <div class="embed-container">
-                    <iframe width="500" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="COVID-19" src="https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6"></iframe>
-                </div>
-            </div >
-
+                <div ref={el => this.mapContainer = el} className='mapContainer' />
+            </div>
         )
     }
 }
 
-export default CurrentCasesMap;
+export default Application;

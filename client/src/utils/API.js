@@ -29,7 +29,21 @@ export default {
         });
         return markers;
       })
+  },
+
+  geoData: function () {
+    return axios.get('https://disease.sh/v3/covid-19/states', {
+
+    })
+      .then(function (res) {
+        console.log(res.data);
+        // const coords = _.map(res.data, (data) => {
+        //   data.point = data.point.coordinates;
+        //   return _.pick(data, ['point', 'id', 'address', 'name', 'cta_link'])
+      });
+    // return coords;
   }
+
 }
 
 // export default {
