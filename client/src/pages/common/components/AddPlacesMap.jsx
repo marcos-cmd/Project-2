@@ -155,14 +155,14 @@ class AddPlacesMap extends React.Component {
   // The rendering of the following containers requires the css file, to render properly
   render() {
     return (
-      <div>
+      <div >
         <h2>ADD PLACES</h2>
         {/* <div className='sidebarStyle'>
                 </div> */}
-        {/* <div > */}
+        <div className='root'>
         <form className="toolboxStyle">
           <input
-            placeholder={"Name this Location"}
+            placeholder={"Location Name"}
             type="text"
             className="formStyle"
             value={this.state.value}
@@ -182,8 +182,13 @@ class AddPlacesMap extends React.Component {
             onClick={this.deleteMarker}
             style={{ margin: "0 10px" }}
           >
-            delete
+            Delete Last
           </Button>
+          <div className='markers'>
+            <ol>
+              { this.state.markers.map(i=> <li>{i.name}</li>)}
+            </ol>
+          </div>
           <Button
             variant="contained"
             color="purple"
@@ -200,17 +205,13 @@ class AddPlacesMap extends React.Component {
           </Snackbar>
           
         </form>
-        {/* <br />
-                     <div>Longitude: {this.state.lng} | Latitude: {this.state.lat}</div> 
-                    <br /> */}
-
-        {/* </div> */}
         <div
           ref={(el) => (this.mapContainer = el)}
           className="mapContainer"
           {...this.props}
           onClick={this.onMapClicked}
         />
+         </div>
       </div>
     );
   }
