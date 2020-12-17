@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     height: '100%',
-    background: `url(${background})`
+    background: `url(${background})`,
+    backgroundSize: 'cover',
   },
   paper: {
     margin: '300px auto 200px auto',

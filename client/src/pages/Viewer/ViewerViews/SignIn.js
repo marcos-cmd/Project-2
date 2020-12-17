@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     background: `url(${background})`,
+    backgroundSize: 'cover',
   },
   root: {
    fontFamily: "Raleway, sans-serif",
