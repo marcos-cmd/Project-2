@@ -81,9 +81,14 @@
     padding: 10px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     line-height: 18px;
-    height: 150px;
+    height: 55%;
     margin-bottom: 40px;
     width: 150px;
+    position: absolute;
+    z-index: 1;
+    background: rgba(255, 255, 255, 60%);
+    backdrop-filter: blur(5px);
+    overflow: scroll;
   }
 
   .legend-key {
@@ -93,3 +98,7 @@
     height: 10px;
     margin-right: 5px;
   }
+
+  /* .currentCasesMap {
+    display: flex;
+  } */
