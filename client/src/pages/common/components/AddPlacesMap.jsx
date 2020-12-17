@@ -43,6 +43,8 @@ class AddPlacesMap extends React.Component {
       lat: this.state.lat,
       lng: this.state.lng,
     };
+    //if statement makes it so there has to be a value before submit is pushed
+    if(this.state.value){
     this.setState({ recentMarker: newMarker });
     // console.log(newMarker);
     this.setState({ markers: [...this.state.markers, newMarker] });
@@ -51,6 +53,8 @@ class AddPlacesMap extends React.Component {
     this.setState({location: this.state.value})
     // this clears out the input value
     this.setState({value: ''})
+    }
+    return;
   }
 
   submitLocations = () => {
