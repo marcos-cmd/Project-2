@@ -1,6 +1,6 @@
 .sidebarStyle {
-    display: inline-block;
-    position: absolute;
+    display: none;
+    /* position: absolute;
     top: 0;
     left: 0;
     margin: 12px;
@@ -8,13 +8,13 @@
     color: #ffffff;
     z-index: 1 !important;
     padding: 6px;
-    font-weight: bold;
+    font-weight: bold; */
   }
   
   .mapContainer {
-    width: 100%;
-    height: 500px;
-    margin: 50px 0;
+    width: 90%;
+    height: 400px;
+    margin: 0 auto;
   }
 
   .formStyle {
@@ -33,4 +33,26 @@
      z-index: 1 !important;
      padding: 6px;
      font-weight: bold;
+     width: 90%;
+     margin: 0 auto;
    }
+.table {
+    margin-top: 20px;
+    overflow: scroll;
+    color: #424242;
+    background-color: white;
+    height: 400px;
+  }
+.table tr {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+.table td {
+    padding: 0.5rem;
+    border: none;
+  }
+  
+.table tr:nth-of-type(odd) {
+    background-color: #f3f2f8;
+  }

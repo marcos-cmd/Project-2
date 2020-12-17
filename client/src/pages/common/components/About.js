@@ -15,17 +15,17 @@ import RoadMap from "../../../roadmap.png";
 import virusImg from "../../../virusCluster.png";
 import syringe from "../../../syringe.png";
 import mask from "../../../mask.png";
-import One from '../../../one.png';
-import Two from '../../../two.png';
-import Three from '../../../three.png';
-import Navbar from './Navbar';
+import One from "../../../one.png";
+import Two from "../../../two.png";
+import Three from "../../../three.png";
+import Navbar from "./Navbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     background: "#cfcfcf",
   },
   coronaUpdate: {
-    color: "#455a64",
+    color: "black",
     fontWeight: "bold",
     fontFamily: "Raleway, sans-serif",
     position: "relative",
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   angledBackground: {
     height: "1000px",
     background:
-      "linear-gradient(28deg, #cfcfcf 47%, transparent calc(44% + 2px))",
+      "linear-gradient(28deg, #ff03448c 47%, transparent calc(44% + 2px))",
     display: "flex",
     alignItems: "center",
   },
@@ -49,15 +49,17 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Raleway, sans-serif",
     height: "900px",
     width: "80%",
-    background: "white",
-    boxShadow: "5px 5px 20px 0px #1c313a",
-    color: "#455a64",
+    boxShadow: "5px 5px 20px 0px #7979796b",
+    color: "black",
+    background:
+      "linear-gradient(28deg, #ffffffbf 47%, transparent calc(51% + 2px))",
+    backdropFilter: "blur(20px)",
   },
   title: {
     textAlign: "center",
     padding: "50px 0px 30px 0px",
     fontSize: "50px",
-    borderBottom: "1px solid #cfcfcf",
+    borderBottom: "1px solid black",
     color: "#455a64",
   },
   sectionTitles: {
@@ -65,11 +67,11 @@ const useStyles = makeStyles((theme) => ({
   },
   topRow: {
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     fontSize: "20px",
     textAlign: "center",
     padding: "50px 0px 40px 0px",
-    borderBottom: "1px solid #cfcfcf",
+    borderBottom: "1px solid black",
     height: "40%",
   },
   sectionOne: {
@@ -81,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     background: `url(${Positive})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
+    marginLeft: "20px",
   },
   sectionThree: {
     textAlign: "center",
@@ -92,40 +95,46 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: "contain",
   },
   reminder: {
-    background: "#cfcfcf",
+    background:
+      "linear-gradient(141deg, #ff03448c 47%, transparent calc(44% + 2px))",
     fontFamily: "Raleway, sans-serif",
-    padding: '45px 0px',
+    padding: "45px 0px",
     textAlign: "center",
   },
   reminderItems: {
-    fontSize: '40px',
-    height: '200px',
-    padding: '50px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    fontSize: "40px",
+    height: "200px",
+    padding: "50px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardsContainer: {
-    paddingTop: theme.spacing(18),
+    padding: "20px 0px",
     maxWidth: "100%",
-    background: "#cfcfcf",
+    background: "#ff03448c",
   },
   card: {
     width: "80%",
-    margin: '0 auto',
+    margin: "0 auto",
+    backdropFilter: "blur(20px)",
+    backgroundColor: "rgb(255 255 255 / .50)",
+    boxShadow: "5px 5px 20px 0px #7979796b",
   },
   media: {
     height: 300,
   },
   footer: {
+    background: "white",
+    opacity: "0.8",
+    color: "#FF0344",
     fontFamily: "Raleway, sans-serif",
-    fontSize: '20px',
-    height: '50px',
-    backgroundColor: '#455a64',
-    color: '#cfcfcf',
-    textAlign: 'center',
-    paddingTop: '20px',
-  }
+    fontSize: "20px",
+    height: "50px",
+    textAlign: "center",
+    paddingTop: "20px",
+    boxShadow: "1px 5px 12px 8px #cfcfcf",
+  },
 }));
 
 export default function About() {
@@ -229,10 +238,7 @@ export default function About() {
             >
               <Card className={classes.card}>
                 <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={mask}
-                  />
+                  <CardMedia className={classes.media} image={mask} />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                       Prevention
@@ -253,22 +259,38 @@ export default function About() {
       </Container>
       <Box className={classes.reminder}>
         <h1 className={classes.title}>REMEMBER</h1>
-        <div className={classes.reminderItems} style={{ background: `url(${One})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-
+        <div
+          className={classes.reminderItems}
+          style={{
+            background: `url(${One})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           <p>Wash your hands</p>
         </div>
-        <div className={classes.reminderItems} style={{ background: `url(${Two})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-
+        <div
+          className={classes.reminderItems}
+          style={{
+            background: `url(${Two})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           <p>Wear your mask when going out</p>
         </div>
-        <div className={classes.reminderItems} style={{ background: `url(${Three})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
-
+        <div
+          className={classes.reminderItems}
+          style={{
+            background: `url(${Three})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          }}
+        >
           <p>Social distance whenever possible</p>
         </div>
       </Box>
-      <footer className={classes.footer}>
-        Roaming with Rona
-      </footer>
+      <footer className={classes.footer}>Roaming for Rona</footer>
     </div>
   );
 }

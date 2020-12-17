@@ -47,17 +47,26 @@ const TextFieldInput = ({ input, meta, label, ...custom }) => {
 // handleSubmit also preventsDefault for us right away
 // to the function that it's calling
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    height: '100%',
+    background: "linear-gradient(38deg, #ff03448c 42%, transparent calc(66% + 1px))"
+  },
   paper: {
-    margin: '300px auto 0 auto',
+    margin: '300px auto 200px auto',
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     boxShadow: '2px 2px 6px 0px grey',
     padding: '25px',
+    boxShadow: "0px 0px 5px 0px #40404054",
+    backgroundColor: "rgba(255, 255, 255, .25)",
+    backdropFilter: "blur(20px)",
+    width: '430px',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: "#cfcfcf",
+    backgroundColor: '#FF0344',
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -65,19 +74,18 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#455A64",
-    color: "#cfcfcf",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    color: 'black',
+    border: '1px solid black',
     fontFamily: "Raleway, sans-serif",
-    fontWeight: "bold",
-    fontSize: "20px",
+    fontWeight: 'bold',
+    fontSize: "20px"
   },
   font: {
     fontFamily: "Raleway, sans-serif",
     fontWeight: "normal"
   },
-  test: {
-    boxShadow: '5px 5px 5px rgba',
-  }
+ 
 }));
 
 function Copyright() {
@@ -106,7 +114,7 @@ export default function SignUp(props) {
       localStorage.setItem("username", formValues.username);
       props.setViewerToken(res.data);
       props.history.push(`/Profile/${formValues.username}`);
-      document.cookie = "true";
+      
       // sessionStorage.setItem('token', res.data);
     } catch (e) {
       throw new Error(e);
@@ -115,7 +123,7 @@ export default function SignUp(props) {
 
   const { handleSubmit } = props;
   return (
-    <div>
+    <Grid container component='main' className={classes.root}>
       <div>
         <Navbar />
       </div>
@@ -156,7 +164,7 @@ export default function SignUp(props) {
               <Button
                 type="submit"
                 fullWidth
-                variant="contained"
+                variant="outline"
                 className={classes.submit}
                 onClick={handleSubmit(handleSignUp)}
               >
@@ -176,7 +184,7 @@ export default function SignUp(props) {
         </div>
 
       </Container>
-    </div>
+    </Grid>
   );
 }
 
