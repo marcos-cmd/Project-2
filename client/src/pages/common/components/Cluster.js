@@ -2,6 +2,7 @@ import React from 'react';
 import mapboxgl from 'mapbox-gl';
 import API from '../../../utils/API';
 import './TestSite.css';
+import virusImg from '../../../virus.png'
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
@@ -9,8 +10,8 @@ class Cluster extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lng: -103.59179687498357,
-            lat: 40.66995747013945,
+            lng: -122.59179687498357,
+            lat: 37.66995747013945,
             zoom: 4,
             // bounds: [-122.517910874663, 37.6044780500533, -122.354995082683, 37.8324430069081],
             points: [],
@@ -28,7 +29,7 @@ class Cluster extends React.Component {
         let positionArray = []
 
         coords.map(coordinate => positionArray.push(
-            { "type": "Feature", "geometry": { "type": "Point", "coordinates": [coordinate.longitude, coordinate.latitude] } }));
+            { "type": "Feature", "geometry": { "type": "Point", "coordinates": [coordinate.longitude, coordinate.latitude] }, "properties": { "name": coordinate.name } }));
 
         // this line sets position array as the array 'coords' in our state
         this.setState({ points: positionArray })
@@ -116,18 +117,23 @@ class Cluster extends React.Component {
                 }
             });
 
-            map.addLayer({
-                id: 'unclustered-point',
-                type: 'circle',
-                source: 'covidPoints',
-                filter: ['!', ['has', 'point_count']],
-                paint: {
-                    'circle-color': '#11b4da',
-                    'circle-radius': 4,
-                    'circle-stroke-width': 1,
-                    'circle-stroke-color': '#fff'
+            map.loadImage(
+                virusImg,
+                function (error, image) {
+                    if (error) throw error;
+                    map.addImage('virus', image);
+                    map.addLayer({
+                        id: 'unclustered-point',
+                        type: 'symbol',
+                        source: 'covidPoints',
+                        filter: ['!', ['has', 'point_count']],
+                        layout: {
+                            'icon-image': 'virus',
+                            'icon-size': 0.15
+                        }
+                    });
                 }
-            });
+            );
 
             // inspect a cluster on click
             map.on('click', 'clusters', function (e) {
@@ -153,15 +159,9 @@ class Cluster extends React.Component {
             // the location of the feature, with
             // description HTML from its properties.
             map.on('click', 'unclustered-point', function (e) {
+                // console.log('e', e.features[0].properties)
                 var coordinates = e.features[0].geometry.coordinates.slice();
-                var mag = e.features[0].properties.mag;
-                var tsunami;
-
-                if (e.features[0].properties.tsunami === 1) {
-                    tsunami = 'yes';
-                } else {
-                    tsunami = 'no';
-                }
+                var name = e.features[0].properties.name;
 
                 // Ensure that if the map is zoomed out such that
                 // multiple copies of the feature are visible, the
@@ -173,7 +173,7 @@ class Cluster extends React.Component {
                 new mapboxgl.Popup()
                     .setLngLat(coordinates)
                     .setHTML(
-                        'magnitude: ' + mag + '<br>Was there a tsunami?: ' + tsunami
+                        '<br>' + name
                     )
                     .addTo(map);
             });

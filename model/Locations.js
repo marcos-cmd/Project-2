@@ -19,6 +19,7 @@ const LocationSchema = new Schema({
     },
 
     user: { type: Schema.Types.ObjectId, ref: 'User' },
+    expire_at: { type: Date, default: Date.now, expires: 864000 },
 }, { timestamps: true });
 
 const Location = model('Location', LocationSchema);
