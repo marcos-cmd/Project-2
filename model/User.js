@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
+
+// User takes in username, password
 const UserSchema = new Schema({
     username: {
         type: String,
@@ -14,21 +16,11 @@ const UserSchema = new Schema({
     },
     testData: [{ type: Schema.Types.ObjectId, ref: 'TestData' }],
     locations: [{ type: Schema.Types.ObjectId, ref: 'Location' }],
-    // creditCard: {
-    //   type: String,
-    //   validate: {
-    //     validator: function(v) {
-    //       return isCreditCard(v);
-    //     }
-    //   },
-    // },
 }, {
     timestamps: true,
 });
 
-
 // Static belongs to the full ORM
-
 UserSchema.static({
     findByUsername: function (username) {
         try {
@@ -54,7 +46,7 @@ UserSchema.method({
         console.log(`I AM ${this.username}`);
     },
     comparePassword: async function (candidatePassword) {
-        console.log('this in compare password', this);
+        // console.log('this in compare password', this);
         try {
             return await bcrypt.compare(candidatePassword, this.password);
         } catch (e) {
@@ -64,7 +56,7 @@ UserSchema.method({
 });
 
 UserSchema.pre('save', async function (next) {
-    console.log('I am the this in pre hook', this);
+    // console.log('I am the this in pre hook', this);
     const user = this;
     if (user.isModified('password')) {
         try {
@@ -77,8 +69,6 @@ UserSchema.pre('save', async function (next) {
     next();
 });
 
-
 const User = model('User', UserSchema);
 
 module.exports = User;
-

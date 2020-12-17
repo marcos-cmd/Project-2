@@ -165,7 +165,7 @@ const useStyles = makeStyles((theme) => ({
     // padding: "30px",
   },
   fixedHeight: {
-    height: 260,
+    height: 300,
     width: "90%",
     margin: "0 auto",
     color: "#FF0344",
