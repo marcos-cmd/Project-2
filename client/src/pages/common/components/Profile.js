@@ -21,7 +21,6 @@ import Chart from "./Chart";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -38,6 +37,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from "@material-ui/core";
 import Tour from "./Tour";
 import CurrentCasesTable from "./CurrentCasesTable";
+import CasesMap from "./CasesMap";
 
 const drawerWidth = 240;
 
@@ -421,6 +421,10 @@ export default function Profile() {
 
             <Grid item style={{ width: '68%' }} className={classes.mapContainer}>
               <Switch>
+                <Route
+                  exact path={`/Profile/${username}`}
+                  component={CasesMap}
+                />
                 <Route
                   path={`/Profile/${username}/add-places`}
                   component={AddPlacesMap}

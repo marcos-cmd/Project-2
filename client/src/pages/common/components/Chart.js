@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@material-ui/core/styles';
-import { MenuItem, FormControl, Select, Card, CardContent } from '@material-ui/core/';
+import { MenuItem, FormControl, Select } from '@material-ui/core/';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer, Tooltip } from 'recharts';
 import Title from './Title';
 
@@ -11,35 +11,36 @@ export default function Chart() {
     const [colony, setInputColony] = useState("states");
     const [dataArr, setDataArr] = useState([
         { date: 'Day1', cases: 4000 },
-        { date: 'Page B', cases: 3000 },
-        { date: 'Page C', cases: 2000 },
-        { date: 'Page D', cases: 2780 },
-        { date: 'Page E', cases: 1890 },
-        { date: 'Page F', cases: 2390 },
-        { date: 'Page G', cases: 3490 },
-        { date: 'Day1', cases: 4000 },
-        { date: 'Page B', cases: 3000 },
-        { date: 'Page C', cases: 2000 },
-        { date: 'Page D', cases: 2780 },
-        { date: 'Page E', cases: 1890 },
-        { date: 'Page F', cases: 2390 },
-        { date: 'Page G', cases: 3490 },
-        { date: 'Day1', cases: 4000 },
-        { date: 'Page B', cases: 3000 },
-        { date: 'Page C', cases: 2000 },
-        { date: 'Page D', cases: 2780 },
-        { date: 'Page E', cases: 1890 },
-        { date: 'Page F', cases: 2390 },
-        { date: 'Page G', cases: 3490 },
-        { date: 'Day1', cases: 4000 },
-        { date: 'Page B', cases: 3000 },
-        { date: 'Page C', cases: 2000 },
-        { date: 'Page D', cases: 2780 },
-        { date: 'Page E', cases: 1890 },
-        { date: 'Page F', cases: 2390 },
-        { date: 'Page G', cases: 3490 },
-        { date: 'Page F', cases: 2390 },
-        { date: 'Page G', cases: 3490 },
+        { date: 'Day2', cases: 3000 },
+        { date: 'Day3', cases: 2000 },
+        { date: 'Day4', cases: 2780 },
+        { date: 'Day5', cases: 1890 },
+        { date: 'Day6', cases: 2390 },
+        { date: 'Day7', cases: 3490 },
+        { date: 'Day8', cases: 4000 },
+        { date: 'Day9', cases: 3000 },
+        { date: 'Day10', cases: 2000 },
+        { date: 'Day11', cases: 2780 },
+        { date: 'Day11', cases: 1890 },
+        { date: 'Day12', cases: 2390 },
+        { date: 'Day13', cases: 3490 },
+        { date: 'Day14', cases: 4000 },
+        { date: 'Day15', cases: 3000 },
+        { date: 'Day16', cases: 2000 },
+        { date: 'Day17', cases: 2780 },
+        { date: 'Day18', cases: 1890 },
+        { date: 'Day19', cases: 2390 },
+        { date: 'Day20', cases: 3490 },
+        { date: 'Day21', cases: 4000 },
+        { date: 'Day22', cases: 3000 },
+        { date: 'Day23', cases: 2000 },
+        { date: 'Day24', cases: 2780 },
+        { date: 'Day25', cases: 1890 },
+        { date: 'Day26', cases: 2390 },
+        { date: 'Day27', cases: 3490 },
+        { date: 'Day28', cases: 2390 },
+        { date: 'Day29', cases: 3490 },
+        { date: 'Day30', cases: 3490 },
     ]);
 
 
@@ -50,7 +51,7 @@ export default function Chart() {
                 setColonyInfo(data);
                 console.log(colonyInfo);
             });
-    }, []);
+    }, [colonyInfo]);
 
     useEffect(() => {
         const getColoniesData = async () => {
@@ -86,7 +87,7 @@ export default function Chart() {
         const url =
             newColonyCode === "states"
                 ? "https://disease.sh/v3/covid-19/nyt/states?lastdays=30"
-                : `https://disease.sh/v3/covid-19/nyt/states/${newColonyCode}?lastdays=30`
+                : `https://disease.sh/v3/covid-19/nyt/states/${newColonyCode}?lastdays=all`
 
         // API Call
         const getStateHistory = async () => {
