@@ -21,6 +21,7 @@ class AddPlacesMap extends React.Component {
       value: "",
       location: false,
       submitted: false,
+      nameValidation: false,
     };
     this.saveMarker = this.saveMarker.bind(this);
     this.deleteMarker = this.deleteMarker.bind(this);
@@ -54,7 +55,8 @@ class AddPlacesMap extends React.Component {
     // this clears out the input value
     this.setState({value: ''})
     }
-    return;
+    
+    this.setState({nameValidation: true})
   }
 
   submitLocations = () => {
@@ -98,6 +100,7 @@ class AddPlacesMap extends React.Component {
    }
    this.setState({location: false});
    this.setState({submitted: false});
+   this.setState({nameValidation: false})
  };
 
   // this function creates the markers and the popups
@@ -213,10 +216,15 @@ class AddPlacesMap extends React.Component {
              Marker saved!
             </Alert>
           </Snackbar>
-          
           <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={this.state.submitted} autoHideDuration={1500} onClose={this.handleClose} >
             <Alert severity="success">
              All markers have been submitted.
+            </Alert>
+          </Snackbar>
+          
+          <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={this.state.nameValidation} autoHideDuration={1500} onClose={this.handleClose} >
+            <Alert severity="error">
+             Please enter name.
             </Alert>
           </Snackbar>
         </form>
