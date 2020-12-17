@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reminder: {
     background:
-      "linear-gradient(141deg, #E85A50 47%, transparent calc(44% + 2px))",
+      "linear-gradient(146deg, #E85A50 47%, transparent calc(44% + 2px))",
     fontFamily: "Raleway, sans-serif",
     padding: "45px 0px",
     textAlign: "center",
