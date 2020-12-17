@@ -21,7 +21,6 @@ import Chart from "./Chart";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -423,7 +422,7 @@ export default function Profile() {
             <Grid item style={{ width: '68%' }} className={classes.mapContainer}>
               <Switch>
                 <Route
-                  path={`/Profile/${username}`}
+                  exact path={`/Profile/${username}`}
                   component={CasesMap}
                 />
                 <Route
