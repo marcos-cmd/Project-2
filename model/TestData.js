@@ -1,7 +1,6 @@
 const { Schema, model, } = require('mongoose');
 
-// Foreign Key
-
+// Test dates take in test date, and test result
 const TestDataSchema = new Schema({
     testDate: {
         type: Date,
@@ -17,6 +16,5 @@ const TestDataSchema = new Schema({
 }, { timestamps: true });
 
 const TestData = model('TestData', TestDataSchema);
-
 
 module.exports = TestData;

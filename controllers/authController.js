@@ -1,14 +1,12 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../model');
 
-
 const tokenForUser = (id) => {
   return jwt.sign({
     sub: id,
     iat: new Date().getTime()
   }, process.env.JWT_SECRET);
 };
-
 
 module.exports = {
   signIn: (req, res) => {

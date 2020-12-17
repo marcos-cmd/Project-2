@@ -1,33 +1,17 @@
-Step 1 Clone this repo somewhere in your machine
-Step 2 is cd into this repo, and then run 
-MAC rm -rf .git
-Windows Powershell rm -force .git
+# Project Title: 
+Roaming For Rona
+# Project Description: 
+The goal of this project is to create an application that informs users in the San Fransisco Area everything they need to know to take precautions against COVID-19. Our users are given the locations of all testing facilities in the SF area in case they wish to get tested for COVID-19, and they are able to track all of their testing history through our application. If tested positve, they can mark places they have been over the past few days as possible areas that may be infected. This information is then shared to all users of our application so they can be informed on possible hot spots in their area. Additional information on up to date global coronavirus data is provided through our application as well so everyone can stay up to date on the status of this pandemic.  
+# Table of Contents
+* Installation
+* Usage
+* Questions
+# Installation: 
+To install necessary dependencies, run the following command:
+npm i
+# Usage: 
+What to know about using the repo: To run the application, you must have node installed. 
 
-Step 3 git init
-Step 4 git add -A
-Step 5 git commit -m 'Init repo'
-Step 6 Make a git repo
-Step 7 copy the git remote add origin line and paste it to your repo
-Step 8 git push -u origin master
-Step 9 Add your team members to the repo
-Step 10 protect the master branch just in case people merge changes to master
-
-
-Proj 2 Requirements
-Must use a Node and Express web server
-Must be backed by a SQL Database
-Must be deployed to Heroku with data
-Must have a polished UI
-Must have a folder structure that meets the MVC paradigm
-Must Use React
-Must meet good quality coding standards (indentation etc)
-Must have GET and POST request for creating and getting data
-Must protect API keys in Node with environmental Variables
-
-
-You need to create a .env file that has a JWT_SECRET.
-The content of the file should look like the code below.
-
-JWT_SECRET=asdyuofgayudagdyuadsgar837rgsdada
- DUE DATE ON  NOVEMBER 14
-
+# Questions:
+If you have any questions about the repo, open an issue or contact
+the team directly at any of the following emails: harb3gaucho@gmail.com, prasb.03@gmail.com, marcos.joseph.garcia@gmail.com, campbelllm@gmail.com.
