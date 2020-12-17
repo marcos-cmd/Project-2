@@ -38,6 +38,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from "@material-ui/core";
 import Tour from "./Tour";
 import CurrentCasesTable from "./CurrentCasesTable";
+import CasesMap from "./CasesMap";
 
 const drawerWidth = 240;
 
@@ -421,6 +422,10 @@ export default function Profile() {
 
             <Grid item style={{ width: '68%' }} className={classes.mapContainer}>
               <Switch>
+                <Route
+                  path={`/Profile/${username}`}
+                  component={CasesMap}
+                />
                 <Route
                   path={`/Profile/${username}/add-places`}
                   component={AddPlacesMap}
