@@ -52,15 +52,19 @@
 
 }
 .table {
-  margin-top: 20px;
+  margin: 20px auto;
   overflow: scroll;
-  color: #424242;
-  background-color: white;
+  background: rgba(255, 255, 255, .15);
+  backdrop-filter: blur(5px);
   height: 400px;
+  border-radius: 3px;
+  width: 80%;
 }
 .table tr {
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .table td {
@@ -69,5 +73,6 @@
 }
 
 .table tr:nth-of-type(odd) {
-  background-color: #f3f2f8;
+  background: rgba(255, 255, 255, .15);
+  backdrop-filter: blur(5px);
 }

@@ -453,7 +453,7 @@ export default function Profile() {
                 />
               </Switch>
             </Grid>
-            <Grid item style={{ width: '28%' }} className={classes.mapContainer}>
+            <Grid item style={{ width: '28%'}} className={classes.mapContainer}>
               <CurrentCasesTable />
             </Grid>
           </Grid>
