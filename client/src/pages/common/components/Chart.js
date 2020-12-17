@@ -87,7 +87,7 @@ export default function Chart() {
         const url =
             newColonyCode === "states"
                 ? "https://disease.sh/v3/covid-19/nyt/states?lastdays=30"
-                : `https://disease.sh/v3/covid-19/nyt/states/${newColonyCode}?lastdays=30`
+                : `https://disease.sh/v3/covid-19/nyt/states/${newColonyCode}?lastdays=all`
 
         // API Call
         const getStateHistory = async () => {
