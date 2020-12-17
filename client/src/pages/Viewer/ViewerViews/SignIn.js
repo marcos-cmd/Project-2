@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../../common/components/Navbar";
 import { setViewerToken } from "../ViewerReducer";
+import background from '../../../abstract2.png';
 
 
 function Copyright() {
@@ -33,12 +34,11 @@ const useStyles = makeStyles((theme) => ({
   main:{
     width: '100%',
     height: '100%',
-    background: "linear-gradient(38deg, #ff03448c 42%, transparent calc(66% + 1px))",
+    background: `url(${background})`,
   },
   root: {
    fontFamily: "Raleway, sans-serif",
     margin:'300px auto',
-    backdropFilter: "blur(20px)",
     
   },
   paper: {
@@ -48,13 +48,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     boxShadow: "0px 0px 5px 0px #40404054",
     backgroundColor: "rgba(255, 255, 255, .25)",
-    backdropFilter: "blur(20px)",
+    backdropFilter: "blur(10px)",
     padding: '20px',
     width: '450px',
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: '#FF0344',
+    backgroundColor: '#E85A4F',
   },
   form: {
     width: "100%", // Fix IE 11 issue.

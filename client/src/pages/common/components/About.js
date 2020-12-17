@@ -37,10 +37,14 @@ const useStyles = makeStyles((theme) => ({
     height: "50%",
     overflow: "hidden",
   },
+  border:{
+    border: '3px solid black',
+    padding: '60px',
+  },
   angledBackground: {
     height: "1000px",
     background:
-      "linear-gradient(28deg, #ff03448c 47%, transparent calc(44% + 2px))",
+      "linear-gradient(28deg, #E85A50 47%, transparent calc(44% + 2px))",
     display: "flex",
     alignItems: "center",
   },
@@ -96,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reminder: {
     background:
-      "linear-gradient(141deg, #ff03448c 47%, transparent calc(44% + 2px))",
+      "linear-gradient(141deg, #E85A50 47%, transparent calc(44% + 2px))",
     fontFamily: "Raleway, sans-serif",
     padding: "45px 0px",
     textAlign: "center",
@@ -112,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
   cardsContainer: {
     padding: "20px 0px",
     maxWidth: "100%",
-    background: "#ff03448c",
+    background: "#E85A50",
   },
   card: {
     width: "80%",
@@ -145,9 +149,11 @@ export default function About() {
       <Navbar />
       <Virus />
       <Box>
+        
         <Box className={classes.coronaUpdate}>
-          <Box>ROAMING FOR RONA</Box>
+          <Box className={classes.border}>ROAMING FOR RONA</Box>
         </Box>
+       
       </Box>
       <Box className={classes.angledBackground}>
         <Container className={classes.generalInfo}>

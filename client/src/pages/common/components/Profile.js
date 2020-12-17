@@ -41,11 +41,12 @@ import CurrentCasesTable from "./CurrentCasesTable";
 import {Snackbar} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   all: {
-    background: "linear-gradient(141deg, #ff03448c 50%, transparent calc(44% + 2px)), linear-gradient(-15deg, #ff03448c 50%, transparent calc(44% + 2px)),linear-gradient(321deg, #ff03448c 50%, transparent calc(44% + 2px))",
+    background: 'linear-gradient(209deg, #E85A50 44%, transparent calc(40% + 2px)),linear-gradient(506deg, white 50%, #E85A50 calc(40% + 2px))',
     backgroundSize: "cover",
     color: "black",
     height: "100%",
@@ -140,12 +141,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "80px",
     boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(20px)",
-    borderRadius: "10px",
+    backdropFilter: "blur(10px)",
+  
   },
   testingHistory: {
     backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(40px)",
+    backdropFilter: "blur(20px)",
     height: "150px",
     fontWeight: "bold",
     padding: '5px',
@@ -159,7 +160,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     width: " 90%",
     backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(40px)",
+    backdropFilter: "blur(20px)",
     color: "#FF0344",
     // padding: "30px",
   },
@@ -195,8 +196,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "10px",
     boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(20px)",
-    borderRadius: "10px",
+    backdropFilter: "blur(10px)",
     overflowY: "scroll",
     height: '500px',
   },
