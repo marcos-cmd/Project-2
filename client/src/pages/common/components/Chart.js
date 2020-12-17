@@ -115,7 +115,6 @@ export default function Chart() {
 
     return (
         <React.Fragment>
-            <Title style={{ color: 'white' }}>Today</Title>
             <FormControl className="chart__dropdown">
                 <Select
                     variant="outlined"
