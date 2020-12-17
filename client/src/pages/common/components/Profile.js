@@ -191,7 +191,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   mapContainer: {
-    margin: "20px 0 13px 0",
+    margin: "20px 0 20px 0",
     padding: "10px",
     boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
@@ -441,6 +441,7 @@ export default function Profile() {
                 <Route
                   path={`/Profile/${username}/add-places`}
                   component={AddPlacesMap}
+                 
                 />
                 <Route
                   path={`/Profile/${username}/testsite`}

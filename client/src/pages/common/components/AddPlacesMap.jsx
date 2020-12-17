@@ -20,6 +20,7 @@ class AddPlacesMap extends React.Component {
       coordinates: { lat: "", lng: "" },
       value: "",
       location: false,
+      submitted: false,
     };
     this.saveMarker = this.saveMarker.bind(this);
     this.deleteMarker = this.deleteMarker.bind(this);
@@ -46,7 +47,10 @@ class AddPlacesMap extends React.Component {
     // console.log(newMarker);
     this.setState({ markers: [...this.state.markers, newMarker] });
     console.log("these are markers", this.state.markers);
+    //this makes the snackbar open
     this.setState({location: this.state.value})
+    // this clears out the input value
+    this.setState({value: ''})
   }
 
   submitLocations = () => {
@@ -63,7 +67,9 @@ class AddPlacesMap extends React.Component {
           { headers: { authorization: localStorage.getItem("token") } }
         );
         console.log("this is res", res);
-        
+        //clearing out arr after sending to database
+        this.setState({markers: []})
+        this.setState({submitted: true});
       } catch (error) {
        throw new Error(error);
       }
@@ -87,6 +93,7 @@ class AddPlacesMap extends React.Component {
      return;
    }
    this.setState({location: false});
+   this.setState({submitted: false});
  };
 
   // this function creates the markers and the popups
@@ -167,35 +174,34 @@ class AddPlacesMap extends React.Component {
             className="formStyle"
             value={this.state.value}
             onChange={this.handleChange}
+            size="15"
           />
           <Button
-            variant="contained"
-            color="primary"
+            variant="outline"
             onClick={this.saveMarker}
-            style={{ margin: "0 10px" }}
+            style={{ margin: "0 1px", color:'#00c3ff', border: '1px solid #00c3ff' }}
           >
             Save marker
           </Button>
           <Button
-            variant="contained"
-            color="secondary"
+            variant="outline"
             onClick={this.deleteMarker}
-            style={{ margin: "0 10px" }}
+            style={{ margin: "0 5px", color:'red', border: '1px solid red' }}
           >
             Delete Last
           </Button>
           <div className='markers'>
+            <h3 style={{textAlign:"center", color: 'black', textDecoration: 'underline'}}>Current Markers</h3>
             <ol>
-              { this.state.markers.map(i=> <li>{i.name}</li>)}
+              { this.state.markers.map(i=> <li style={{fontSize: "18px", color: 'black'}}>{i.name}</li>)}
             </ol>
           </div>
           <Button
-            variant="contained"
-            color="purple"
+            variant="outline"
             onClick={this.submitLocations}
-            style={{ margin: "0 10px" }}
+            style={{ margin: "0 5px", color:'green', border: '1px solid green' }}
           >
-            Submit All Locations
+            Submit All
           </Button>
         
           <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={this.state.location} autoHideDuration={1500} onClose={this.handleClose} >
@@ -204,6 +210,11 @@ class AddPlacesMap extends React.Component {
             </Alert>
           </Snackbar>
           
+          <Snackbar anchorOrigin={{ vertical: 'top', horizontal: 'center' }} open={this.state.submitted} autoHideDuration={1500} onClose={this.handleClose} >
+            <Alert severity="success">
+             All markers have been submitted.
+            </Alert>
+          </Snackbar>
         </form>
         <div
           ref={(el) => (this.mapContainer = el)}
