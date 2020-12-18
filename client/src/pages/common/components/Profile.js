@@ -166,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
   },
   fixedHeight: {
     height: 300,
-    width: "90%",
+    width: "100%",
     margin: "0 auto",
     color: "#FF0344",
   },

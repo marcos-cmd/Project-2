@@ -184,7 +184,7 @@ class CasesMap extends React.Component {
     ];
     return (
       <div>
-        <h1>Current Cases Map</h1>
+        <h2>CURRENT CASES MAP</h2>
         {/* <div className='currentCasesMap'> */}
         <div ref={(el) => (this.mapContainer = el)} className="mapContainer">
           <div id='legend'>
