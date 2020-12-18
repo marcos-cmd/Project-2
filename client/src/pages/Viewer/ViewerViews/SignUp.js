@@ -15,6 +15,7 @@ import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
+import background from '../../../abstract2.png';
 
 // The Field components job is to render out input html
 // and pass down functions for updating the state
@@ -50,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     height: '100%',
-    background: "linear-gradient(38deg, #ff03448c 42%, transparent calc(66% + 1px))"
+    background: `url(${background})`,
+    backgroundSize: 'cover',
   },
   paper: {
     margin: '300px auto 200px auto',
@@ -61,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '25px',
     boxShadow: "0px 0px 5px 0px #40404054",
     backgroundColor: "rgba(255, 255, 255, .25)",
-    backdropFilter: "blur(20px)",
+    backdropFilter: "blur(10px)",
     width: '430px',
   },
   avatar: {

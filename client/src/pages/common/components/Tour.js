@@ -22,20 +22,15 @@ const Tour = () => {
       },
       {
         title: "Did you get tested for Covid?",
-        target: ".makeStyles-resultForm-17",
+        target: ".makeStyles-resultForm-19",
         content:
           "Great! Let's track your results, and you can view them later. You can submit those here.",
-      },
-      {
-        title: "Test History",
-        target: ".testHistory",
-        content: "All your covid test history can be found here.",
       },
       {
         title: "Tested positive?",
         target: ".addLocations",
         content:
-          "Go ahead and add locations you have been so others can avoid those spots. /br Don't worry user's can't see who submitted this information",
+          "Go ahead and add locations you have been so others can avoid those spots. Don't worry user's can't see who submitted this information"
       },
       {
         title: "Symptoms? Find somewhere to get tested.",

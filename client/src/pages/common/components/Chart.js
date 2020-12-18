@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { MenuItem, FormControl, Select } from '@material-ui/core/';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer, Tooltip } from 'recharts';
-import Title from './Title';
 
 export default function Chart() {
     const theme = useTheme();
@@ -116,7 +115,6 @@ export default function Chart() {
 
     return (
         <React.Fragment>
-            <Title style={{ color: 'white' }}>Today</Title>
             <FormControl className="chart__dropdown">
                 <Select
                     variant="outlined"

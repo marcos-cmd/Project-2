@@ -37,13 +37,16 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from "@material-ui/core";
 import Tour from "./Tour";
 import CurrentCasesTable from "./CurrentCasesTable";
+import {Snackbar} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+
 import CasesMap from "./CasesMap";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   all: {
-    background: "linear-gradient(141deg, #ff03448c 50%, transparent calc(44% + 2px)), linear-gradient(-15deg, #ff03448c 50%, transparent calc(44% + 2px)),linear-gradient(321deg, #ff03448c 50%, transparent calc(44% + 2px))",
+    background: 'linear-gradient(209deg, #E85A50 44%, transparent calc(40% + 2px)),linear-gradient(506deg, white 50%, #E85A50 calc(40% + 2px))',
     backgroundSize: "cover",
     color: "black",
     height: "100%",
@@ -138,15 +141,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "80px",
     boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(20px)",
-    borderRadius: "10px",
+    backdropFilter: "blur(10px)",
+  
   },
   testingHistory: {
     backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(40px)",
+    backdropFilter: "blur(20px)",
     height: "150px",
     fontWeight: "bold",
     padding: '5px',
+    overflowY: 'scroll',
   },
 
   paper: {
@@ -156,13 +160,13 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     width: " 90%",
     backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(40px)",
+    backdropFilter: "blur(20px)",
     color: "#FF0344",
     // padding: "30px",
   },
   fixedHeight: {
     height: 300,
-    width: "90%",
+    width: "100%",
     margin: "0 auto",
     color: "#FF0344",
   },
@@ -188,12 +192,13 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   mapContainer: {
-    margin: "20px 0 50px 0",
+    margin: "20px 0 20px 0",
     padding: "10px",
     boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
-    backdropFilter: "blur(20px)",
-    borderRadius: "10px",
+    backdropFilter: "blur(10px)",
+    overflowY: "scroll",
+    height: '500px',
   },
   formcontrol: {
     width: '52%',
@@ -202,7 +207,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -288,6 +293,13 @@ export default function Profile() {
   };
   // ==================================================================================//
   console.log(user);
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setTestResult(true);
+  };
   return (
     <div className={classes.all}>
       <BrowserRouter>
@@ -370,11 +382,16 @@ export default function Profile() {
                   </div>
                 </CardContent>
               </Card>
-              <Typography component="div">
-                <span style={{ color: "#ff0134", fontSize: "6" }}>
-                  {!testResult ? "Please fill out all fields" : ""}
-                </span>
-              </Typography>
+            
+                
+                <Snackbar open={!testResult} autoHideDuration={1500} onClose={handleClose} >
+            <Alert severity="error">
+             All fields are required.
+            </Alert>
+          </Snackbar>
+                  
+              
+           
               <form
                 noValidate
                 autoComplete="off"
@@ -428,6 +445,7 @@ export default function Profile() {
                 <Route
                   path={`/Profile/${username}/add-places`}
                   component={AddPlacesMap}
+                 
                 />
                 <Route
                   path={`/Profile/${username}/testsite`}
@@ -439,8 +457,7 @@ export default function Profile() {
                 />
               </Switch>
             </Grid>
-            <Grid item style={{ width: '28%' }} className={classes.mapContainer}>
-              <h2>NEW GRAPH</h2>
+            <Grid item style={{ width: '28%'}} className={classes.mapContainer}>
               <CurrentCasesTable />
             </Grid>
           </Grid>

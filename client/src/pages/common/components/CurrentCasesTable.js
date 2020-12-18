@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import numeral from 'numeral';
-import Title from './Title';
 import './TestSite.css';
 
 
@@ -41,8 +40,7 @@ export default function CurrentCasesTable() {
 
     return (
         <React.Fragment>
-            <Title style={{ color: 'white' }}>United States Cases</Title>
-
+            <h2 style={{fontFamily: "Raleway, sans-serif"}}>CURRENT CASES</h2>
             <table className="table">
                 {colonies.map((colony) => (
                     <tr>
