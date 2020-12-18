@@ -58,6 +58,16 @@ class AddPlacesMap extends React.Component {
 
   submitLocations = () => {
     console.log("submitted");
+    // const createMarker = () => {
+    //   this.state.markers.map((marker, index) => {
+    //       const popup = new mapboxgl.Popup()
+    //         .setHTML(`<h1>${marker.name}</h1>`)
+    //       const marker = new mapboxgl.Marker()
+    //         .setLngLat([marker.lng, marker.lat])
+    //         .setPopup(popup)
+    //         .addTo(map);
+    //     });
+    // }    
     this.state.markers.map(async (marker) => {
       const name = marker.name;
       const latitude = marker.lat;
@@ -76,6 +86,7 @@ class AddPlacesMap extends React.Component {
       } catch (error) {
         throw new Error(error);
       }
+
     });
   };
 
@@ -122,14 +133,9 @@ class AddPlacesMap extends React.Component {
     const map = new mapboxgl.Map({
       container: this.mapContainer,
       style: "mapbox://styles/mapbox/dark-v10",
-      center: [-122.431297, 37.773972],
-      zoom: 12,
-      maxBounds: [
-        -122.517910874663,
-        37.6044780500533,
-        -122.354995082683,
-        37.8324430069081,
-      ],
+      center: [-100, 38.88],
+      zoom: 2,
+
     });
     // This function controls the top sidebar, sharing the user's coordinates and zoom
     map.on("move", () => {
@@ -140,6 +146,7 @@ class AddPlacesMap extends React.Component {
       });
     });
     const marker = new mapboxgl.Marker({
+      color: '#b71c1c',
       draggable: true,
     })
       .setLngLat([-122.431297, 37.773972])
@@ -160,6 +167,7 @@ class AddPlacesMap extends React.Component {
         .setLngLat([this.state.newMarker.lng, this.state.newMarker.lat])
         .addTo(map);
     };
+
   }
 
   // The rendering of the following containers requires the css file, to render properly
