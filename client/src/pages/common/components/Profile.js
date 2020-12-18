@@ -49,12 +49,11 @@ const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(209deg, #E85A50 44%, transparent calc(40% + 2px)),linear-gradient(506deg, white 50%, #E85A50 calc(40% + 2px))',
     backgroundSize: "cover",
     color: "black",
-    height: "100%",
+    height: "100vh",
   },
 
   root: {
     display: "flex",
-    flexWrap: "wrap",
     fontFamily: "Raleway, sans-serif",
   },
   toolbar: {
@@ -74,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     background: "white",
-    opacity: "0.8",
+    opacity: "0.93",
     color: "#FF0344",
   },
   appBarShift: {
@@ -111,8 +110,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    zIndex: 0,
+    zIndex: 1,
     overflow: "hidden",
+    height: '100vh'
   },
   //add class here --
   drawerPaperClose: {
