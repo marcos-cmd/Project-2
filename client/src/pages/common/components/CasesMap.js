@@ -180,8 +180,8 @@ class CasesMap extends React.Component {
             { id: 3, layer: "50,000", color: "#c67100" },
             { id: 4, layer: "100,000", color: "#f05545" },
             { id: 5, layer: "200,000", color: "#c74200" },
-            { id: 6, layer: "300,000", color: "#b71c1c" },
-            { id: 7, layer: "500,000", color: "#7f0000" },
+            { id: 6, layer: "500,000", color: "#b71c1c" },
+            { id: 7, layer: "1,000,000", color: "#7f0000" },
         ];
         return (
             <div>
