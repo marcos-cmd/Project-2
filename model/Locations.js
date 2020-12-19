@@ -17,7 +17,7 @@ const LocationSchema = new Schema({
     },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     // each datapoint expires after 10 days
-    expire_at: { type: Date, default: Date.now, expires: 864000 },
+    expire_at: { type: Date, expires: 864000 },
 }, { timestamps: true });
 
 const Location = model('Location', LocationSchema);
