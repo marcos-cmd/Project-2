@@ -37,8 +37,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { FormControl } from "@material-ui/core";
 import Tour from "./Tour";
 import CurrentCasesTable from "./CurrentCasesTable";
-import {Snackbar} from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
+import { Snackbar } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 
 import CasesMap from "./CasesMap";
 
@@ -46,15 +46,15 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   all: {
-    background: 'linear-gradient(209deg, #E85A50 44%, transparent calc(40% + 2px)),linear-gradient(506deg, white 50%, #E85A50 calc(40% + 2px))',
+    background:
+      "linear-gradient(209deg, #E85A50 44%, transparent calc(40% + 2px)),linear-gradient(506deg, white 50%, #E85A50 calc(40% + 2px))",
     backgroundSize: "cover",
     color: "black",
-    height: "100%",
+    height: "100vh",
   },
 
   root: {
     display: "flex",
-    flexWrap: "wrap",
     fontFamily: "Raleway, sans-serif",
   },
   toolbar: {
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     background: "white",
-    opacity: "0.8",
+    opacity: "0.93",
     color: "#FF0344",
   },
   appBarShift: {
@@ -111,10 +111,13 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    zIndex: 0,
+    zIndex: 1,
     overflow: "hidden",
+    height: "100vh",
+    boxShadow: "5px 5px 20px 0px #7979796b",
+    backgroundColor: "rgba(255, 255, 255, .15)",
+    backdropFilter: "blur(5px)",
   },
-  //add class here --
   drawerPaperClose: {
     overflowX: "hidden",
     transition: theme.transitions.create("width", {
@@ -142,17 +145,15 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "5px 5px 20px 0px #7979796b",
     backgroundColor: "rgba(255, 255, 255, .15)",
     backdropFilter: "blur(10px)",
-  
   },
   testingHistory: {
     backgroundColor: "rgba(255, 255, 255, .15)",
     backdropFilter: "blur(20px)",
     height: "150px",
     fontWeight: "bold",
-    padding: '5px',
-    overflowY: 'scroll',
+    padding: "5px",
+    overflowY: "scroll",
   },
-
   paper: {
     padding: theme.spacing(2),
     display: "flex",
@@ -162,7 +163,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgba(255, 255, 255, .15)",
     backdropFilter: "blur(20px)",
     color: "#FF0344",
-    // padding: "30px",
   },
   fixedHeight: {
     height: 300,
@@ -170,10 +170,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
     color: "#FF0344",
   },
-  // history: {
-  //   margin: "100px 0 0 20px",
-  //   maxWidth: "100%",
-  // },
   cardActions: {
     display: "flex",
     margin: "0 10px",
@@ -198,10 +194,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgba(255, 255, 255, .15)",
     backdropFilter: "blur(10px)",
     overflowY: "scroll",
-    height: '500px',
+    height: "500px",
   },
   formcontrol: {
-    width: '52%',
+    width: "52%",
   },
 }));
 
@@ -215,13 +211,6 @@ export default function Profile() {
   const { username } = useParams();
   const [user, setUser] = useState([]);
   const [testResult, setTestResult] = useState("true");
-  // const fetchDatas = async () => {
-  //     // console.log("i am user", username)
-  //     const response = await axios.get(`/api/users/user/${username}`, { headers: { authorization: localStorage.getItem('token') } })
-  //     console.log('res', response.data)
-  //     setUser()
-  //     console.log('user', user)
-  // }
 
   useEffect(() => {
     // IIFE immediately invoked function
@@ -251,10 +240,6 @@ export default function Profile() {
     } else setOpen(true);
   };
 
-  // ==================================================================================//
-  // === Test Results Input ===========================================================//
-  // ==================================================================================//
-  // Using useEffect will allow us to access previous test results to show on a page
   const [date, setDate] = useState(moment(new Date()).format("MM-DD-YY"));
   const [results, setResults] = useState("");
 
@@ -287,17 +272,13 @@ export default function Profile() {
   };
   const handleSignOut = () => {
     localStorage.clear();
-    // localStorage.removeItem("username");
     dispatch(setViewerToken(null));
     history.push("/");
   };
-  // ==================================================================================//
-  console.log(user);
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
-
     setTestResult(true);
   };
   return (
@@ -363,35 +344,36 @@ export default function Profile() {
             <Divider />
           </Drawer>
           <Grid container xs={11} className={classes.mainGrid}>
-            <Grid item style={{ width: '28%' }} className={classes.container}>
+            <Grid item style={{ width: "28%" }} className={classes.container}>
               <Typography gutterBottom variant="h5" component="h2">
                 {username.toUpperCase()}
               </Typography>
               <Card className={classes.testingHistory}>
                 <CardContent style={{ padding: 0 }}>
-                  <h3><strong>YOUR TESTING HISTORY</strong></h3>
+                  <h3>
+                    <strong>YOUR TESTING HISTORY</strong>
+                  </h3>
                   <hr></hr>
                   <div>
                     {user.length
                       ? user?.map((data) => (
-                        <p>
-                          {data.testDate.slice(0, 10)} : {data.testResult}
-                        </p>
-                      ))
+                          <p>
+                            {data.testDate.slice(0, 10)} : {data.testResult}
+                          </p>
+                        ))
                       : null}
                   </div>
                 </CardContent>
               </Card>
-            
-                
-                <Snackbar open={!testResult} autoHideDuration={1500} onClose={handleClose} >
-            <Alert severity="error">
-             All fields are required.
-            </Alert>
-          </Snackbar>
-                  
-              
-           
+
+              <Snackbar
+                open={!testResult}
+                autoHideDuration={1500}
+                onClose={handleClose}
+              >
+                <Alert severity="error">All fields are required.</Alert>
+              </Snackbar>
+
               <form
                 noValidate
                 autoComplete="off"
@@ -405,10 +387,13 @@ export default function Profile() {
                   value={date}
                   onChange={handleChangeDate}
                   required
-                  style={{ width: '42%' }}
+                  style={{ width: "42%" }}
                 />
                 <FormControl className={classes.formcontrol}>
-                  <InputLabel id="demo-simple-select-label" style={{ marginLeft: '15px' }}>
+                  <InputLabel
+                    id="demo-simple-select-label"
+                    style={{ marginLeft: "15px" }}
+                  >
                     Test Result
                   </InputLabel>
                   <Select
@@ -424,28 +409,36 @@ export default function Profile() {
                   </Select>
                 </FormControl>
               </form>
-              <Button onClick={addTestResults} variant="outlined" style={{ width: '100%' }}>
+              <Button
+                onClick={addTestResults}
+                variant="outlined"
+                style={{ width: "100%" }}
+              >
                 Submit
-                </Button>
+              </Button>
             </Grid>
 
-            <Grid item style={{ width: '68%' }} className={classes.container}>
+            <Grid item style={{ width: "68%" }} className={classes.container}>
               <h2>DAILY CASES</h2>
               <Paper className={fixedHeightPaper}>
                 <Chart />
               </Paper>
             </Grid>
 
-            <Grid item style={{ width: '68%' }} className={classes.mapContainer}>
+            <Grid
+              item
+              style={{ width: "68%" }}
+              className={classes.mapContainer}
+            >
               <Switch>
                 <Route
-                  exact path={`/Profile/${username}`}
+                  exact
+                  path={`/Profile/${username}`}
                   component={CasesMap}
                 />
                 <Route
                   path={`/Profile/${username}/add-places`}
                   component={AddPlacesMap}
-                 
                 />
                 <Route
                   path={`/Profile/${username}/testsite`}
@@ -457,7 +450,11 @@ export default function Profile() {
                 />
               </Switch>
             </Grid>
-            <Grid item style={{ width: '28%'}} className={classes.mapContainer}>
+            <Grid
+              item
+              style={{ width: "28%" }}
+              className={classes.mapContainer}
+            >
               <CurrentCasesTable />
             </Grid>
           </Grid>

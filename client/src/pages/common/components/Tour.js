@@ -22,7 +22,7 @@ const Tour = () => {
       },
       {
         title: "Did you get tested for Covid?",
-        target: ".makeStyles-resultForm-19",
+        target: ".testResultForm",
         content:
           "Great! Let's track your results, and you can view them later. You can submit those here.",
       },
