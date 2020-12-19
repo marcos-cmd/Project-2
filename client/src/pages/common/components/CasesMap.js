@@ -83,7 +83,7 @@ class CasesMap extends React.Component {
         // This function creates the map for the component to render later
         const map = new mapboxgl.Map({
             container: this.mapContainer,
-            style: "mapbox://styles/mapbox/light-v10",
+            style: "mapbox://styles/mapbox/dark-v10",
             // style: "mapbox://styles/marcos-cmd/ckiuizxaj2xzm19mj17c3boqy",
             center: [-100, 38.88],
             zoom: 2,
