@@ -12,7 +12,6 @@ class Cluster extends React.Component {
         this.state = {
             lng: -122.59179687498357,
             lat: 37.66995747013945,
-            zoom: 4,
             // bounds: [-122.517910874663, 37.6044780500533, -122.354995082683, 37.8324430069081],
             points: [],
         };
@@ -41,8 +40,8 @@ class Cluster extends React.Component {
         const map = new mapboxgl.Map({
             container: this.mapContainer,
             style: 'mapbox://styles/mapbox/dark-v10',
-            center: [this.state.lng, this.state.lat],
-            zoom: this.state.zoom,
+            center: [-100, 38.88],
+            zoom: 2,
             // maxBounds: this.state.bounds
         });
         // This function controls the top sidebar, sharing the user's coordinates and zoom
