@@ -51,9 +51,11 @@ class AddPlacesMap extends React.Component {
       this.setState({ location: this.state.value });
       // this clears out the input value
       this.setState({ value: "" });
+    }else{ 
+      this.setState({ nameValidation: true });
     }
 
-    this.setState({ nameValidation: true });
+    
   }
 
   submitLocations = () => {
@@ -217,7 +219,7 @@ class AddPlacesMap extends React.Component {
               </h3>
               <ol>
                 {this.state.markers.map((i) => (
-                  <li style={{ fontSize: "18px", color: "black" }}>{i.name}</li>
+                  <li style={{ fontSize: "18px", color: "black",listStylePosition: 'inside' }}>{i.name}</li>
                 ))}
               </ol>
             </div>

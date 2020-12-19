@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   angledBackground: {
     height: "1000px",
     background:
-      "linear-gradient(28deg, #E85A50 47%, transparent calc(44% + 2px))",
+      "linear-gradient(25deg, #E85A50 47%, transparent calc(44% + 2px))",
     display: "flex",
     alignItems: "center",
   },
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   },
   reminder: {
     background:
-      "linear-gradient(146deg, #E85A50 47%, transparent calc(44% + 2px))",
+      "linear-gradient(155deg, #E85A50 47%, transparent calc(44% + 2px))",
     fontFamily: "Raleway, sans-serif",
     padding: "45px 0px",
     textAlign: "center",
