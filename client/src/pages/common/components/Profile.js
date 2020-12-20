@@ -357,10 +357,10 @@ export default function Profile() {
                   <div>
                     {user.length
                       ? user?.map((data) => (
-                          <p>
-                            {data.testDate.slice(0, 10)} : {data.testResult}
-                          </p>
-                        ))
+                        <p>
+                          {moment(data.testDate.slice(0, 10)).format('MM/DD/YY')} : {data.testResult}
+                        </p>
+                      ))
                       : null}
                   </div>
                 </CardContent>
@@ -384,7 +384,7 @@ export default function Profile() {
                   name="date"
                   label="MM/DD/YY"
                   variant="outlined"
-                  value={date}
+                  value={moment(date).format('MM/DD/YY')}
                   onChange={handleChangeDate}
                   required
                   style={{ width: "42%" }}
