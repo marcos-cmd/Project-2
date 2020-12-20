@@ -40,16 +40,17 @@ export default function CurrentCasesTable() {
 
     return (
         <React.Fragment>
-            <h2 style={{fontFamily: "Raleway, sans-serif"}}>CURRENT CASES</h2>
+            <h2 style={{ fontFamily: "Raleway, sans-serif" }}>CURRENT CASES</h2>
             <table className="table">
-                {colonies.map((colony) => (
-                    <tr>
+                <tbody>{colonies.map((colony, id) => (
+                    <tr key={id}>
                         <td>{colony.name}</td>
                         <td>
                             <strong>{numeral(colony.cases).format("0,0")}</strong>
                         </td>
                     </tr>
                 ))}
+                </tbody>
             </table>
         </React.Fragment >
     );
