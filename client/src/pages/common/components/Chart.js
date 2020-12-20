@@ -132,18 +132,11 @@ export default function Chart() {
                     }}
                 >
                     <Tooltip formatter={(value) => new Intl.NumberFormat('en').format(value)} labelFormatter={formatDate} />
-                    <XAxis dataKey="date" tickFormatter={formatAxis} stroke={theme.palette.text.white} />
-                    <YAxis yAxisId="left" tickFormatter={(tick) => { return tick.toLocaleString(); }} stroke={theme.palette.text.white}>
-                        <Label
-                            angle={270}
-                            position='left'
+                    <XAxis dataKey="date" dy={10} tickFormatter={formatAxis} tickCount={8} stroke={theme.palette.text.white} />
+                    <YAxis yAxisId="left" dx={-5} tickFormatter={(tick) => { return tick.toLocaleString(); }} stroke={theme.palette.text.white}>
 
-                            style={{ textAnchor: 'middle', fill: theme.palette.text, color: '#FF0344' }}
-                        >
-                            Case Count
-            </Label>
                     </YAxis>
-                    <Line yAxisId="left" type="monotone" dataKey="cases" stroke={theme.palette.pink} dot={true} />
+                    <Line yAxisId="left" type="monotone" dataKey="cases" stroke={'#000000'} dot={true} />
                 </LineChart>
             </ResponsiveContainer>
         </React.Fragment>
