@@ -25,10 +25,6 @@ class CasesMap extends React.Component {
             hoverStateCases: 0,
         };
     }
-    // // This function loads the API Request
-    // loadAPI = async () => {
-    //     return await API.search()
-    // };
 
     async componentDidMount() {
         const getCaseCount = async () => {
