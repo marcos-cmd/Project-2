@@ -25,8 +25,6 @@ class AddPlacesMap extends React.Component {
     };
     this.saveMarker = this.saveMarker.bind(this);
     this.deleteMarker = this.deleteMarker.bind(this);
-    // this.onMarkerClick = this.onMarkerClick.bind(this);
-    // this.onMapClicked = this.onMapClicked.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
@@ -51,25 +49,16 @@ class AddPlacesMap extends React.Component {
       this.setState({ location: this.state.value });
       // this clears out the input value
       this.setState({ value: "" });
-    }else{ 
+    } else {
       this.setState({ nameValidation: true });
     }
 
-    
+
   }
 
   submitLocations = () => {
     console.log("submitted");
-    // const createMarker = () => {
-    //   this.state.markers.map((marker, index) => {
-    //       const popup = new mapboxgl.Popup()
-    //         .setHTML(`<h1>${marker.name}</h1>`)
-    //       const marker = new mapboxgl.Marker()
-    //         .setLngLat([marker.lng, marker.lat])
-    //         .setPopup(popup)
-    //         .addTo(map);
-    //     });
-    // }    
+
     this.state.markers.map(async (marker) => {
       const name = marker.name;
       const latitude = marker.lat;
@@ -92,9 +81,6 @@ class AddPlacesMap extends React.Component {
     });
   };
 
-  // Remember to filter out duplicate markers in final submit button function
-  // Validation in form for the name of location
-
   deleteMarker() {
     this.setState({
       coordinates: { lat: "", lng: "" },
@@ -113,23 +99,6 @@ class AddPlacesMap extends React.Component {
     this.setState({ nameValidation: false });
   }
 
-  // this function creates the markers and the popups
-  // onMapClicked((props, map, e) => {
-  //     if (this.state.showingInfoWindow)
-  //         this.setState({
-  //             activeMarker: null,
-  //             showingInfoWindow: false
-  //         })
-  //     let location = { lat: 0, lng: 0 };
-  //     location.lat = e.latLng.lat();
-  //     location.lng = e.latLng.lng();
-  //     const popup = new mapboxgl.Popup()
-  //     // .setHTML(`<div><h1>${coord.name}</h1><br /><h2>${coord.address}</h2><br/><p>${coord.link}</p></div>`)
-  //     const marker = new mapboxgl.Marker()
-  //         .setLngLat([location.lng, location.lat])
-  //         .setPopup(popup)
-  //         .addTo(map);
-  // });
 
   componentDidMount() {
     const map = new mapboxgl.Map({
@@ -151,7 +120,7 @@ class AddPlacesMap extends React.Component {
       color: '#b71c1c',
       draggable: true,
     })
-      .setLngLat([-122.431297, 37.773972])
+      .setLngLat([-100, 38.88])
       .addTo(map);
     const onDragEnd = () => {
       const coordinates = marker.getLngLat();
@@ -162,14 +131,6 @@ class AddPlacesMap extends React.Component {
       });
     };
     marker.on("dragend", onDragEnd);
-    const addMarker = () => {
-      this.state.newMarker = new mapboxgl.Marker({
-        draggable: true,
-      })
-        .setLngLat([this.state.newMarker.lng, this.state.newMarker.lat])
-        .addTo(map);
-    };
-
   }
 
   // The rendering of the following containers requires the css file, to render properly
@@ -177,8 +138,6 @@ class AddPlacesMap extends React.Component {
     return (
       <div>
         <h2>ADD PLACES</h2>
-        {/* <div className='sidebarStyle'>
-                </div> */}
         <div className="root">
           <form className="toolboxStyle">
             <input
@@ -219,7 +178,7 @@ class AddPlacesMap extends React.Component {
               </h3>
               <ol>
                 {this.state.markers.map((i) => (
-                  <li style={{ fontSize: "18px", color: "black",listStylePosition: 'inside' }}>{i.name}</li>
+                  <li style={{ fontSize: "18px", color: "black", listStylePosition: 'inside' }}>{i.name}</li>
                 ))}
               </ol>
             </div>
