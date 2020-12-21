@@ -377,7 +377,7 @@ export default function Profile() {
               <form
                 noValidate
                 autoComplete="off"
-                className={classes.resultForm}
+                className={` ${classes.resultForm}  testResultForm`}
               >
                 <TextField
                   id="date"
