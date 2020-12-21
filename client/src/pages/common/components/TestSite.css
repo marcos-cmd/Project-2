@@ -37,6 +37,11 @@
   overflow-y: scroll;
 }
 
+.mapboxgl-popup-content {
+  text-align: left;
+  font-family: "Raleway", "sans-serif";
+}
+
 .toolboxStyle {
   background-color: #404040;
   color: #ffffff;

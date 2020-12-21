@@ -71,14 +71,14 @@ class Application extends React.Component {
         console.log();
         if (coord.link === undefined || coord.link.includes("tel://")) {
           const popup = new mapboxgl.Popup()
-            .setHTML(`<div><h1>${coord.name}</h1><br /><h2>${coord.address}</h2><br/><p>No Link To Testsite</p></div>`)
+            .setHTML(`<div><h2>${coord.name}</h2><br/><h3>${coord.address}</h3><br/><p>No Link To Testsite</p></div>`)
           const marker = new mapboxgl.Marker()
             .setLngLat([coord.lng, coord.lat])
             .setPopup(popup)
             .addTo(map);
         } else {
           const popup = new mapboxgl.Popup()
-            .setHTML(`<div><h1>${coord.name}</h1><br /><h2>${coord.address}</h2><br/><a href="${coord.link}" target="_blank">${coord.link}</a></div>`)
+            .setHTML(`<div><h2>${coord.name}</h2><br /><h3>${coord.address}</h3><br/><a href="${coord.link}" target="_blank">Link to Website</a></div>`)
           const marker = new mapboxgl.Marker()
             .setLngLat([coord.lng, coord.lat])
             .setPopup(popup)

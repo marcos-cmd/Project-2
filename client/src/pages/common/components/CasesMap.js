@@ -25,10 +25,6 @@ class CasesMap extends React.Component {
             hoverStateCases: 0,
         };
     }
-    // // This function loads the API Request
-    // loadAPI = async () => {
-    //     return await API.search()
-    // };
 
     async componentDidMount() {
         const getCaseCount = async () => {
@@ -186,34 +182,34 @@ class CasesMap extends React.Component {
         return (
             <div>
                 <h2>CURRENT CASES MAP</h2>
-                {/* <div className='currentCasesMap'> */}
-                <div ref={(el) => (this.mapContainer = el)} className="mapContainer">
-                    <div id='legend'>
-                        <div >
-                            <h2>State's Cases</h2>
-                            <div id="pd">
-                                <p>Hover over a state!</p>
-                                <h3>{this.state.hoverState}</h3>
-                                <h4>{numeral(this.state.hoverStateCases).format("0,0")} Cases</h4>
+                <div className='currentCasesMap'>
+                    <div ref={(el) => (this.mapContainer = el)} className="mapContainer">
+                        <div id='legend'>
+                            <div >
+                                <h2>State's Cases</h2>
+                                <div id="pd">
+                                    <p>Hover over a state!</p>
+                                    <h3>{this.state.hoverState}</h3>
+                                    <h4>{numeral(this.state.hoverStateCases).format("0,0")} Cases</h4>
+                                </div>
+                            </div>
+                            <div >
+                                <h3></h3>
+                                {legendKeys.map((key) => (
+                                    <div key={key.id}>
+                                        {" "}
+                                        <span
+                                            style={{ backgroundColor: key.color }}
+                                            className="legend-key"
+                                        ></span>
+                                        <span>{key.layer}</span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                        <div >
-                            <h3></h3>
-                            {legendKeys.map((key) => (
-                                <div key={red}>
-                                    {" "}
-                                    <span
-                                        style={{ backgroundColor: key.color }}
-                                        className="legend-key"
-                                    ></span>
-                                    <span>{key.layer}</span>
-                                </div>
-                            ))}
-                        </div>
                     </div>
-                </div>
 
-                {/* </div> */}
+                </div>
             </div>
         );
     }
