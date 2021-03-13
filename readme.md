@@ -1,6 +1,11 @@
 # Project Title: 
 ### Roaming For Rona
 ![Landing Page](client/src/assets/landing_page.gif)
+
+# Deployment
+
+[roaming-rona-fork on Heroku](https://roaming-rona-fork.herokuapp.com/)
+
 # Project Description: 
 This project aims to create an application that informs users about everything they need to know to take precautions against COVID-19. Our application provides local (San Francisco) testing sites if a user needs a test. Users can also track their testing history by submitting their results to our application's database. If a user has tested positive, they can mark places showing where they might have transmitted COVID-19 before receiving a positive test result. This information is then shared with all users of our application to remain informed about potential transmission. This app would be handy for showcasing possible hot spots in a user's area, helping them learn certain places to avoid. The application also provides daily updates regarding the United States' current caseload. A user could also track the history of their state's caseload. Check out our application's highlights below.
 # Table of Contents
@@ -18,7 +23,7 @@ What to know about using the repo: To run the application, you must have node in
 View the current cases of COVID-19 by US State.
 ![Cases Chart](client/src/assets/chart.gif)
 
-Compare states' case counts with an interactive choropleth map (Made with Mapbox GL JS).
+Compare states' cases per million residents with an interactive choropleth map (Made with Mapbox GL JS).
 ![Choropleth Map](client/src/assets/choropleth.gif)
 
 Did you test positive for COVID-19? Keep track of your test results on our application.

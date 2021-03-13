@@ -104,17 +104,17 @@ class CasesMap extends React.Component {
                         "green",
                         5000,
                         "#ffd149",
-                        10000,
+                        70000,
                         "#ffa000",
-                        50000,
+                        80000,
                         "#c67100",
-                        100000,
+                        90000,
                         "#f05545",
-                        200000,
+                        100000,
                         "#c74200",
-                        500000,
+                        110000,
                         "#b71c1c",
-                        1000000,
+                        120000,
                         "#7f0000",
                     ],
                     "fill-opacity": [
@@ -172,16 +172,18 @@ class CasesMap extends React.Component {
     render() {
         const legendKeys = [
             { id: 1, layer: "5,000", color: "#ffd149" },
-            { id: 2, layer: "10,000", color: "#ffa000" },
-            { id: 3, layer: "50,000", color: "#c67100" },
-            { id: 4, layer: "100,000", color: "#f05545" },
-            { id: 5, layer: "200,000", color: "#c74200" },
-            { id: 6, layer: "500,000", color: "#b71c1c" },
-            { id: 7, layer: "1,000,000", color: "#7f0000" },
+            { id: 2, layer: "70,000", color: "#ffa000" },
+            { id: 3, layer: "80,000", color: "#c67100" },
+            { id: 4, layer: "90,000", color: "#f05545" },
+            { id: 5, layer: "100,000", color: "#c74200" },
+            { id: 6, layer: "110,000", color: "#b71c1c" },
+            { id: 7, layer: "120,000", color: "#7f0000" },
         ];
         return (
             <div>
-                <h2>CURRENT CASES MAP</h2>
+                <div>
+                <h2>CASES PER MILLION MAP</h2>
+                <h4>To directly compare cases by states with different populations use: Cases Per M =  Total Cases / (Population / 1,000,000) </h4>
                 <div className='currentCasesMap'>
                     <div ref={(el) => (this.mapContainer = el)} className="mapContainer">
                         <div id='legend'>
@@ -194,7 +196,6 @@ class CasesMap extends React.Component {
                                 </div>
                             </div>
                             <div >
-                                <h3></h3>
                                 {legendKeys.map((key) => (
                                     <div key={key.id}>
                                         {" "}
@@ -210,6 +211,9 @@ class CasesMap extends React.Component {
                     </div>
 
                 </div>
+                </div>
+                    <h5>Updated: 3/5/21</h5>
+                    <h6>Source: <a href="https://https://www.worldometers.info/coronavirus/country/us/" target="_blank">Worldometers</a></h6>
             </div>
         );
     }
